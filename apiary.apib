@@ -1,0 +1,498 @@
+FORMAT: 1A
+HOST: http://www.wantoto.com
+
+# DEV台大醫院行動醫療資訊系統 Web Service 0.1
+採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
+
+# 登入與取得 SessionKey [/sessionKey{?epmNo,password}]
+## 取得 session key[POST]
++ Parameters
+    + epmNo (string) ... 使用者帳號
+    + password (string) ... 使用者密碼
+
++ Response 200 (application/json)
+
+        {
+            "content" : {
+                "sessionKey" : "51ADFDA9C02D4E1E9930D88A26963612" //Session key [string]
+            }
+        }
+    
++ Response 401 (application/json)
+
+        {
+            "message" : "帳號密碼錯誤", //錯誤訊息[string]
+            "error" : 101 //錯誤代碼 [number]
+        }
+
+# Group Web Service 通則
+## 通則 [/{?sessionKey,offset,limit}]
+### 驗證 Session Key 與資料分頁參數[GET]
+所有 Web Service 都須帶入 Session Key 檢查是否過期與是否具有存取權限。
+
+過期則回傳 401；無存取權限則回傳 403。
+
+所有資料回傳時間，皆以時間序號表示，以秒為單位。
+(使用 1 January 1970, GMT為基準時間 http://zh.wikipedia.org/wiki/Help:%E6%99%82%E9%96%93%E5%BA%8F%E8%99%9F）
++ Parameters
+    + sessionKey (string) ... 使用者登入 Session Key
+    + offset = `0` (number, optional) ... 資料偏移數，需與 limit 一起傳入，當content為陣列或collection時使用
+    + limit (number, optional) ... 最大回傳筆數，需與 offset 一起傳入，當content為陣列或collection時使用
+    
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
++ Response 401 (application/json)
+
+        {
+            "message" : "Session Key 過期", //錯誤訊息[string]
+            "error" :  102 //錯誤代碼 [number]
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "message" : "無存取權限", //錯誤訊息[string]
+            "error" :  103 //錯誤代碼 [number]
+        }
+
+# Group 病患清單 Patient List
+病患清單相關 Web Service
+## 病患清單 [/patients{?patientID,personID,wardCode,epmNo,epmNoConsult,epmNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+### 查詢病患清單 [GET]
+可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
++ Parameters
+    + patientID (string, optional) ... 病歷號
+    + personID (string, optional) ... 身分證號
+    + wardCode (string, optional, `5W3`) ... 病房號
+    + epmNo (string, optional) ... 醫師員編 (依照醫師員編顯示個人病患)
+    + epmNoConsult (string, optional) ... 醫師員編 (依照醫師員編顯示照會病患)
+    + epmNoStarred (string, optional) ... 醫師員編 (依照醫師員編顯示追蹤病患)
+    + ORCode (string, optional) ... 開刀房號
+    + ERCode (string, optional) ... 急診科別
+    + OPDCode (string, optional) ... 門診科別
+    + examRoomCode (string, optional) ... 檢查科室
+    
++ Response 200 (application/json)
+
+        {
+            "content" : [   //病患資訊陣列
+                {   //病患資訊
+                    "patName" : "王小明",  //病患姓名[string]
+                    "patSexCode" : "M",   //性別[string]（男性："M";女性："F"）
+                    "patBirthday" : 1406938026,    //出生日期[number(date)]
+                    "patientID" : "12345678",   //病歷號[string]
+                    "persionID" : "A123456789",  //身分證號[number]
+                    "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)[string]
+                    "inDate" : 1406938026, //入院日期(住院與急診)，非住院或在急診則回傳 null [number(date)]
+                    "VS" : "葉小菜" //主治醫師[string]
+                    "status" : "住院中" //狀態[string]
+                    "specialTag" : [   //特殊標記[string array] (ex:DNR,...)
+                        {
+                            "tagCode" : "DNR",
+                            "displayName" : "DNR"
+                        },
+                        ...
+                    ],
+                    "latestPacsReportDateTime" : 1406938026, //最新影像時間[number(date)]
+                    "latestLISReportDateTime" : 1406938026, //最新報告時間[number(date)]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+        
+## 病房號 [/wards]
+### 查詢所有病房 [GET]
++ Response 200 (application/json)
+
+        {
+            "content" : [   //病房資訊陣列
+                {   //病房資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "wardCode" : "01A1",   //病房代碼[string]
+                    "displayName" : "01A1"    //顯示名稱[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+        
+## 開刀房號 [/ORs]
+### 查詢開刀房 [GET]
++ Response 200 (application/json)
+
+         {
+            "content"[   //手術房資訊陣列
+                {   //手術房資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "ORCode" : "1",   //開刀房代碼[string]
+                    "displayName" : "1"    //顯示名稱[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+        
+## 急診科別 [/ERs]
+### 查詢急診科別 [GET]
++ Response 200 (application/json)
+
+         {
+            "content"[   //急診科別資訊陣列
+                {   //急診科別資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "ERCode" : "ALL",   //急診科別代碼[string]
+                    "displayName" : "不分科"    //顯示名稱[string]
+                },
+                {   //急診科別資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "ERCode" : "MED",   //急診科別代碼[string]
+                    "displayName" : "非外傷"    //顯示名稱[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+    
+## 門診科別 [/OPDs]
+### 查詢今日門診科別 [GET]
++ Response 200 (application/json)
+
+        {
+            "content" : [   //門診科別資訊陣列
+                {   //門診科別資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "OPDCode" : "MED",   //門診科別代碼[string]
+                    "displayName" : "內科部",    //顯示名稱[string]
+                    "childPath" : "/OPDs/MED"   //下一層內容連結，無下層則不回傳[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+
+## 門診科別層級 [/OPDs/{OPDCode}]
+### 查詢今日門診科別 [GET]
++ Parameters 
+   + OPDCode (string, `MED`) ... 門診代碼
+
++ Request MED (text/plain)
+
+        "OPDCode" : "MED"
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [   //門診科別資訊陣列
+                {
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "OPDCode" : "MED_A",   //門診科別代碼[string]
+                    "displayName" : "內科部 上午",    //顯示名稱[string]
+                    "childPath" : "/OPDs/MED_A"   //下一層內容連結，無下層則不回傳[string]
+                },
+                {
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "OPDCode" : "MED_P",   //門診科別代碼[string]
+                    "displayName" : "內科部 下午",    //顯示名稱[string]
+                    "childPath" : "/OPDs/MED_P"   //下一層內容連結，無下層則不回傳[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+
++ Request MED_A (text/plain)
+
+        "OPDCode" : "MED_A"
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [   //門診科別資訊陣列
+                {   //門診科別資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "OPDCode" : "MED_A_01",   //門診科別代碼[string]
+                    "displayName" : "01診 王OO 腎臟科",    //顯示名稱[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        }
+
+## 檢查科室 [/examRooms]
+### 查詢檢查科室 [GET]
++ Response 200 (application/json)
+
+        {
+            "content" : [   //檢查科別資訊陣列
+                {   //檢查科別資訊
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "examRoomCode" : "000CPFT0",   //檢查科室代碼[string]
+                    "displayName" : "[檢查照會] 肺功能室",    //顯示名稱[string]
+                    "childPath" : "/examRooms/000CPFT0"   //下一層內容連結，無下層則不回傳[string]
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 50 //此次Query總筆數[number] 
+        ]
+
+## 檢查科室層級 [/examRooms/{examRoomCode}]
+### 查詢檢查科室 [GET]
++ Parameters 
+   + examRoomCode (string, `000CPFT0`) ... 檢查科室代碼
+   
++ Request MED (text/plain)
+
+        "examRoomCode" : "000CPFT0"
+        
++ Response 200 (application/json)
+
+        {
+            "content" : [   //檢查科別資訊陣列
+                {
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "examRoomCode" : "000CPFT0_A",   //檢查科室代碼[string]
+                    "displayName" : "[檢查照會] 肺功能室 上午",    //顯示名稱[string]
+                },
+                {
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "examRoomCode" : "000CPFT0_P",   //檢查科室代碼[string]
+                    "displayName" : "[檢查照會] 肺功能室 上午",    //顯示名稱[string]
+                },
+                {
+                    "hospCode" : "T0",  //醫院代碼[string]
+                    "examRoomCode" : "000CPFT0_N",   //檢查科室代碼[string]
+                    "displayName" : "[檢查照會] 肺功能室 晚上",    //顯示名稱[string]
+                }
+            ],
+            "limit" : 3, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 3 //此次Query總筆數[number] 
+        ]
+
+# Group 病歷資料 Medical Record
+## @病患醫療基本資料 [/patients/{patientID}]
+### 取得病患醫療基本資料 [GET]
++ Parameters 
+    + patientID (string) ... 病歷號
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {
+            } 
+        }
+
+## 病歷資料 Web Service 通則 [/patients/{patientID}/{dataPath}{?startDate,endDate}]
+### 取得病歷資料 [GET]
++ Parameters
+    + patientID (string) ... 病歷號
+    + dataPath (string) ... 各項病歷資料路徑
+    + startDate = `入院日` (string, optional, `1406938026`) ... Query 開始日期，以時間序號表示 (包含此日期)
+    + endDate = `今日` (string, optional, `1406938026`) ... Query 結束日期，以時間序號表示 (包含此日期)
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @檢驗報告-綠單報告 [/patients/{patientID}/labReport/greenReport]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## 報告系統 [/patients/{patientID}/otherReport]
+檢驗報告之外的其他報告
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "date",  //欄位代碼[string]
+                        "displayName" : "報告時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "items",  
+                        "displayName" : "檢查項目"
+                    },
+                    {
+                        "fieldCode" : "type",  
+                        "displayName" : "報告種類"
+                    }
+                ],
+                "data" : [
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "date" : 1406938026,
+                            "item" : "Chest PA View (Standing)",
+                            "type" : "影核醫"
+                        }
+                        "filterCode" : [    //篩選類別
+                            "image"
+                        ]
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/ImageReport/{ImageReportID}"   //報告路徑
+                        }
+                    },
+                    ...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "Image",
+                        "displayName" : "影核醫"
+                    },
+                    {
+                        "filterCode" : "ECG",
+                        "displayName" : "心電圖"
+                    },
+                    ...
+                ],
+                "limit" : 50, //最大回傳筆數傳[number] 
+                "offset" : 0, //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number]
+            }
+        }
+
+## @生命徵象 [/patients/{patientID}/TPR]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @非處方醫囑 [/patients/{patientID}/order]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @處方醫囑 [/patients/{patientID}/medication]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @藥物資訊 [/medication/{medicationID}]
+### 取得藥物資訊 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {}
+        }
+
+
+## @手術紀錄 [/patients/{patientID}/OPNote]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @病程紀錄 [/patients/{patientID}/progressNote]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
+
+## @電子病歷 [/patients/{patientID}/EMR]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+        }
