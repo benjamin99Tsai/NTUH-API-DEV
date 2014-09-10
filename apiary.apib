@@ -569,7 +569,7 @@ HOST: http://www.wantoto.com
             }
         }
 
-## @電子病歷 [/patients/{patientID}/EMR]
+## 電子病歷 [/patients/{patientID}/EMR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -587,7 +587,7 @@ HOST: http://www.wantoto.com
                         "content" : {   //依據欄位填入資料，無資料則不回傳
                             "item" : "置頂",
                         },
-                        "children" : [
+                        "children" : [  //有次階層時回傳
                             {
                                 "content" : {   //依據欄位填入資料，無資料則不回傳
                                     "item" : "病歷首頁及摘要",
