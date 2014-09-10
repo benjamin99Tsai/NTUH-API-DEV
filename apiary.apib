@@ -575,8 +575,85 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
-            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "item",  
+                        "displayName" : "項目"
+                    }
+                ],
+                "data" : [
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "item" : "置頂",
+                        },
+                        "children" : [
+                            {
+                                "content" : {   //依據欄位填入資料，無資料則不回傳
+                                    "item" : "病歷首頁及摘要",
+                                },
+                                "report" : {    //如有報告則回傳
+                                    "reportType" : "HTML",  //報告型態，HTML或PDF
+                                    "reportPath" : "/EMRReport/{EMRReportID}"   //報告路徑
+                                },
+                                "children" : [
+                                    {
+                                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                                            "item" : "PDF病歷首頁及摘要",
+                                        },
+                                        "report" : {    //如有報告則回傳
+                                            "reportType" : "PDF",  //報告型態，HTML或PDF
+                                            "reportPath" : "/EMRReport/{EMRReportID}"   //報告路徑
+                                        }
+                                    },
+                                    ...
+                                ]
+                            },
+                            ...
+                        ]
+                    },
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "item" : "住院",
+                        },
+                        "children" : [
+                            {
+                                "content" : {   //依據欄位填入資料，無資料則不回傳
+                                    "item" : "2014/06/25 外科部",
+                                },
+                                "children" : [
+                                    {
+                                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                                            "item" : "出院病摘",
+                                        },
+                                        "report" : {    //如有報告則回傳
+                                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                                            "reportPath" : "/EMRReport/{EMRReportID}"   //報告路徑
+                                        }
+                                        "children" : [
+                                            {
+                                                "content" : {   //依據欄位填入資料，無資料則不回傳
+                                                    "item" : "出院病摘",
+                                            },
+                                                "report" : {    //如有報告則回傳
+                                                    "reportType" : "HTML",  //報告型態，HTML或PDF
+                                                    "reportPath" : "/EMRReport/{EMRReportID}"   //報告路徑
+                                            }
+                                        ]
+                                    },
+                                    ...
+                                ]
+                                    },
+                                    ...
+                                ]
+                            },
+                            ...
+                        ]
+                    },
+                    ...
+                ],
+                "limit" : 50, //最大回傳筆數傳[number] 
+                "offset" : 0, //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number]
+            }
         }
