@@ -461,16 +461,56 @@ HOST: http://www.wantoto.com
         }
 
 
-## @手術紀錄 [/patients/{patientID}/OPNote]
+## 手術紀錄 [/patients/{patientID}/OPNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
         
         {
-            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
-            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "OPType",  
+                        "displayName" : "術式"
+                    },
+                    {
+                        "fieldCode" : "dept",  
+                        "displayName" : "科部"
+                    },
+                    {
+                        "fieldCode" : "date",  //欄位代碼[string]
+                        "displayName" : "手術開始時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "doctor",  
+                        "displayName" : "醫師"
+                    },
+                    {
+                        "fieldCode" : "status",  
+                        "displayName" : "狀態"
+                    }
+                ],
+                "data" : [
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "OPType" : "1. Subxiphoid drainage with sternal... ",
+                            "dept" : "外科部",
+                            "date" : 1406938026,
+                            "doctor" : "葉小菜"
+                            "status" : "V"
+                        },
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/OPNote/{OPNoteID}"   //報告路徑
+                        }
+                    },
+                    ...
+                ],
+                "limit" : 50, //最大回傳筆數傳[number] 
+                "offset" : 0, //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number]
+            }
         }
 
 ## 病程紀錄 [/patients/{patientID}/progressNote]
