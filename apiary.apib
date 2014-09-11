@@ -311,14 +311,16 @@ HOST: http://www.wantoto.com
 + Parameters
     + patientID (string) ... 病歷號
     + dataPath (string) ... 各項病歷資料路徑
-    + startDate = `入院日` (string, optional, `1406938026`) ... Query 開始日期，以時間序號表示 (包含此日期)
+    + startDate = `入院日` (string, optional, `1406938026`) ... Query 起始日期，以時間序號表示 (包含此日期)
     + endDate = `今日` (string, optional, `1406938026`) ... Query 結束日期，以時間序號表示 (包含此日期)
 + Response 200 (application/json)
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
+            "limit" : 50, //最大回傳筆數，當client傳入與content為陣列或collection時需回傳[number] 
+            "offset" : 0, //回傳資料偏移數，當client傳入與content為陣列或collection時需回傳傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
@@ -329,6 +331,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -341,6 +345,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -353,6 +359,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -412,7 +420,9 @@ HOST: http://www.wantoto.com
                 "limit" : 50, //最大回傳筆數傳[number] 
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
-            }
+            },
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## @生命徵象 [/patients/{patientID}/TPR]
@@ -422,6 +432,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -434,6 +446,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -446,6 +460,8 @@ HOST: http://www.wantoto.com
         
         {
             "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
             "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
@@ -511,6 +527,8 @@ HOST: http://www.wantoto.com
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
             }
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## 病程紀錄 [/patients/{patientID}/progressNote]
@@ -567,6 +585,8 @@ HOST: http://www.wantoto.com
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
             }
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## 電子病歷 [/patients/{patientID}/EMR]
@@ -654,5 +674,7 @@ HOST: http://www.wantoto.com
                 "limit" : 50, //最大回傳筆數傳[number] 
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
-            }
+            },
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
