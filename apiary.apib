@@ -484,12 +484,14 @@ HOST: http://www.wantoto.com
                     "drugRecord" : [    //Query期間所有給藥記錄
                         {
                             "date" : 1406938026, 日期[number(date)]
-                            "status" : "taken" //用藥狀態。ex:"taken"(已給藥)、"stat"(未處理)、"failure"未給藥"[string]
+                            "status" : "taken" //用藥狀態。ex:"taken"(已給藥)、"pending"(未處理)、"failure"未給藥"[string]
                             "note" : "" //護理給藥備註[string]
                             "executor" : "張小珍 護理師" //執行人員[string]
-                        }
+                        },
+                        ...
                     ]
                 },
+                ...
             ],
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
