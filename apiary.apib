@@ -474,10 +474,18 @@ HOST: http://www.wantoto.com
                     "startDate" : 1406938026, 用藥開始日期[number(date)]
                     "endDate" : 1406938026, 用藥結束日期[number(date)]
                     "_epm_order" : { //開立醫師
-                        "epmNo" : "23454353"
+                        "epmNo" : "23454353",
                         "name" : "葉小菜"
                     },
-                    "note" : "if" //備註[string]
+                    "note" : "if pain score > 3", //備註[string]
+                    "filterTag" : "" [string]
+                    "drugInfoPath" : "/medication/{medicationID}",  //藥物資訊連結[string]
+                    "drugRecord" : [
+                        {
+                            "date" : 1406938026, 日期[number(date)]
+                            "status" : 
+                        }
+                    ]
                 },
             ],
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
