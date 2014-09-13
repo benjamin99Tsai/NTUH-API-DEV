@@ -91,7 +91,10 @@ HOST: http://www.wantoto.com
                     "persionID" : "A123456789",  //身分證號[number]
                     "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)[string]
                     "inDate" : 1406938026, //入院日期(住院與急診)，非住院或在急診則回傳 null [number(date)]
-                    "VS" : "葉小菜" //主治醫師[string]
+                    "_epm_VS" : {   //主治醫師(如遇回傳資料為醫師者，變數皆為_epm_開頭)[string]
+                        "epmNo" : "111281", //醫師員編[string]
+                        "name" : "葉小菜" 
+                    },
                     "status" : "住院中" //狀態[string]
                     "specialTag" : [   //特殊標記[string array] (ex:DNR,...)
                         {
@@ -459,7 +462,24 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "content" : [
+                {
+                    "drugName" : "Magnesium Oxide", //學名[string]
+                    "itemName" : "MgO", //品名[string]
+                    "itemUnit" : "250 mg/tab", 劑量單位[string]
+                    "dose" : "2 tab", 劑量[string]
+                    "approach" : "PO", 途徑[string]
+                    "frequency" : "BID", 頻次[string]
+                    "orderDate" : 1406938026, 開立日期[number(date)]
+                    "startDate" : 1406938026, 用藥開始日期[number(date)]
+                    "endDate" : 1406938026, 用藥結束日期[number(date)]
+                    "_epm_order" : { //開立醫師
+                        "epmNo" : "23454353"
+                        "name" : "葉小菜"
+                    },
+                    "note" : "if" //備註[string]
+                },
+            ],
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
@@ -499,7 +519,7 @@ HOST: http://www.wantoto.com
                         "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                     },
                     {
-                        "fieldCode" : "doctor",  
+                        "fieldCode" : "_epm_doctor",  
                         "displayName" : "醫師"
                     },
                     {
@@ -513,7 +533,10 @@ HOST: http://www.wantoto.com
                             "OPType" : "1. Subxiphoid drainage with sternal... ",
                             "dept" : "外科部",
                             "date" : 1406938026,
-                            "doctor" : "葉小菜"
+                            "_epm_doctor" : {
+                                "epmNo" : "123342"
+                                "name" : "葉小菜"
+                            },
                             "status" : "V"
                         },
                         "report" : {    //如有報告則回傳
