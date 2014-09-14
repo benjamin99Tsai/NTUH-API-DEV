@@ -449,12 +449,70 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "order",  
+                        "displayName" : "醫令內容"
+                    },
+                    {
+                        "fieldCode" : "startDate",  //欄位代碼[string]
+                        "displayName" : "開始時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "endDate",  //欄位代碼[string]
+                        "displayName" : "結束時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "_epm_doctor",  
+                        "displayName" : "確認醫師"
+                    },
+                    {
+                        "fieldCode" : "status",  
+                        "displayName" : "狀態"
+                    },
+                    {
+                        "fieldCode" : "orderDate",  
+                        "displayName" : "開立時間",
+                        "dateFormat" : "yyyy-MM-dd mm:ss"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    }
+                ],
+                "data" : [
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "date" : 1406938026,
+                            "item" : "Chest PA View (Standing)",
+                            "type" : "影核醫"
+                        },
+                        "filterCode" : [    //篩選類別
+                            "image"
+                        ],
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/ImageReport/{ImageReportID}"   //報告路徑
+                        }
+                    },
+                    ...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "Image",
+                        "displayName" : "影核醫"
+                    },
+                    {
+                        "filterCode" : "ECG",
+                        "displayName" : "心電圖"
+                    },
+                    ...
+                ],
+                "limit" : 50, //最大回傳筆數傳[number] 
+                "offset" : 0, //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number]
+            },
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
-            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
-            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## 處方醫囑 [/patients/{patientID}/medication]
