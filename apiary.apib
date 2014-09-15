@@ -450,7 +450,31 @@ HOST: http://www.wantoto.com
                     ...
                 ],
                 "IO" : [    //IO資料
-                    
+                    {   //欄位資料
+                        "fieldName" : "血壓", //欄位名稱[string]
+                        "data" : [
+                            {
+                                "date" : 1406938026,    //資料時間[number(date)]
+                                "data" : "125/75"   //資料內容[string]
+                            },
+                            ...
+                        ]
+                    },
+                    {   //欄位資料
+                        "fieldName" : "身高", //欄位名稱[string]
+                        "unit" : "cm",  //單位，有單位時回傳[string,optional]
+                        "data" : [
+                            {
+                                "date" : 1406938026,    //資料時間[number(date)]
+                                "data" : "173"   //資料內容[string]
+                            },
+                                                        {
+                                "date" : 1406948026,    //資料時間[number(date)]
+                                "data" : "173.5"   //資料內容[string]
+                            },
+                            ...
+                        ]
+                    },
                 ],
                 "medication" : {
                 }
