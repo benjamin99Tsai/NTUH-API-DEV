@@ -405,14 +405,14 @@ HOST: http://www.wantoto.com
                         ],
                         "report" : {    //如有報告則回傳
                             "reportType" : "HTML",  //報告型態，HTML或PDF
-                            "reportPath" : "/ImageReport/{ImageReportID}"   //報告路徑
+                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
                         }
                     },
                     ...
                 ],
                 "filter" : [
                     {
-                        "filterCode" : "Image",
+                        "filterCode" : "image",
                         "displayName" : "影核醫"
                     },
                     {
@@ -443,7 +443,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## @非處方醫囑 [/patients/{patientID}/order]
+## 非處方醫囑 [/patients/{patientID}/order]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -482,9 +482,15 @@ HOST: http://www.wantoto.com
                 "data" : [
                     {
                         "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "date" : 1406938026,
-                            "item" : "Chest PA View (Standing)",
-                            "type" : "影核醫"
+                            "order" : "Chest PA View (Standing)",
+                            "startDate" : 1406938026,
+                            "endDate" : 1406938026,
+                            "_epm_doctor" : { 
+                                "epmNo" : "23454353",
+                                "name" : "葉小菜"
+                            },
+                            "status" : "已完成",
+                            "orderDate" : 1406938026
                         },
                         "filterCode" : [    //篩選類別
                             "image"
@@ -498,12 +504,20 @@ HOST: http://www.wantoto.com
                 ],
                 "filter" : [
                     {
-                        "filterCode" : "Image",
-                        "displayName" : "影核醫"
+                        "filterCode" : "order",
+                        "displayName" : "醫囑"
                     },
                     {
-                        "filterCode" : "ECG",
-                        "displayName" : "心電圖"
+                        "filterCode" : "medication",
+                        "displayName" : "處方"
+                    },
+                    {
+                        "filterCode" : "lab",
+                        "displayName" : "檢驗"
+                    },
+                    {
+                        "filterCode" : "image",
+                        "displayName" : "影醫"
                     },
                     ...
                 ],
