@@ -4,7 +4,7 @@ HOST: http://www.wantoto.com
 # DEV台大醫院行動醫療資訊系統 Web Service 0.1
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
-# 登入與取得 SessionKey [/sessionKey{?epmNo,password}]
+# 9/15-登入與取得 SessionKey [/sessionKey{?epmNo,password}]
 ## 取得 session key[POST]
 + Parameters
     + epmNo (string) ... 使用者帳號
@@ -370,7 +370,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## 報告系統 [/patients/{patientID}/otherReport]
+## 9/15-報告系統 [/patients/{patientID}/otherReport]
 檢驗報告之外的其他報告
 ### 取得病歷資料 [GET]
 
@@ -429,7 +429,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 生命徵象 [/patients/{patientID}/TPR]
+## 9/15-生命徵象 [/patients/{patientID}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -512,7 +512,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 非處方醫囑 [/patients/{patientID}/order]
+## 9/15-非處方醫囑 [/patients/{patientID}/order]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -598,7 +598,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 處方醫囑 [/patients/{patientID}/medication]
+## 9/15-處方醫囑 [/patients/{patientID}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -642,7 +642,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## 藥物資訊 [/medication/{medicationID}]
+## 9/15-藥物資訊 [/medication/{medicationID}]
 ### 取得藥物資訊 [GET]
 
 + Response 200 (application/json)
@@ -675,7 +675,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 手術紀錄 [/patients/{patientID}/OPNote]
+## 9/15-手術紀錄 [/patients/{patientID}/OPNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -732,7 +732,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 病程紀錄 [/patients/{patientID}/progressNote]
+## 9/15-病程紀錄 [/patients/{patientID}/progressNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -790,7 +790,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 電子病歷 [/patients/{patientID}/EMR]
+## 9/15-電子病歷 [/patients/{patientID}/EMR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
