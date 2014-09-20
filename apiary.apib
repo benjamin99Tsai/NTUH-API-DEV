@@ -4,10 +4,10 @@ HOST: http://www.wantoto.com
 # DEV台大醫院行動醫療資訊系統 Web Service 0.1
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
-# 9/15-登入與取得 SessionKey [/sessionKey{?epmNo,password}]
+# 9/15-登入與取得 SessionKey [/sessionKey{?empNo,password}]
 ## 取得 session key[POST]
 + Parameters
-    + epmNo (string) ... 使用者帳號
+    + empNo (string) ... 使用者帳號
     + password (string) ... 使用者密碼
 
 + Response 200 (application/json)
@@ -65,16 +65,16 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 病患清單 [/patients{?patientID,personID,wardCode,epmNo,epmNoConsult,epmNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 病患清單 [/patients{?patientID,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
     + patientID (string, optional) ... 病歷號
     + personID (string, optional) ... 身分證號
     + wardCode (string, optional, `5W3`) ... 病房號
-    + epmNo (string, optional) ... 醫師員編 (依照醫師員編顯示個人病患)
-    + epmNoConsult (string, optional) ... 醫師員編 (依照醫師員編顯示照會病患)
-    + epmNoStarred (string, optional) ... 醫師員編 (依照醫師員編顯示追蹤病患)
+    + empNo (string, optional) ... 醫師員編 (依照醫師員編顯示個人病患)
+    + empNoConsult (string, optional) ... 醫師員編 (依照醫師員編顯示照會病患)
+    + empNoStarred (string, optional) ... 醫師員編 (依照醫師員編顯示追蹤病患)
     + ORCode (string, optional) ... 開刀房號
     + ERCode (string, optional) ... 急診科別
     + OPDCode (string, optional) ... 門診科別
@@ -92,7 +92,7 @@ HOST: http://www.wantoto.com
                     "persionID" : "A123456789",  //身分證號[number]
                     "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)[string]
                     "inDate" : 1406938026, //入院日期(住院與急診)，非住院或在急診則回傳 null [number(date)]
-                    "_epm_VS" : {   //主治醫師(如遇回傳資料為醫師者，變數皆為_epm_開頭)[string]
+                    "_emp_VS" : {   //主治醫師(如遇回傳資料為醫師者，變數皆為_emp_開頭)[string]
                         "epmNo" : "111281", //醫師員編[string]
                         "name" : "葉小菜" 
                     },
@@ -505,7 +505,7 @@ HOST: http://www.wantoto.com
                         "orderDate" : 1406938026, //開立日期[number(date)]
                         "startDate" : 1406938026, //用藥開始日期[number(date)]
                         "endDate" : 1406938026, //用藥結束日期[number(date)]
-                        "_epm_order" : { //開立醫師
+                        "_emp_order" : { //開立醫師
                             "epmNo" : "23454353",
                             "name" : "葉小菜"
                         },
@@ -552,7 +552,7 @@ HOST: http://www.wantoto.com
                         "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                     },
                     {
-                        "fieldCode" : "_epm_doctor",  
+                        "fieldCode" : "_emp_doctor",  
                         "displayName" : "確認醫師"
                     },
                     {
@@ -571,7 +571,7 @@ HOST: http://www.wantoto.com
                             "order" : "Chest PA View (Standing)",
                             "startDate" : 1406938026,
                             "endDate" : 1406938026,
-                            "_epm_doctor" : { 
+                            "_emp_doctor" : { 
                                 "epmNo" : "23454353",
                                 "name" : "葉小菜"
                             },
@@ -633,7 +633,7 @@ HOST: http://www.wantoto.com
                     "orderDate" : 1406938026, //開立日期[number(date)]
                     "startDate" : 1406938026, //用藥開始日期[number(date)]
                     "endDate" : 1406938026, //用藥結束日期[number(date)]
-                    "_epm_order" : { //開立醫師
+                    "_emp_order" : { //開立醫師
                         "epmNo" : "23454353",
                         "name" : "葉小菜"
                     },
@@ -714,7 +714,7 @@ HOST: http://www.wantoto.com
                         "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                     },
                     {
-                        "fieldCode" : "_epm_doctor",  
+                        "fieldCode" : "_emp_doctor",  
                         "displayName" : "醫師"
                     },
                     {
@@ -728,7 +728,7 @@ HOST: http://www.wantoto.com
                             "OPType" : "1. Subxiphoid drainage with sternal... ",
                             "dept" : "外科部",
                             "date" : 1406938026,
-                            "_epm_doctor" : {
+                            "_emp_doctor" : {
                                 "epmNo" : "123342"
                                 "name" : "葉小菜"
                             },
