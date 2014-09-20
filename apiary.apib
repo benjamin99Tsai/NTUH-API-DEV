@@ -345,7 +345,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## @檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
+## 檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -369,16 +369,23 @@ HOST: http://www.wantoto.com
                                 {
                                     "fieldCode" : "WBC",  
                                     "displayName" : "WBC(k/uL)"
-                                    "reference" : "3.54 ~ 9.06" //參考值
+                                    "labInfo" : {   //檢驗項目相關資訊[string]
+                                        "reference" : "3.54 ~ 9.06" //參考值[string]
+                                    }
+                                    
                                 },
                                 ...
                             ],
                             "data" : [
                                 {
+                                    "reportDate" : 1406938026,  //報告時間[number(date)]
                                     "content" : {   //依據欄位填入資料，無資料則不回傳
                                         "date" : 1406938026,
-                                        "item" : "Chest PA View (Standing)",
-                                        "type" : "影核醫"
+                                        "WBC" : {   //若為檢驗數值則回傳object
+                                            "value" :"4.05",    //檢驗值[string]
+                                            "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
+                                            "note" : "" //檢醫部註記，無資料則不回傳[sitrng]
+                                        },
                                     },
                                 },
                                 ...
