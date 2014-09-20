@@ -351,12 +351,26 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content" : [], //回傳內容(可以是單一物件，也可以是陣列)
+            "content" : {
+                "data" [
+                    {   //
+                    
+                    },...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "HE",
+                        "displayName" : "血液檢驗組血液室HE"
+                    },
+                    {
+                        "filterCode" : "BC",
+                        "displayName" : "生化檢驗組BC"
+                    },
+                    ...
+                ],
+            }, 
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
-            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
 ## @檢驗報告-綠單報告 [/patients/{patientID}/labReport/greenReport]
