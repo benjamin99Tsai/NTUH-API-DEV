@@ -354,7 +354,36 @@ HOST: http://www.wantoto.com
             "content" : {
                 "data" [
                     {   //
-                    
+                        "item" : "CBC+PLT BLOOD" //檢驗項目[string]
+                        "lab" : "血液檢驗組血液室HE"    //檢驗單位[string]
+                        "filterCode" : [    //篩選代碼
+                            "HE"
+                        ],
+                        "table" : {
+                            "field" : [    //欄位資訊
+                                {
+                                    "fieldCode" : "date",  //欄位代碼[string]
+                                    "displayName" : "檢驗時間", //欄位顯示名稱[string]
+                                    "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                },
+                                {
+                                    "fieldCode" : "WBC",  
+                                    "displayName" : "WBC(k/uL)"
+                                    "reference" : "3.54 ~ 9.06" //參考值
+                                },
+                                ...
+                            ],
+                            "data" : [
+                                {
+                                    "content" : {   //依據欄位填入資料，無資料則不回傳
+                                        "date" : 1406938026,
+                                        "item" : "Chest PA View (Standing)",
+                                        "type" : "影核醫"
+                                    },
+                                },
+                                ...
+                            ],
+                        }
                     },...
                 ],
                 "filter" : [
