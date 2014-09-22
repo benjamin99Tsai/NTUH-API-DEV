@@ -4,7 +4,7 @@ HOST: http://www.wantoto.com
 # DEV台大醫院行動醫療資訊系統 Web Service 0.1
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
-# 9/15-登入與取得 SessionKey [/sessionKey{?empNo,password}]
+# 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
 ## 取得 session key[POST]
 + Parameters
     + empNo (string) ... 使用者帳號
@@ -65,7 +65,7 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 病患清單 [/patients{?patientID,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 9/22-病患清單 [/patients{?patientID,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
@@ -328,7 +328,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## 檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
+## 9/22-檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -337,8 +337,99 @@ HOST: http://www.wantoto.com
             "content" : {
                 "data" [
                     {   //
-                        "item" : "CBC+PLT BLOOD" //檢驗項目[string]
-                        "lab" : "血液檢驗組血液室HE"    //檢驗單位[string]
+                        "specimen" : "BLOOD", //檢體[string]
+                        "lab" : "血液檢驗組血液室HE",    //檢驗單位[string]
+                        "requestNo" : "4025928",    //檢驗單號[string]
+                        "inspectionDate" : 1406938026,   //採檢時間[number(date)]
+                        "recordDate" : 1406938026,    //登入時間[number(date)]
+                        "reportDate" : 1406938026,   //最後報告時間[number(date)]                        
+                        "filterCode" : [    //篩選代碼
+                            "HE"
+                        ],
+                        "report" : {    //有額外報告時回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/labReport/{labReportID}"   //報告路徑
+                        },
+                        "table" : {
+                            "field" : [    //欄位資訊
+                                {
+                                    "fieldCode" : "item",  //欄位代碼[string]
+                                    "displayName" : "檢驗項目" //欄位顯示名稱[string]
+                                },
+                                {
+                                    "fieldCode" : "labValue",  
+                                    "displayName" : "檢驗值"
+                                },
+                                {
+                                    "fieldCode" : "unit",  
+                                    "displayName" : "單位"
+                                },
+                                {
+                                    "fieldCode" : "reference",  
+                                    "displayName" : "參考值"
+                                },
+                                {
+                                    "fieldCode" : "critical",  
+                                    "displayName" : "危急值"
+                                },
+                                {
+                                    "fieldCode" : "note",  
+                                    "displayName" : "說明"
+                                },
+                                {
+                                    "fieldCode" : "specialOrder",  
+                                    "displayName" : "特別醫囑"
+                                }
+                            ],
+                            "data" : [
+                                {
+                                    "content" : {   //依據欄位填入資料，無資料則不回傳
+                                        "item" : "RBC",
+                                        "labValue" : {   //若為檢驗數值則回傳object
+                                            "value" :"2.66",    //檢驗值[string]
+                                            "status" : "normal"    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
+                                        },
+                                        "reference" : "4 ~ 5.52",
+                                        "critical" : "< 2.0 & > 7.0", 
+                                        "note" : "", 
+                                        "specialOrder" : ""                         
+                                    }
+                                },
+                                ...
+                            ],
+                        }
+                    },...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "HE",
+                        "displayName" : "血液檢驗組血液室HE"
+                    },
+                    {
+                        "filterCode" : "BC",
+                        "displayName" : "生化檢驗組BC"
+                    },
+                    ...
+                ],
+                "limit" : 50, //最大回傳筆數，當client傳入與content為陣列或collection時需回傳[number] 
+                "offset" : 0, //回傳資料偏移數，當client傳入與content為陣列或collection時需回傳傳[number]
+                "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
+            }, 
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
+        }
+
+## 9/22-檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {
+                "data" [
+                    {   //
+                        "item" : "CBC+PLT BLOOD", //檢驗項目[string]
+                        "lab" : "血液檢驗組血液室HE",    //檢驗單位[string]
                         "filterCode" : [    //篩選代碼
                             "HE"
                         ],
@@ -392,7 +483,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
+## 9/22-檢驗報告-綠單報告 [/patients/{patientID}/labReport/greenReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -401,71 +492,7 @@ HOST: http://www.wantoto.com
             "content" : {
                 "data" [
                     {   //
-                        "item" : "CBC+PLT BLOOD" //檢驗項目[string]
-                        "lab" : "血液檢驗組血液室HE"    //檢驗單位[string]
-                        "filterCode" : [    //篩選代碼
-                            "HE"
-                        ],
-                        "table" : {
-                            "field" : [    //欄位資訊
-                                {
-                                    "fieldCode" : "date",  //欄位代碼[string]
-                                    "displayName" : "檢驗時間", //欄位顯示名稱[string]
-                                    "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
-                                },
-                                {
-                                    "fieldCode" : "WBC",  
-                                    "displayName" : "WBC(k/uL)"
-                                    "labInfo" : {   //檢驗項目相關資訊[string]
-                                        "reference" : "3.54 ~ 9.06" //參考值[string]
-                                    }
-                                    
-                                },
-                                ...
-                            ],
-                            "data" : [
-                                {
-                                    "reportDate" : 1406938026,  //報告時間[number(date)]
-                                    "content" : {   //依據欄位填入資料，無資料則不回傳
-                                        "date" : 1406938026,
-                                        "WBC" : {   //若為檢驗數值則回傳object
-                                            "value" :"4.05",    //檢驗值[string]
-                                            "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123" //檢醫部註記，無資料則不回傳[sitrng]
-                                        },
-                                    },
-                                },
-                                ...
-                            ],
-                        }
-                    },...
-                ],
-                "filter" : [
-                    {
-                        "filterCode" : "HE",
-                        "displayName" : "血液檢驗組血液室HE"
-                    },
-                    {
-                        "filterCode" : "BC",
-                        "displayName" : "生化檢驗組BC"
-                    },
-                    ...
-                ],
-            }, 
-            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
-            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
-        }
-
-## 檢驗報告-綠單報告 [/patients/{patientID}/labReport/greenReport]
-### 取得病歷資料 [GET]
-
-+ Response 200 (application/json)
-        
-        {
-            "content" : {
-                "data" [
-                    {   //
-                        "item" : "Complete Blood Cell Count BLOOD" //綠單項目[string]
+                        "item" : "Complete Blood Cell Count BLOOD", //綠單項目[string]
                         "filterCode" : [    //篩選代碼
                             "CBC"
                         ],
@@ -578,7 +605,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-生命徵象 [/patients/{patientID}/TPR]
+## 9/22-生命徵象 [/patients/{patientID}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -661,7 +688,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-非處方醫囑 [/patients/{patientID}/order]
+## 9/22-非處方醫囑 [/patients/{patientID}/order]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -747,7 +774,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-處方醫囑 [/patients/{patientID}/medication]
+## 9/22-處方醫囑 [/patients/{patientID}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -824,7 +851,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 9/15-手術紀錄 [/patients/{patientID}/OPNote]
+## 9/22-手術紀錄 [/patients/{patientID}/OPNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
