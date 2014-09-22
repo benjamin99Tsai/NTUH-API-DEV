@@ -328,21 +328,68 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## @檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
+## 檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
         
         {
-            "content" : [
-                {
-                }
-            ],
+            "content" : {
+                "data" [
+                    {   //
+                        "item" : "CBC+PLT BLOOD" //檢驗項目[string]
+                        "lab" : "血液檢驗組血液室HE"    //檢驗單位[string]
+                        "filterCode" : [    //篩選代碼
+                            "HE"
+                        ],
+                        "table" : {
+                            "field" : [    //欄位資訊
+                                {
+                                    "fieldCode" : "date",  //欄位代碼[string]
+                                    "displayName" : "檢驗時間", //欄位顯示名稱[string]
+                                    "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                },
+                                {
+                                    "fieldCode" : "WBC",  
+                                    "displayName" : "WBC(k/uL)"
+                                    "labInfo" : {   //檢驗項目相關資訊[string]
+                                        "reference" : "3.54 ~ 9.06" //參考值[string]
+                                    }
+                                    
+                                },
+                                ...
+                            ],
+                            "data" : [
+                                {
+                                    "reportDate" : 1406938026,  //報告時間[number(date)]
+                                    "content" : {   //依據欄位填入資料，無資料則不回傳
+                                        "date" : 1406938026,
+                                        "WBC" : {   //若為檢驗數值則回傳object
+                                            "value" :"4.05",    //檢驗值[string]
+                                            "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
+                                            "note" : "123" //檢醫部註記，無資料則不回傳[sitrng]
+                                        },
+                                    },
+                                },
+                                ...
+                            ],
+                        }
+                    },...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "HE",
+                        "displayName" : "血液檢驗組血液室HE"
+                    },
+                    {
+                        "filterCode" : "BC",
+                        "displayName" : "生化檢驗組BC"
+                    },
+                    ...
+                ],
+            }, 
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
-            "limit" : 50, //最大回傳筆數，當client傳入時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入時需回傳[number]
-            "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
 ## 檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
