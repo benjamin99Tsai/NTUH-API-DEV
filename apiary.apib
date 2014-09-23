@@ -324,7 +324,7 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
             "limit" : 50, //最大回傳筆數，當client傳入與content為陣列或collection時需回傳[number] 
-            "offset" : 0, //回傳資料偏移數，當client傳入與content為陣列或collection時需回傳傳[number]
+            "offset" : 0, //回傳資料偏移數，當client傳入與content為陣列或collection時需回傳[number]
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
@@ -1059,3 +1059,24 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
+
+# Group 其他 Other Web Service
+## 9/23-通訊錄 [/contacts{?offset,limit}]
+### 取得資料 [GET]
+
++ Parameters
+    + offset = `0` (number, optional) ... 資料偏移數，需與 limit 一起傳入
+    + limit (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
+    
++ Response 200 (application/json)
+        
+        {
+            "content" : [], 
+            "limit" : 50, //最大回傳筆數[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 100 //此次Query總筆數[number] 
+        }
+
+
+
+
