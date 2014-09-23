@@ -14,7 +14,7 @@ HOST: http://www.wantoto.com
 
         {
             "content" : {
-                "empName" : "葉小菜"    //員工姓名[string]
+                "empName" : "葉小菜",    //員工姓名[string]
                 "sessionKey" : "51ADFDA9C02D4E1E9930D88A26963612" //Session key [string]
             }
         }
@@ -1071,7 +1071,23 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content" : [], 
+            "content" : [
+                {
+                    "empNo" : "123456", //員工編號[string]
+                    "empName" : "葉小菜",    //員工姓名[string]
+                    "DEPT" : "內科部",  //單位[string]
+                    "division" : "腸胃科",  //二級單位[string]
+                    "title" : "主治醫師",   //職稱[string]
+                    "TEL" : "71707",    //院內電話[string]
+                    "mobile" : "0972111222",    //公務手機[string]
+                    "mobileBriefCode" : "11222", //手機簡碼[string]
+                    "EngFirstName" : "Hao-Tsai",    //英文首名[string]
+                    "EngLastName" : "Yeh",  //英文姓[string]
+                    "EngMiddleName" : "", //英文中名[string]
+                    "email" : "xxx@ntuh.gov.tw", //email[string]
+                    "remark" : ""   //備註[string]
+                }
+            ], 
             "limit" : 50, //最大回傳筆數[number] 
             "offset" : 0, //回傳資料偏移數[number]
             "total" : 100 //此次Query總筆數[number] 
