@@ -65,11 +65,11 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 9/22-病患清單 [/patients{?patientID,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 9/22-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
-    + patientID (string, optional) ... 病歷號
+    + chartNo (string, optional) ... 病歷號
     + personID (string, optional) ... 身分證號
     + wardCode (string, optional, `5W3`) ... 病房號
     + empNo (string, optional) ... 醫師員編 (依照醫師員編顯示個人病患)
@@ -88,7 +88,7 @@ HOST: http://www.wantoto.com
                     "patName" : "王小明",  //病患姓名[string]
                     "patSexCode" : "M",   //性別[string]（男性："M";女性："F"）
                     "patBirthday" : 1406938026,    //出生日期[number(date)]
-                    "patientID" : "12345678",   //病歷號[string]
+                    "chartNo" : "12345678",   //病歷號[string]
                     "persionID" : "A123456789",  //身分證號[number]
                     "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)[string]
                     "inDate" : 1406938026, //入院日期(住院與急診)，非住院或在急診則回傳 null [number(date)]
@@ -298,10 +298,10 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## @病患醫療基本資料 [/patients/{patientID}]
+## @病患醫療基本資料 [/patients/{chartNo}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
-    + patientID (string) ... 病歷號
+    + chartNo (string) ... 病歷號
 
 + Response 200 (application/json)
         
@@ -310,10 +310,10 @@ HOST: http://www.wantoto.com
             } 
         }
 
-## 病歷資料 Web Service 通則 [/patients/{patientID}/{dataPath}{?startDate,endDate}]
+## 病歷資料 Web Service 通則 [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
 ### 取得病歷資料 [GET]
 + Parameters
-    + patientID (string) ... 病歷號
+    + chartNo (string) ... 病歷號
     + dataPath (string) ... 各項病歷資料路徑
     + startDate = `入院日` (string, optional, `1406938026`) ... Query 起始日期，以時間序號表示 (包含此日期)
     + endDate = `今日` (string, optional, `1406938026`) ... Query 結束日期，以時間序號表示 (包含此日期)
@@ -328,7 +328,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## 9/22-檢驗報告-清單報告 [/patients/{patientID}/labReport/report]
+## 9/22-檢驗報告-清單報告 [/patients/{chartNo}/labReport/report]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -421,7 +421,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-檢驗報告-累積報告 [/patients/{patientID}/labReport/accmulatedReport]
+## 9/22-檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -486,7 +486,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-檢驗報告-綠單報告 [/patients/{patientID}/labReport/greenReport]
+## 9/22-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -550,7 +550,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-報告系統 [/patients/{patientID}/otherReport]
+## 9/15-報告系統 [/patients/{chartNo}/otherReport]
 檢驗報告之外的其他報告
 ### 取得病歷資料 [GET]
 
@@ -609,7 +609,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-生命徵象 [/patients/{patientID}/TPR]
+## 9/22-生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -692,7 +692,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-非處方醫囑 [/patients/{patientID}/order]
+## 9/22-非處方醫囑 [/patients/{chartNo}/order]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -778,7 +778,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-處方醫囑 [/patients/{patientID}/medication]
+## 9/22-處方醫囑 [/patients/{chartNo}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -855,7 +855,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 9/22-手術紀錄 [/patients/{patientID}/OPNote]
+## 9/22-手術紀錄 [/patients/{chartNo}/OPNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -912,7 +912,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-病程紀錄 [/patients/{patientID}/progressNote]
+## 9/15-病程紀錄 [/patients/{chartNo}/progressNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -970,7 +970,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-電子病歷 [/patients/{patientID}/EMR]
+## 9/15-電子病歷 [/patients/{chartNo}/EMR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
