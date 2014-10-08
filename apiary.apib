@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.35
+# DEV台大醫院行動醫療資訊系統 Web Service 0.36
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -65,7 +65,7 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 9/22-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 10/8-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
@@ -310,7 +310,7 @@ HOST: http://www.wantoto.com
             } 
         }
 
-## 病歷資料 Web Service 通則 [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
+## 10/8-病歷資料 Web Service 通則 [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
 ### 取得病歷資料 [GET]
 + Parameters
     + chartNo (string) ... 病歷號
