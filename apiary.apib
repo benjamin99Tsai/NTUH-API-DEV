@@ -307,7 +307,21 @@ HOST: http://www.wantoto.com
         
         {
             "content" : {
+                "basic" : [
+                    {
+                        "title" : "診斷",
+                        "content" : [
+                            {
+                                
+                            }
+                        ]
+                    }
+                    
+                ],
+                
             } 
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## 10/8-病歷資料 Web Service 通則 [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
@@ -608,6 +622,20 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
+
+## 10/24-影像報告 [/patients/{chartNo}/ImageReport]
+### 取得病歷資料 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {
+                "121231" : "link"
+            },
+            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
+        }
+
 
 ## 9/22-生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
@@ -1059,6 +1087,7 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
+
 
 # Group 其他 Other Web Service
 ## 9/24-通訊錄 [/contacts{?offset,limit}]
