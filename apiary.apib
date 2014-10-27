@@ -623,15 +623,25 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 10/24-影像報告 [/patients/{chartNo}/ImageReport]
+## 10/27-影像報告 [/patients/{chartNo}/ImageReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
         
         {
-            "content" : {
-                "121231" : "link"
-            },
+            "content" : [
+                {
+                    "AccessionNumber" : "T0146067566".  //[string]
+                    "report" : {    //如有報告則回傳
+                        "reportType" : "HTML",  //報告型態，HTML或PDF
+                        "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                    }
+                },
+                ...
+            ],
+            "limit" : 50, //最大回傳筆數傳[number] 
+            "offset" : 0, //回傳資料偏移數[number]
+            "total" : 100, //此次Query總筆數[number]
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
