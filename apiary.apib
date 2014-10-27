@@ -372,19 +372,55 @@ HOST: http://www.wantoto.com
                     ...
                 ],
                 "otherReport" : [
-                    {   //每次TPR紀錄
-                        "date" : 1406938026,    //紀錄時間[nubmer(date)]
-                        "breathing" : 20,   //呼吸[number,optional]
-                        "temperature" : 37.5,   //體溫[number,optional]
-                        "heartRate" : 59,    //心跳[number,optional]
-                        "bloodPressure" : { //血壓
-                            "systolic" : 116,    //收縮壓[number,optional]
-                            "diastolic" : 69    //舒張壓[number,optional]
-                        }    
+                    {   
+                        "date" : 1406938026,    //報告時間[nubmer(date)]
+                        "item" : "Chest PA View (Standing)",    //報告項目[string]
+                        "type" : "影核醫"   //報告種類[string]
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                        }
                     },
                     ...
                 ],
-                
+                "progressNote" : [
+                    {   
+                        "date" : 1406938026,    //時間[nubmer(date)]
+                        "item" : "Admission Note",    //項目[string]
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                        }
+                    },
+                    ...
+                ],
+                "OPNote" : [
+                    {   
+                        "date" : 1406938026,    //時間[nubmer(date)]
+                        "item" : "Subxiphoid drainage with sternal",    //項目[string]
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                        }
+                    },
+                    ...
+                ],
+                "order" : [
+                    {   
+                        "startDate" : 1406938026,
+                        "endDate" : 1406938026,
+                        "item" : "Chest PA View (Standing)",    //醫令內容[string]
+                    },
+                    ...
+                ],
+                "medication" : [
+                    {   
+                        "startDate" : 1406938026,
+                        "endDate" : 1406938026,
+                        "item" : "Magnesium Oxide",    //學名[string]
+                    },
+                    ...
+                ],
             } 
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
@@ -640,7 +676,7 @@ HOST: http://www.wantoto.com
             "content" : {
                 "field" : [    //欄位資訊
                     {
-                        "fieldCode" : "items",  
+                        "fieldCode" : "item",  
                         "displayName" : "檢查項目"
                     },
                     {
