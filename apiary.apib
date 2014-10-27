@@ -298,7 +298,7 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## @病患醫療基本資料 [/patients/{chartNo}]
+## 10/27 病患醫療基本資料 [/patients/{chartNo}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
@@ -330,7 +330,7 @@ HOST: http://www.wantoto.com
                         "title" : "危急值",
                         "content" : [
                             {
-                                
+                                "time" : 
                             }
                         ],
                         "title" : "Admission Note",
@@ -341,6 +341,48 @@ HOST: http://www.wantoto.com
                         ]
                     }
                     
+                ],
+                "TPR" : [
+                    {   //每次TPR紀錄
+                        "date" : 1406938026,    //紀錄時間[nubmer(date)]
+                        "breathing" : 20,   //呼吸[number,optional]
+                        "temperature" : 37.5,   //體溫[number,optional]
+                        "heartRate" : 59,    //心跳[number,optional]
+                        "bloodPressure" : { //血壓
+                            "systolic" : 116,    //收縮壓[number,optional]
+                            "diastolic" : 69    //舒張壓[number,optional]
+                        }    
+                    },
+                    ...
+                ],
+                "labReport" : [
+                    {   //檢驗報告
+                        "reportDate" : 1406938026,    //最後報告時間[nubmer(date)]
+                        "content" : [ 
+                            {   //依據欄位填入資料，無資料則不回傳
+                                "item" : "RBC",
+                                "labValue" : {   //若為檢驗數值則回傳object
+                                    "value" :"2.66",    //檢驗值[string]
+                                    "status" : "normal"    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
+                                }
+                            },
+                            ...
+                        ]
+                    },
+                    ...
+                ],
+                "otherReport" : [
+                    {   //每次TPR紀錄
+                        "date" : 1406938026,    //紀錄時間[nubmer(date)]
+                        "breathing" : 20,   //呼吸[number,optional]
+                        "temperature" : 37.5,   //體溫[number,optional]
+                        "heartRate" : 59,    //心跳[number,optional]
+                        "bloodPressure" : { //血壓
+                            "systolic" : 116,    //收縮壓[number,optional]
+                            "diastolic" : 69    //舒張壓[number,optional]
+                        }    
+                    },
+                    ...
                 ],
                 
             } 
