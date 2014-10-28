@@ -298,7 +298,7 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## 10/27 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
+## 10/28 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
@@ -313,23 +313,27 @@ HOST: http://www.wantoto.com
                         "title" : "診斷",
                         "content" : [
                             {
-                                "item" : "",    //診斷[string]
-                                "value" : ""    //診斷代碼[string]
+                                "item" : "Gastrointestinal stromal tumor, gastrointestinal",    //診斷[string]
+                                "value" : "238.1"    //診斷代碼[string]
                             },
                             ...
                         ],
                         "title" : "病史",
                         "content" : [
                             {
-                                "item" : ""
+                                "item" : "1. Hepatocellular carcinoma, Barcelona Clinic Liver Cancer stage C" //病史簡述(病史第一句話)[string]
+                                "report" : {    //詳細病史
+                                    "reportType" : "HTML",  //報告型態，HTML或PDF
+                                    "reportPath" : "/report/{reportID}"   //報告路徑
+                                }
                             },
                             ...
                         ],
                         "title" : "過敏",
                         "content" : [
                             {
-                                "item" : "",    //過敏[string]
-                                "value" : ""
+                                "item" : "Penicillin group",    //過敏[string]
+                                "value" : "R"    //過敏類型[string]
                             },
                             ...
                         ],
@@ -381,7 +385,7 @@ HOST: http://www.wantoto.com
                         "type" : "影核醫"   //報告種類[string]
                         "report" : {    //如有報告則回傳
                             "reportType" : "HTML",  //報告型態，HTML或PDF
-                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                            "reportPath" : "/report/{reportID}"   //報告路徑
                         }
                     },
                     ...
@@ -392,7 +396,7 @@ HOST: http://www.wantoto.com
                         "item" : "Admission Note",    //項目[string]
                         "report" : {    //如有報告則回傳
                             "reportType" : "HTML",  //報告型態，HTML或PDF
-                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                            "reportPath" : "/report/{reportID}"   //報告路徑
                         }
                     },
                     ...
@@ -403,7 +407,7 @@ HOST: http://www.wantoto.com
                         "item" : "Subxiphoid drainage with sternal",    //項目[string]
                         "report" : {    //如有報告則回傳
                             "reportType" : "HTML",  //報告型態，HTML或PDF
-                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
+                            "reportPath" : "/report/{reportID}"   //報告路徑
                         }
                     },
                     ...
@@ -728,7 +732,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 10/27-影像報告 [/patients/{chartNo}/ImageReport]
+## 10/28-影像報告 [/patients/{chartNo}/ImageReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
