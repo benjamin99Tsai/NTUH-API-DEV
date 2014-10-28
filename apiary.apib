@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.36
+# DEV台大醫院行動醫療資訊系統 Web Service 0.40
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -298,11 +298,12 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## 10/27 病患醫療基本資料 [/patients/{chartNo}]
+## 10/27 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
-
+    + startDate = `三日前` (string, optional, `1406938026`) ... Query 起始日期，以時間序號表示 (包含此日期)
+    + endDate = `今日` (string, optional, `1406938026`) ... Query 結束日期，以時間序號表示 (包含此日期)
 + Response 200 (application/json)
         
         {
@@ -312,27 +313,34 @@ HOST: http://www.wantoto.com
                         "title" : "診斷",
                         "content" : [
                             {
-                                "item" : ""
-                            }
+                                "item" : "",    //診斷[string]
+                                "value" : ""    //診斷代碼[string]
+                            },
+                            ...
                         ],
                         "title" : "病史",
                         "content" : [
                             {
-                                
-                            }
+                                "item" : ""
+                            },
+                            ...
                         ],
                         "title" : "過敏",
                         "content" : [
                             {
-                                
-                            }
+                                "item" : "",    //過敏[string]
+                                "value" : ""
+                            },
+                            ...
                         ],
                         "title" : "危急值",
                         "content" : [
                             {
-                                "date" : 
-                                "item" : 
-                            }
+                                "date" : 1406938026,    //報告時間[nubmer(date)]
+                                "item" : "RBC",    //危及項目[string]
+                                "value" : "1.0" //危急值[string]
+                            },
+                            ...
                         ],
                     }
                     
