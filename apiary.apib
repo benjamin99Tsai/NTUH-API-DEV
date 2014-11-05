@@ -803,11 +803,13 @@ HOST: http://www.wantoto.com
                         ]
                     },
                 ],
-                "medication" : [
+            "medication" : {
+                "content" : [
                     {
                         "drugName" : "Magnesium Oxide", //學名[string]
                         "itemName" : "MgO", //品名[string]
                         "itemUnit" : "250 mg/tab", //劑量單位[string]
+                        “filterCode" :"antibiotic", //篩選代碼[string]
                         "medicationID" : "MET4FB18", //藥品八碼[string]
                         "dose" : "2 tab", //劑量[string]
                         "approach" : "PO", //途徑[string]
@@ -820,7 +822,7 @@ HOST: http://www.wantoto.com
                             "name" : "葉小菜"
                         },
                         "note" : "自費 特殊醫囑: For scrotal ulcers", //備註[string]
-                        "category" : "other", //處方類別。ex:"anti"(抗生素)、"anodyne"(止痛藥)、"other"(其他)[string]
+                        "category" : "prolonged", //處方類別。ex:"prolonged"(長期)、"stat"(臨時)、"cancel"(取消)、"own"(自備藥)[string]
                         "drugInfoPath" : "/medication/{medicationID}",  //藥物資訊連結[string]
                         "drugRecord" : [    //Query期間所有給藥記錄
                             {
@@ -829,12 +831,26 @@ HOST: http://www.wantoto.com
                                 "note" : "", //護理給藥備註[string]
                                 "executor" : "張小珍 護理師" //執行人員[string]
                             },
-                            ...
+                        ...
                         ]
                     },
-                    ...
-                ]
-            },
+                 ...
+                ],
+
+                "filter" : [
+                    {
+                        "filterCode" : "antibiotic",
+                        "displayName" : "抗生素"
+                    },
+                    {
+                        "filterCode" : "Corticosteroids",
+                        "displayName" : "類固醇"
+            
+                    },
+                ...
+                ],
+            }
+
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
@@ -936,6 +952,7 @@ HOST: http://www.wantoto.com
                     "drugName" : "Magnesium Oxide", //學名[string]
                     "itemName" : "MgO", //品名[string]
                     "itemUnit" : "250 mg/tab", //劑量單位[string]
+                    “filterCode" :"antibiotic", //篩選代碼[string]
                     "medicationID" : "MET4FB18", //藥品八碼[string]
                     "dose" : "2 tab", //劑量[string]
                     "approach" : "PO", //途徑[string]
@@ -959,6 +976,19 @@ HOST: http://www.wantoto.com
                         },
                         ...
                     ]
+                },
+                ...
+            ],
+
+            "filter" : [
+                {
+                    "filterCode" : "antibiotic",
+                    "displayName" : "抗生素"
+                },
+                {
+                    "filterCode" : "acesodyne",
+                    "displayName" : "止痛藥"
+           
                 },
                 ...
             ],
