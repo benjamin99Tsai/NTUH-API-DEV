@@ -756,7 +756,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 9/22-生命徵象 [/patients/{chartNo}/TPR]
+## 11/6 -生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -809,7 +809,9 @@ HOST: http://www.wantoto.com
                         "drugName" : "Magnesium Oxide", //學名[string]
                         "itemName" : "MgO", //品名[string]
                         "itemUnit" : "250 mg/tab", //劑量單位[string]
-                        “filterCode" :"antibiotic", //篩選代碼[string]
+                        "filterCode" : [ //篩選代碼[string]
+                            "antibiotic"
+                        ],
                         "medicationID" : "MET4FB18", //藥品八碼[string]
                         "dose" : "2 tab", //劑量[string]
                         "approach" : "PO", //途徑[string]
@@ -941,7 +943,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-處方醫囑 [/patients/{chartNo}/medication]
+## 11/6-處方醫囑 [/patients/{chartNo}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -952,7 +954,9 @@ HOST: http://www.wantoto.com
                     "drugName" : "Magnesium Oxide", //學名[string]
                     "itemName" : "MgO", //品名[string]
                     "itemUnit" : "250 mg/tab", //劑量單位[string]
-                    “filterCode" :"antibiotic", //篩選代碼[string]
+                    "filterCode" : [ //篩選代碼[string]
+                        "antibiotic"
+                    ],
                     "medicationID" : "MET4FB18", //藥品八碼[string]
                     "dose" : "2 tab", //劑量[string]
                     "approach" : "PO", //途徑[string]
