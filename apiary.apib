@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.45
+# DEV台大醫院行動醫療資訊系統 Web Service 0.5
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -298,7 +298,7 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## 10/28 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
+## 11/26 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
@@ -317,18 +317,9 @@ HOST: http://www.wantoto.com
                                 "value" : "238.1"    //診斷代碼[string]
                             },
                             ...
-                        ],
-                        "title" : "病史",
-                        "content" : [
-                            {
-                                "item" : "1. Hepatocellular carcinoma, Barcelona Clinic Liver Cancer stage C" //病史簡述(病史第一句話)[string]
-                                "report" : {    //詳細病史
-                                    "reportType" : "HTML",  //報告型態，HTML或PDF
-                                    "reportPath" : "/report/{reportID}"   //報告路徑
-                                }
-                            },
-                            ...
-                        ],
+                        ]
+                    },
+                    {
                         "title" : "過敏",
                         "content" : [
                             {
@@ -337,6 +328,8 @@ HOST: http://www.wantoto.com
                             },
                             ...
                         ],
+                    },
+                    {
                         "title" : "危急值",
                         "content" : [
                             {
@@ -346,8 +339,15 @@ HOST: http://www.wantoto.com
                             },
                             ...
                         ],
-                    }
-                    
+                    },
+                    ...
+                ],
+                "history" :[    //兩年內就診診斷記錄
+                    {
+                        "item" : "Gastrointestinal stromal tumor, gastrointestinal",    //診斷[string]
+                        "value" : "238.1"    //診斷代碼[string]
+                    },
+                    ...
                 ],
                 "TPR" : [
                     {   //每次TPR紀錄
@@ -1093,7 +1093,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-病程紀錄 [/patients/{chartNo}/progressNote]
+## 11/27-病程紀錄 [/patients/{chartNo}/progressNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1106,11 +1106,6 @@ HOST: http://www.wantoto.com
                         "displayName" : "類別"
                     },
                     {
-                        "fieldCode" : "date",  //欄位代碼[string]
-                        "displayName" : "報告時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
-                    },
-                    {
                         "fieldCode" : "status",  
                         "displayName" : "狀態"
                     }
@@ -1118,9 +1113,9 @@ HOST: http://www.wantoto.com
                 "data" : [
                     {
                         "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "date" : 1406938026,
+                            "date" : 1406938026,   //預載用需保留
                             "status" : "V",
-                            "type" : "Admission Note"
+                            "type" : "11-01 Admission Note"
                         },
                         "filterCode" : [    //篩選類別
                             "ADM"
