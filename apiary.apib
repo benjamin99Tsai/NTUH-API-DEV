@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.5
+# DEV台大醫院行動醫療資訊系統 Web Service 0.6
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -65,7 +65,7 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 10/8-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 12/1-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
@@ -90,8 +90,9 @@ HOST: http://www.wantoto.com
                     "patBirthday" : 1406938026,    //出生日期[number(date)]
                     "chartNo" : "12345678",   //病歷號[string]
                     "persionID" : "A123456789",  //身分證號[number]
-                    "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)[string]
-                    "inDate" : 1406938026, //入院日期(住院與急診)，非住院或在急診則回傳 null [number(date)]
+                    "bedInfo" : "5W3 01-01",    //病房病床號(住院與急診)，非住院或急診中則不回傳Key[string]
+                    "inDate" : 1406938026, //入院日期(住院或急診檢傷時間)，非住院或在急診則不回傳Key [number(date)]
+                    "triageLevels" : "1" //檢傷分級，非急診則不回傳 Key [string]
                     "_emp_VS" : {   //主治醫師(如遇回傳資料為醫師者，變數皆為_emp_開頭)[string]
                         "empNo" : "111281", //醫師員編[string]
                         "name" : "葉小菜" 
@@ -298,7 +299,7 @@ HOST: http://www.wantoto.com
         ]
 
 # Group 病歷資料 Medical Record
-## 11/26 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
+## 12/1 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
@@ -310,7 +311,7 @@ HOST: http://www.wantoto.com
             "content" : {
                 "basic" : [
                     {
-                        "title" : "診斷",
+                        "title" : "Active Problem List",
                         "content" : [
                             {
                                 "item" : "Gastrointestinal stromal tumor, gastrointestinal",    //診斷[string]
@@ -412,21 +413,37 @@ HOST: http://www.wantoto.com
                     },
                     ...
                 ],
-                "order" : [
+                "order" : [    //抓本日 active 就好
                     {   
                         "startDate" : 1406938026,
                         "endDate" : 1406938026,
+                        "type" : "執行中"  //醫囑進度
                         "item" : "Chest PA View (Standing)",    //醫令內容[string]
+                        "report" : {    //如有報告則回傳
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/report/{reportID}"   //報告路徑
+                        }
                     },
                     ...
                 ],
-                "medication" : [
+                "medication" : [    //抓本日 active 就好
                     {   
                         "startDate" : 1406938026,
                         "endDate" : 1406938026,
                         "item" : "Magnesium Oxide",    //學名[string]
                     },
                     ...
+                ],
+                "consult" : [    //會診資訊
+                    {
+                        "date" : 1406938026,   //會診時間[string]
+                        "item" : "xxx 會診資訊",    //會診資訊[string]
+                        "type" : "葉XX醫師" //會診醫師[string]
+                        "report" : {    //會診單
+                            "reportType" : "HTML",  //報告型態，HTML或PDF
+                            "reportPath" : "/report/{reportID}"   //報告路徑
+                        }
+                    }
                 ],
             } 
             "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
@@ -544,7 +561,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
+## 12/1-檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -561,8 +578,8 @@ HOST: http://www.wantoto.com
                         "table" : {
                             "field" : [    //欄位資訊
                                 {
-                                    "fieldCode" : "date",  //欄位代碼[string]
-                                    "displayName" : "檢驗時間", //欄位顯示名稱[string]
+                                    "fieldCode" : "inspectionDate",  //欄位代碼[string]
+                                    "displayName" : "採檢時間", //欄位顯示名稱[string]
                                     "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                                 },
                                 {
@@ -579,7 +596,8 @@ HOST: http://www.wantoto.com
                                 {
                                     "reportDate" : 1406938026,  //報告時間[number(date)]
                                     "content" : {   //依據欄位填入資料，無資料則不回傳
-                                        "date" : 1406938026,
+                                        "inspectionDate" : 1406938026,   //採檢時間[number(date)]    
+                                        "date" : 1406938026,    //報告時間(不顯示，但須保留作為篩選用)[number(date)]
                                         "WBC" : {   //若為檢驗數值則回傳object
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
@@ -609,7 +627,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/22-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
+## 12/1-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -625,8 +643,8 @@ HOST: http://www.wantoto.com
                         "table" : {
                             "field" : [    //欄位資訊
                                 {
-                                    "fieldCode" : "date",  //欄位代碼[string]
-                                    "displayName" : "檢驗時間", //欄位顯示名稱[string]
+                                    "fieldCode" : "inspectionDate",  //欄位代碼[string]
+                                    "displayName" : "採檢時間", //欄位顯示名稱[string]
                                     "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                                 },
                                 {
@@ -643,7 +661,8 @@ HOST: http://www.wantoto.com
                                 {
                                     "reportDate" : 1406938026,  //報告時間[number(date)]
                                     "content" : {   //依據欄位填入資料，無資料則不回傳
-                                        "date" : 1406938026,
+                                        "inspectionDate" : 1406938026,   //採檢時間[number(date)]    
+                                        "date" : 1406938026,    //報告時間(不顯示，但須保留作為篩選用)[number(date)]
                                         "WBC" : {   //若為檢驗數值則回傳object
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
@@ -673,7 +692,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 9/15-報告系統 [/patients/{chartNo}/otherReport]
+## 12/1-報告系統 [/patients/{chartNo}/otherReport]
 檢驗報告之外的其他報告
 ### 取得病歷資料 [GET]
 
@@ -685,6 +704,11 @@ HOST: http://www.wantoto.com
                     {
                         "fieldCode" : "item",  
                         "displayName" : "檢查項目"
+                    },
+                    {
+                        "fieldCode" : "examDate",  //欄位代碼[string]
+                        "displayName" : "檢查時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                     },
                     {
                         "fieldCode" : "date",  //欄位代碼[string]
@@ -699,6 +723,7 @@ HOST: http://www.wantoto.com
                 "data" : [
                     {
                         "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "examDate" : 1406938026,
                             "date" : 1406938026,
                             "item" : "Chest PA View (Standing)",
                             "type" : "影核醫"
@@ -756,7 +781,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 11/6 -生命徵象 [/patients/{chartNo}/TPR]
+## 12/1 -生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -808,6 +833,7 @@ HOST: http://www.wantoto.com
                     {
                         "drugName" : "Magnesium Oxide", //學名[string]
                         "itemName" : "MgO", //品名[string]
+                        "combineName" : "Magnesium Oxide 250 mg/tab", //組合名[string]
                         "itemUnit" : "250 mg/tab", //劑量單位[string]
                         "filterCode" : [ //篩選代碼[string]
                             "antibiotic"
@@ -943,7 +969,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 11/6-處方醫囑 [/patients/{chartNo}/medication]
+## 12/1-處方醫囑 [/patients/{chartNo}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -953,6 +979,7 @@ HOST: http://www.wantoto.com
                 {
                     "drugName" : "Magnesium Oxide", //學名[string]
                     "itemName" : "MgO", //品名[string]
+                    "combineName" : "Magnesium Oxide 250 mg/tab", //組合名[string]
                     "itemUnit" : "250 mg/tab", //劑量單位[string]
                     "filterCode" : [ //篩選代碼[string]
                         "antibiotic"
