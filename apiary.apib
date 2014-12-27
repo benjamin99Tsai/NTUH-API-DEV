@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.7
+# DEV台大醫院行動醫療資訊系統 Web Service 0.71
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -65,7 +65,7 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 12/1-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 12/27-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
@@ -97,7 +97,15 @@ HOST: http://www.wantoto.com
                         "empNo" : "111281", //醫師員編[string]
                         "name" : "葉小菜" 
                     },
-                    "status" : "住院中" //狀態[string]
+                    "_emp_RS" : {   //住院醫師(如遇回傳資料為醫師者，變數皆為_emp_開頭)[string]
+                        "empNo" : "000123", //醫師員編[string]
+                        "name" : "蘇小宇" 
+                    },
+                    "_emp_NP" : {   //護理師[string]
+                        "empNo" : "111111", //員編[string]
+                        "name" : "謝小穎" 
+                    },
+                    "status" : "住院中", //狀態[string]
                     "specialTag" : [   //特殊標記[string array] (ex:DNR,...)
                         {
                             "tagCode" : "DNR",
@@ -107,6 +115,8 @@ HOST: http://www.wantoto.com
                     ],
                     "latestPacsReportDateTime" : 1406938026, //最新影像時間[number(date)]
                     "latestLISReportDateTime" : 1406938026, //最新報告時間[number(date)]
+                    "accountIDSE" : "14T05267794", //帳號[String]
+                    "patClassCode" : "I" //門住急別[String]
                 },
                 ...
             ],
@@ -797,7 +807,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 12/19 -生命徵象 [/patients/{chartNo}/TPR]
+## 12/27 -生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -843,6 +853,22 @@ HOST: http://www.wantoto.com
                             {
                                 "date" : 1406948026,    //資料時間[number(date)]
                                 "data" : "173.5"   //資料內容[string]
+                            },
+                            ...
+                        ]
+                    },
+                    {   //欄位資料
+                        "fieldName" : "血糖", //欄位名稱[string]
+                        "unit" : "ug/ml",  //單位，有單位時回傳[string,optional]
+                        "range" : { //繪圖範圍，可以圖形表示時回傳 [optional]
+                            "max" : "210", 
+                            "min" : "100"
+                        },
+                        "data" : [
+                            {
+                                "date" : 1406938026,    //資料時間[number(date)]
+                                "data" : "100",   //資料內容[string]
+                                "note" : "STAT" //測量狀態[string]
                             },
                             ...
                         ]
