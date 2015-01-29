@@ -1354,8 +1354,7 @@ HOST: http://www.wantoto.com
 
 
 # 1/29 - 取得 iPad 容量管理規則 [/device/storage_limit]
-## 取得 session key[GET]
-+ Parameters
+## 取得iPad 容量警示參數[GET]
 
 + Response 200 (application/json)
 
@@ -1365,15 +1364,14 @@ HOST: http://www.wantoto.com
             }
         }
 
-# 1/29 - 取得 iPad 登出管理規則 [/device/logout_limit]
-## 取得 session key[GET]
-+ Parameters
+# 1/29 - 取得系統閒置自動登出管理規則 [/device/logout_limit]
+## 取得系統閒置自動登出時間[GET]
 
 + Response 200 (application/json)
 
         {
             "content" : {
-                "time": 36000, //time in seconds [number]
+                "time": 3600, //time in seconds [number]
             }
         }
     
