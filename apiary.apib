@@ -1353,5 +1353,30 @@ HOST: http://www.wantoto.com
         }
 
 
+# 1/30 - 取得 iPad 容量管理規則 [/device/storage_limit]
+## 取得 session key[GET]
++ Parameters
+
++ Response 200 (application/json)
+
+        {
+            "content" : {
+                "size": 1024, //size in mb [number]
+            }
+        }
+
+# 1/30 - 取得 iPad 容量管理規則 [/device/logout_limit]
+## 取得 session key[GET]
++ Parameters
+
++ Response 200 (application/json)
+
+        {
+            "content" : {
+                "time": 36000, //time in seconds [number]
+            }
+        }
+    
+
 
 
