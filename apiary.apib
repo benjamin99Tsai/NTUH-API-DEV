@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 0.9
+# DEV台大醫院行動醫療資訊系統 Web Service 0.95
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey [/sessionKey{?empNo,password}]
@@ -617,14 +617,14 @@ HOST: http://www.wantoto.com
                             ],
                             "data" : [
                                 {
-                                    "reportDate" : 1406938026,  //報告時間[number(date)]
                                     "content" : {   //依據欄位填入資料，無資料則不回傳
                                         "inspectionDate" : 1406938026,   //採檢時間[number(date)]    
                                         "date" : 1406938026,    //報告時間(不顯示，但須保留作為篩選用)[number(date)]
                                         "WBC" : {   //若為檢驗數值則回傳object
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123" //檢醫部註記，無資料則不回傳[sitrng]
+                                            "note" : "123", //檢醫部註記，無資料則不回傳[sitrng]
+                                            "reportDate" : 1406938026  //報告時間[number(date)]
                                         },
                                     },
                                 },
@@ -682,14 +682,14 @@ HOST: http://www.wantoto.com
                             ],
                             "data" : [
                                 {
-                                    "reportDate" : 1406938026,  //報告時間[number(date)]
                                     "content" : {   //依據欄位填入資料，無資料則不回傳
                                         "inspectionDate" : 1406938026,   //採檢時間[number(date)]    
                                         "date" : 1406938026,    //報告時間(不顯示，但須保留作為篩選用)[number(date)]
                                         "WBC" : {   //若為檢驗數值則回傳object
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123" //檢醫部註記，無資料則不回傳[sitrng]
+                                            "note" : "123", //檢醫部註記，無資料則不回傳[sitrng]
+                                            "reportDate" : 1406938026  //報告時間[number(date)]
                                         },
                                     },
                                 },
