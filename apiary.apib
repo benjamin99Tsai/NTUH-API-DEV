@@ -1476,3 +1476,62 @@ HOST: http://www.wantoto.com
         }
 
 
+
+# Group 暫存
+## 3/19-未完成部份暫時測試 [/orderTemp/(?order)]
+### 醫囑通用格式 [GET]
+
++ Response 200 (application/json)
+
+        {
+            "postURL":  "url/to/server"
+            "postContent":[
+                {
+                    "title":"階段",
+                    "key":"stage",
+                    "required":"YES",
+                    "elements": [
+                        {
+                            "type":"option",
+                            "options": [
+                                "一般", "PAT", "術前", ...
+                            ], 
+                            "default": "一般",
+                        }, ...
+                    ],
+                    "relativeContent": {
+                        "一般": [
+                            {
+                                "title":"預計時間",
+                                "key":  "estimatedTime", 
+                                "required":"YES",
+                                "elements":[]
+                                "relatvieContent":{}
+                            }, ...
+                        ],
+                    }
+                }, {
+                
+                    "title" : "稀釋體積",
+                    "key":  "dilutionVolume",
+                    "required":"YES", 
+                    "elements": [
+                        {
+                            "type": "option",
+                            "options":  [
+                                "NS", ...
+                            ], 
+                            "default": "NS"
+                        }, {
+                            "type": "number",
+                            "options": [
+                            
+                            ], 
+                            "default": 100,
+                        }, ...
+                    ],
+                    "relativeContent":{}
+                }
+            ]
+        }
+
