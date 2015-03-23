@@ -1478,8 +1478,56 @@ HOST: http://www.wantoto.com
 
 
 # Group 暫存
-## 3/19-未完成部份暫時測試 [/orderTemp/(?order)]
+## 3/23 - 藥物套餐 [/mdeicationPackage]
+### 取得藥物套餐清單 [GET]
+
++ Response 200 (application/json)
+
+        {
+            "content" : [
+                {
+                    "content" : {
+                        "packageName" : "內科部",   //  [string]
+                        "packageCode" : "Medicine"  //  [string, optional]
+                    }, 
+                    "children" : [
+                        "content" : {
+                            "packageName" : "骨髓移植 BMT",
+                            "packageCode" : "BMT"
+                        },
+                        "children" : [
+                            "content" : {}
+                        ]
+                    ]
+                }
+            ]
+        }
+
+
+
+## 3/20 - 藥物搜尋 [/medication{?name,empNo,chartNo,package}]
+### 取得藥物清單 [GET]
+
++ Parameters
+    + name (string)     ....搜尋字串
+    + empNo (string)    ....員工套餐
+    + chartNo (string)  ....病人套餐
+    + package (string)  ....套餐
+    
++ Response 200 (application/json)
+
+        {
+            "content" : {
+                
+            }
+        }
+
+
+## 3/19-未完成部份暫時測試 [/patients/{charNo}/orderOpen{?empNo}]
 ### 醫囑通用格式 [GET]
+
++ Parameters
+    + empNo (string)    ....開立醫囑員工
 
 + Response 200 (application/json)
 
@@ -1535,3 +1583,95 @@ HOST: http://www.wantoto.com
             ]
         }
 
+
+
+## 3/20 - 未確認醫令 [/patients/{charNo}/unconfirmOrder]
+### 取得未確認醫令清單 [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "startDate",  //欄位代碼[string]
+                        "displayName" : "開始時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "endDate",  //欄位代碼[string]
+                        "displayName" : "結束時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "category",  
+                        "displayName" : "類別",
+                    },
+                    {
+                        "fieldCode" : "order",  
+                        "displayName" : "醫令內容",
+                        "textAlignment" : "left", 欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                    },
+                    {
+                        "fieldCode" : "status",  
+                        "displayName" : "狀態"
+                    }
+                ],
+                "data" : [
+                    {
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "order_id" : "v1234567",
+                            "order" : "Chest PA View (Standing)",
+                            "category: : "檢查",
+                            "startDate" : 1406938026,
+                            "endDate" : 1406938026,
+                            "_emp_doctor" : { 
+                                "empNo" : "23454353",
+                                "name" : "葉小菜"
+                            },
+                            "status" : "新增",
+                        },
+                        "filterCode" : [    //篩選類別
+                            "image"
+                        ],
+                    },
+                    ...
+                ],
+                "filter" : [
+                    {
+                        "filterCode" : "order",
+                        "displayName" : "醫囑"
+                    },
+                    {
+                        "filterCode" : "medication",
+                        "displayName" : "處方"
+                    },
+                    {
+                        "filterCode" : "lab",
+                        "displayName" : "檢驗"
+                    },
+                    {
+                        "filterCode" : "image",
+                        "displayName" : "影醫"
+                    },
+                    ...
+                ],
+            }, 
+        }
+        
+        
+        
+## 3/20 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderIDs,empNo}]
+### 取得未確認醫令清單 [POST]
+
++ Parameters
+    + orderIDs (string) ... 要確認的醫令ID 
+    + empNo (string)    ... 確認醫囑員工
+
++ Response 200 (application/json)
+
+        {
+            "content": {
+                "success":  true,
+            }, 
+        }
