@@ -1505,7 +1505,7 @@ HOST: http://www.wantoto.com
 
 
 
-## 3/20 - 藥物搜尋 [/medication{?name,empNo,chartNo,package}]
+## 3/20 - 藥物搜尋 [/drugSearch{?name,empNo,chartNo,package}]
 ### 取得藥物清單 [GET]
 
 + Parameters
@@ -1519,15 +1519,16 @@ HOST: http://www.wantoto.com
         {
             "content" : {
                 
+                
             }
         }
 
 
-## 3/19-未完成部份暫時測試 [/patients/{charNo}/orderOpen{?empNo}]
+## 3/19 - 取得開立藥物需要資料 [/drug{?drugCode}]
 ### 醫囑通用格式 [GET]
 
 + Parameters
-    + empNo (string)    ....開立醫囑員工
+    + drugCode (string)    ....藥碼
 
 + Response 200 (application/json)
 
@@ -1541,14 +1542,25 @@ HOST: http://www.wantoto.com
                     "elements": [
                         {
                             "type":"option",
-                            "options": [
-                                "一般", "PAT", "術前", ...
+                            "options": ['
+                                {
+                                    "displayName" : "一般",
+                                    "optionCode" : "general",
+                                }, 
+                                {
+                                    "displayName" : "PAT",
+                                    "optionCode" : "pat",
+                                },
+                                {    
+                                    "displayName" : "術前",
+                                    "optionCode" : "preopr",
+                                }, ...
                             ], 
-                            "default": "一般",
+                            "default": "general",
                         }, ...
                     ],
                     "relativeContent": {
-                        "一般": [
+                        "general": [
                             {
                                 "title":"預計時間",
                                 "key":  "estimatedTime", 
@@ -1567,7 +1579,10 @@ HOST: http://www.wantoto.com
                         {
                             "type": "option",
                             "options":  [
-                                "NS", ...
+                                {
+                                    "displayName" : "NS",
+                                    "optionCode" : "NS",
+                                }, ...
                             ], 
                             "default": "NS"
                         }, {
@@ -1620,7 +1635,7 @@ HOST: http://www.wantoto.com
                 "data" : [
                     {
                         "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "order_id" : "v1234567",
+                            "_order_ID" : "v1234567",    // 此order的unique id [string]
                             "order" : "Chest PA View (Standing)",
                             "category: : "檢查",
                             "startDate" : 1406938026,
