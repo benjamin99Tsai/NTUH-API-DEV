@@ -1478,8 +1478,8 @@ HOST: http://www.wantoto.com
 
 
 # Group 暫存
-## 3/23 - 藥物套餐 [/mdeicationPackage]
-### 取得藥物套餐清單 [GET]
+## 3/24 - 醫令套餐 [/orderPackage]
+### 取得醫令套餐清單 [GET]
 
 + Response 200 (application/json)
 
@@ -1487,10 +1487,10 @@ HOST: http://www.wantoto.com
             "content" : [
                 {
                     "content" : {
-                        "packageName" : "內科部",   //  [string]
-                        "packageCode" : "Medicine"  //  [string, optional]
+                        "packageName" : "內科部",   // 顯示的title名  [string]
+                        "packageCode" : "Medicine"  // 可以透過此代碼查詢藥品 [string, optional]
                     }, 
-                    "children" : [
+                    "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
                         "content" : {
                             "packageName" : "骨髓移植 BMT",
                             "packageCode" : "BMT"
@@ -1505,14 +1505,40 @@ HOST: http://www.wantoto.com
 
 
 
-## 3/20 - 藥物搜尋 [/drugSearch{?name,empNo,chartNo,package}]
+## 3/23 - 藥物套餐 [/medicationPackage]
+### 取得藥物套餐清單 [GET]
+
++ Response 200 (application/json)
+
+        {
+            "content" : [
+                {
+                    "content" : {
+                        "packageName" : "內科部",   // 顯示的title名  [string]
+                        "packageCode" : "Medicine"  // 可以透過此代碼查詢藥品 [string, optional]
+                    }, 
+                    "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
+                        "content" : {
+                            "packageName" : "骨髓移植 BMT",
+                            "packageCode" : "BMT"
+                        },
+                        "children" : [
+                            "content" : {}
+                        ]
+                    ]
+                }
+            ]
+        }
+
+
+## 3/20 - 藥物搜尋 [/drugSearch{?name,empNo,chartNo,packageCode}]
 ### 取得藥物清單 [GET]
 
 + Parameters
     + name (string)     ....搜尋字串
     + empNo (string)    ....員工套餐
     + chartNo (string)  ....病人套餐
-    + package (string)  ....套餐
+    + packageCode (string)  ....套餐
     
 + Response 200 (application/json)
 
@@ -1674,7 +1700,14 @@ HOST: http://www.wantoto.com
             }, 
         }
         
-        
+## 3/20 - test [/test/1]
+### test [GET]
+
++ Response 200 (application/json)
+
+        {
+            "test" : "test"
+        }
         
 ## 3/20 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderIDs,empNo}]
 ### 取得未確認醫令清單 [POST]
