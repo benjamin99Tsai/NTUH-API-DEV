@@ -1375,7 +1375,7 @@ HOST: http://www.wantoto.com
             }
         }
 
-# 3/15 - 院內訊息通知系統 [/notifications/doctor/{doctor_id}/]
+# 3/15 - 院內訊息通知系統 [/notifications/doctor/{empNo}/]
 ## 取得醫師所屬之通知訊息內容 [GET]
 + Response 200 (application/json)
         
@@ -1418,7 +1418,7 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患布告欄系統 [/bulletin/{patinet_id}/board/]
+# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board/]
 ## 取得病患所對應之布告欄內容[GET]
 + Response 200 (application/json)
 
@@ -1440,7 +1440,7 @@ HOST: http://www.wantoto.com
         
 ## 新增訊息至病患所對應之布告欄[PUT]
 + Parameters
-    + user_id (string) ... 使用者帳號
+    + empNo (string) ... 使用者帳號
     + content (string) ... 訊息內容
 
 + Response 200 (application/json)
