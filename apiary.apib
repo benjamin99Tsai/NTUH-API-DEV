@@ -1375,8 +1375,14 @@ HOST: http://www.wantoto.com
             }
         }
 
-# 3/15 - 院內訊息通知系統 [/notifications/doctor/{empNo}/]
+# 3/15 - 院內訊息通知系統 [/notifications/doctor/{empNo}/{?startDate,endDate,offset,limit}]
 ## 取得醫師所屬之通知訊息內容 [GET]
++ Parameters:
+    + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
+    + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
+    + startDate (string, optional, `1406938026`) ... Query 起始日期，以時間序號表示 (包含此日期)
+    + endDate   (string, optional, `1406938026`) ... Query 結束日期，以時間序號表示 (包含此日期)
+
 + Response 200 (application/json)
         
         {
@@ -1390,10 +1396,15 @@ HOST: http://www.wantoto.com
                         "type":       "TEST_TYPE", // The type of the notification [string]
                         "confirmed":  false, // The flag indicated that the notification had been confirmed [boolean]
                     }, ... ],
+                "limit": 50,  //最大回傳筆數[number] 
+                "offset": 0,  //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number] 
+                "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+                "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
             }
         }
 
-# 3/15 - 院內訊息通知系統 [/notification/{id}/]
+# 3/15 - 院內訊息通知系統 [/notification/{id}{?confirmed}]
 ## 取得通知訊息內容 [GET]
 + Response 200 (application/json)
 
@@ -1418,8 +1429,14 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board/]
+# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board/{?startDate,endDate,offset,limit,empNo,content}]
 ## 取得病患所對應之布告欄內容[GET]
++ Parameters:
+    + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
+    + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
+    + startDate (string, optional, `20150103`) ... Query 起始日期，以時間序號表示 (包含此日期)
+    + endDate   (string, optional, `20150103`) ... Query 結束日期，以時間序號表示 (包含此日期)
+
 + Response 200 (application/json)
 
         {
@@ -1435,6 +1452,11 @@ HOST: http://www.wantoto.com
                         "editable":   false,         // the flag that indeicates weather the user could edit the message [boolean]
                     }, ...
                 ],
+                "limit": 50,  //最大回傳筆數[number] 
+                "offset": 0,  //回傳資料偏移數[number]
+                "total" : 100 //此次Query總筆數[number] 
+                "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
+                "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
             }
         }
         
@@ -1449,7 +1471,7 @@ HOST: http://www.wantoto.com
             "success": true, 
         }
 
-# 3/15 - 布告欄系統之訊息 [/bulletin/message/{id}/]
+# 3/15 - 布告欄系統之訊息 [/bulletin/message/{id}]
 ## 取得布告欄某個訊息[GET]
 + Parameters
     + id (string) ... The identifier for the specified message.
@@ -1468,14 +1490,11 @@ HOST: http://www.wantoto.com
         }
 
 ## 刪除布告欄某個訊息[DELETE]
-    
 + Response 200 (application/json)
 
         {
             "success": true,
         }
-
-
 
 # Group 新增/修改醫令
 
