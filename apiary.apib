@@ -1498,120 +1498,179 @@ HOST: http://www.wantoto.com
 
 # Group 新增/修改醫令
 
-## 3/25 - 可修改醫令清單 [/patients/{chartNo}/modifiableOrder{?empNo}]
-### 取得可修改醫令清單 [GET]
+## 3/25 - 可修改醫囑清單 [/patients/{chartNo}/modify/drug{?empNo}]
+### 取得可修改醫囑清單 [GET]
+
++ Parameters
+    + empNo (string)    ....員工編號
+    
+        {   
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "status",  
+                        "displayName" : "已",
+                    },
+                    {
+                        "fieldCode" : "plan",  
+                        "displayName" : "擬",
+                    },
+                    {
+                        "fieldCode" : "stage",  
+                        "displayName" : "階段",
+                    },
+                    {
+                        "fieldCode" : "startDate",  //欄位代碼[string]
+                        "displayName" : "開始時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd hh:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "drugName",  
+                        "displayName" : "藥名",
+                        "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                    },
+                    {
+                        "fieldCode" : "dose",  //欄位代碼[string]
+                        "displayName" : "劑量", //欄位顯示名稱[string]
+                    },
+                    {
+                        "fieldCode" : "unit",  
+                        "displayName" : "單位",
+                    },
+                    {
+                        "fieldCode" : "frequency",  
+                        "displayName" : "頻率",
+                    },
+                    {
+                        "fieldCode" : "approach",  
+                        "displayName" : "途徑"
+                    },
+                    {
+                        "fieldCode" : "days",
+                        "displayName" : "天數"
+                    },
+                    {
+                        "fieldCode" : "specialOrder",  //欄位代碼[string]
+                        "displayName" : "特殊事項", //欄位顯示名稱[string]
+                    },
+                    {
+                        "fieldCode" : "account",  
+                        "displayName" : "帳",
+                    }
+                ],
+                "data" : [
+                    {
+                        "id" : "A12321",
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "status" : "確認",
+                            "plan"  : "",
+                            "stage" : "一般",
+                            "startDate" : 1406938026,
+                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",
+                            "dose" : "1",
+                            "unit" : "xx",
+                            "frequency" : "QD",
+                            "approach" : "D",
+                            "days" : "0",
+                            "specialOrder" : "",
+                            "account" : "健"
+                        },
+                    },
+                    {
+                        "id" : "B45654",
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "status" : "確認",
+                            "plan"  : "",
+                            "stage" : "一般",
+                            "startDate" : 1406938026,
+                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",
+                            "dose" : "1",
+                            "unit" : "xx",
+                            "frequency" : "QD",
+                            "approach" : "D",
+                            "days" : "0",
+                            "specialOrder" : "",
+                            "account" : "健"
+                        },
+                    }
+                    ...
+                ],
+            }
+        }
+
+    
++ Response 200 (applicaiton/json)
+
+## 3/25 - 可修改醫囑清單 [/patients/{chartNo}/modify/order{?empNo}]
+### 取得可修改醫囑清單 [GET]
 
 + Parameters
     + empNo (string)    ....員工編號
     
 + Response 200 (applicaiton/json)
 
-        {
-            "content" : [
-                {   // 醫囑部份
-                    "field" : [    //欄位資訊
-                        {
-                            "fieldCode" : "startDate",  //欄位代碼[string]
-                            "displayName" : "開始時間", //欄位顯示名稱[string]
-                            "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+        {   
+            "content" : {
+                "field" : [    //欄位資訊
+                    {
+                        "fieldCode" : "category",  
+                        "displayName" : "類別",
+                    },
+                    {
+                        "fieldCode" : "order",  
+                        "displayName" : "醫令名稱",
+                    },
+                    {
+                        "fieldCode" : "stat",  
+                        "displayName" : "Stat",
+                    },
+                    {
+                        "fieldCode" : "status",  
+                        "displayName" : "狀態",
+                    },
+                    {
+                        "fieldCode" : "stage",  
+                        "displayName" : "階段",
+                    },
+                    {
+                        "fieldCode" : "startDate",  //欄位代碼[string]
+                        "displayName" : "預計時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd hh"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    },
+                    {
+                        "fieldCode" : "endDate",  //欄位代碼[string]
+                        "displayName" : "結束時間", //欄位顯示名稱[string]
+                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                    }
+                ],
+                "data" : [
+                    {
+                        "id" : "A12321",
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "category" : "醫囑",
+                            "order" : "Condition: guarded",
+                            "stat" : "",
+                            "status" : "開立",
+                            "stage" : "一般",
+                            "startDate" : 1406934039,
+                            "endDate" : 1406939039
                         },
-                        {
-                            "fieldCode" : "period",  //欄位代碼[string]
-                            "displayName" : "期間", //欄位顯示名稱[string]
+                    },
+                    {
+                        "id" : "ODD12322",
+                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "category" : "醫囑",
+                            "order" : "On ward routine TPR + BP",
+                            "stat" : "",
+                            "status" : "開立",
+                            "stage" : "一般",
+                            "startDate" : 1406934039,
+                            "endDate" : 1406939039
                         },
-                        {
-                            "fieldCode" : "category",  
-                            "displayName" : "類別",
-                        },
-                        {
-                            "fieldCode" : "drugName",  
-                            "displayName" : "學名",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
-                        },
-                        {
-                            "fieldCode" : "itemName",  
-                            "displayName" : "商品名",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
-                        },
-                        {
-                            "fieldCode" : "status",  
-                            "displayName" : "狀態"
-                        },
-                        {
-                            "fieldCode" : "_emp_doctor",
-                            "displayName" : "輸入人員"
-                        }
-                    ],
-                    "data" : [
-                        {
-                            "content" : {   //依據欄位填入資料，無資料則不回傳
-                                "drugCode" : "v1234567",    // 藥品代碼 [string]
-                                "orderID"  : "abcd1234",    // 此醫囑的ID [string]
-                                "drugName" : "Valproatc sod., Valproic Acid",   // 學名 [string]
-                                "itemName" : "Depakine Chrono 500 mg/tab",      // 商品名 [string]
-                                "category" : "處方",        // [string]
-                                "startDate" : 1406938026,   // [number, date]
-                                "period" : "長",            // [string]
-                                "_emp_doctor" : { 
-                                    "empNo" : "23454353",
-                                    "name" : "葉小菜"
-                                },
-                                "status" : "開立",          // [string]
-                            },
-                        },
-                        ...
-                    ],
-                }, 
-                {   // 診療醫令部份
-                    "field" : [    //欄位資訊
-                        {
-                            "fieldCode" : "startDate",  //欄位代碼[string]
-                            "displayName" : "開始時間", //欄位顯示名稱[string]
-                            "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
-                        },
-                        {
-                            "fieldCode" : "period",  //欄位代碼[string]
-                            "displayName" : "期間", //欄位顯示名稱[string]
-                        },
-                        {
-                            "fieldCode" : "category",  
-                            "displayName" : "類別",
-                        },
-                        {
-                            "fieldCode" : "order",  
-                            "displayName" : "醫令名稱",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
-                        },
-                        {
-                            "fieldCode" : "status",  
-                            "displayName" : "狀態"
-                        }, 
-                        {
-                            "fieldCode" : "_emp_doctor",
-                            "displayName" : "輸入人員"
-                        },
-                        ...
-                    ],
-                    "data" : [
-                        {
-                            "content" : {   //依據欄位填入資料，無資料則不回傳
-                                "orderCode" : "zxc123",     // 醫令碼 [string]
-                                "orderID" : "v1234567",     // 此醫囑的ID [string]
-                                "order" : "Chest PA View (Standing)",
-                                "category" : "檢查",
-                                "startDate" : 1406938026,
-                                "period" : "",
-                                "_emp_doctor" : { 
-                                    "empNo" : "23454353",
-                                    "name" : "葉小菜"
-                                },
-                                "status" : "新增",
-                            },
-                        },
-                        ...
-                    ],
-                },
-            ] 
+                    },
+                    ...
+                ],
+            }
         }
 
 
