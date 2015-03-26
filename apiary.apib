@@ -1377,12 +1377,12 @@ HOST: http://www.wantoto.com
 
 # 3/15 - 院內訊息通知系統 [/notifications/doctor/{empNo}/{?startDate,endDate,offset,limit}]
 ## 取得醫師所屬之通知訊息內容 [GET]
-+ Parameters:
++ Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
     + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
     + startDate (string, optional, `20150103`) ... Query 起始日期，以時間序號表示 (包含此日期)
-    + endDate   (string, optional, `20150113`) ... Query 結束日期，以時間序號表示 (包含此日期)
-
+    + endDate   (string, optional, `20150103`) ... Query 結束日期，以時間序號表示 (包含此日期)
+    
 + Response 200 (application/json)
         
         {
@@ -1429,9 +1429,9 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board/{?startDate,endDate,offset,limit,empNo,content}]
+# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board{?startDate,endDate,offset,limit,empNo,content}]
 ## 取得病患所對應之布告欄內容[GET]
-+ Parameters:
++ Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
     + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
     + startDate (string, optional, `20150103`) ... Query 起始日期，以時間序號表示 (包含此日期)
