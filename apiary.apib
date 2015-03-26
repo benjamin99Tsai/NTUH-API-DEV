@@ -1665,6 +1665,63 @@ HOST: http://www.wantoto.com
                 }
             ]
         }
+        
+        
+## 3/26 - 醫令搜尋 [/orderSearch{?name,empNo,chartNo,packageCode}]
+### 取得藥物清單 [GET]
+
++ Parameters
+    + name (string, optional)   ...搜尋字串
+    + empNo (string, optional)  ...員工套餐
+    + chartNo (string, optional)    ...病人套餐
+    + packageCode (string, optional)  ...套餐
+    
++ Response 200 (application/json)
+
+        {
+            "content" : {
+                "field" : [
+                    {
+                        "fieldCode" : "orderType",
+                        "displayName" : "醫令類別"
+                    }
+                    {
+                        "fieldCode" : "orderCode", 
+                        "displayName" : "醫令碼",
+                    },
+                    {
+                        "fieldCode" : "order",
+                        "displayName" : "醫令內容"
+                    },
+                    ...
+                ], 
+                "data" : [
+                    {
+                        "content" : {
+                            "orderCode" : "000L0114",
+                            "orderType" : "治療",
+                            "order"     : "◎複印全口顎Ｘ光照相"
+                        }
+                    },
+                    {
+                        "content" : {
+                            "orderCode" : "000L0113",
+                            "orderType" : "治療",
+                            "order"     : "◎複印咬合片Ｘ光照相"
+                        }
+                    },
+                    {
+                        "content" : {
+                            "orderCode" : "000L0112",
+                            "orderType" : "治療",
+                            "order"     : "◎複印根尖周Ｘ光照相"
+                        }
+                    } ,
+                    ...
+                ]
+            }
+        }
+
 
 
 
@@ -1746,63 +1803,6 @@ HOST: http://www.wantoto.com
                 ],
             }, 
         }
-        
-        
-## 3/26 - 醫令搜尋 [/orderSearch{?name,empNo,chartNo,packageCode}]
-### 取得藥物清單 [GET]
-
-+ Parameters
-    + name (string, optional)   ...搜尋字串
-    + empNo (string, optional)  ...員工套餐
-    + chartNo (string, optional)    ...病人套餐
-    + packageCode (string, optional)  ...套餐
-    
-+ Response 200 (application/json)
-
-        {
-            "content" : {
-                "field" : [
-                    {
-                        "fieldCode" : "orderType",
-                        "displayName" : "醫令類別"
-                    }
-                    {
-                        "fieldCode" : "orderCode", 
-                        "displayName" : "醫令碼",
-                    },
-                    {
-                        "fieldCode" : "order",
-                        "displayName" : "醫令內容"
-                    },
-                    ...
-                ], 
-                "data" : [
-                    {
-                        "content" : {
-                            "orderCode" : "000L0114",
-                            "orderType" : "治療",
-                            "order"     : "◎複印全口顎Ｘ光照相"
-                        }
-                    },
-                    {
-                        "content" : {
-                            "orderCode" : "000L0113",
-                            "orderType" : "治療",
-                            "order"     : "◎複印咬合片Ｘ光照相"
-                        }
-                    },
-                    {
-                        "content" : {
-                            "orderCode" : "000L0112",
-                            "orderType" : "治療",
-                            "order"     : "◎複印根尖周Ｘ光照相"
-                        }
-                    } ,
-                    ...
-                ]
-            }
-        }
-
 
 ## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCode,orderID}]
 ### 醫囑通用格式 [GET]
@@ -1999,7 +1999,7 @@ HOST: http://www.wantoto.com
 ### 取得未確認醫令清單 [POST]
 
 + Parameters
-    + orderIDs (string) ... 要確認的醫令ID 
+    + orderIDs (string, `["ab12", "ab13", "bd22"]`) ... 要確認的醫令ID (json string)
     + empNo (string)    ... 確認醫囑員工
 
 + Response 200 (application/json)
