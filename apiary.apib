@@ -1680,49 +1680,126 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
 
         {
-            "content" : [
-                {
-                    "content" : {
-                        "packageName" : "內科部",   // 顯示的title名  [string]
-                        "packageCode" : "Medicine"  // 可以透過此代碼查詢藥品 [string, optional]
-                    }, 
-                    "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
-                        {
+            "content" : {
+                "general" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑)
+                    {
+                        "content" : {
+                            "packageName" : "科部"
+                        },
+                        "children" : { 
                             "content" : {
-                                "packageName" : "骨髓移植 BMT",
-                                "packageCode" : "BMT"
+                                "packageName" : "內科部",   // 顯示的title名  [string]
+                            }, 
+                            "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
+                                {
+                                    "content" : {
+                                        "packageName" : "骨髓移植 BMT",
+                                    },
+                                    "children" : [
+                                        {
+                                            "content" : {
+                                                "packageName" : "Admission Orders",
+                                                "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "Admission Lab",
+                                                "packageCode" : "admissionlab"
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "Routine Lab",
+                                                "packageCode" : "routinelab"
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "CPCR",
+                                                "packageCode" : "cpcr"
+                                            }
+                                        },
+                                        ...
+                                    ]
+                                }
+                            ]
+                        }, 
+                        ...
+                    },
+                    {
+                        "content" : {
+                            "packageName" : "病房"
+                        },
+                        "children" : {
+                            "content" : {
+                                "packageName" : "Major Burn"
                             },
                             "children" : [
                                 {
                                     "content" : {
-                                        "packageName" : "Admission Orders",
-                                        "packageCode" : "admissionorder"
+                                        "packageName" : "照會",
+                                        "packageCode" : ""
                                     }
                                 },
                                 {
                                     "content" : {
-                                        "packageName" : "Admission Lab",
-                                        "packageCode" : "admissionlab"
+                                        "packageName" : "醫囑",
+                                        "packageCode" : ""
                                     }
-                                },
-                                {
-                                    "content" : {
-                                        "packageName" : "Routine Lab",
-                                        "packageCode" : "routinelab"
-                                    }
-                                },
-                                {
-                                    "content" : {
-                                        "packageName" : "CPCR",
-                                        "packageCode" : "cpcr"
-                                    }
-                                },
+                                }, 
                                 ...
                             ]
                         }
-                    ]
-                }
-            ]
+                    },
+                    ...
+                ], 
+                "category" : [  // 醫令開立部份 (檢驗, 檢查, 影醫, 核醫, 病理, 治療, 醫囑)
+                    {
+                        "content" : {
+                            "packageName" : "檢驗"
+                        },
+                        "children" : [
+                            {
+                                "content" : {
+                                    "packageName" : "常用檢驗項目"
+                                },
+                                "children" : [
+                                    {
+                                        "content" : {
+                                            "packageName" : "CBC+BCS_Glu",
+                                            "packageCode" : "cbcbcsglu"
+                                        },
+                                    }, 
+                                    ...
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "content" : {
+                            "packageName" : "檢查"
+                        },
+                        "children" : [
+                            {
+                                "content" : {
+                                    "packageName" : "外科檢查"
+                                },
+                                "children" : [
+                                    {
+                                        "content" : {
+                                            "packageName" : "血管檢查",
+                                            "packageCode" : "blood"
+                                        },
+                                    }, 
+                                    ...
+                                ]
+                            }
+                        ]
+                    },
+                    ...
+                ]
+            }
         }
         
         
