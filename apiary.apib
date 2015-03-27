@@ -1562,7 +1562,7 @@ HOST: http://www.wantoto.com
                 ],
                 "data" : [
                     {
-                        "id" : "A12321",
+                        "id" : "A12321",    // 此醫囑的ID  (非醫令碼)
                         "content" : {   //依據欄位填入資料，無資料則不回傳
                             "status" : "確認",
                             "plan"  : "",
@@ -1936,80 +1936,83 @@ HOST: http://www.wantoto.com
             }, 
         }
 
-## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCodes,orderID}]
+## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCode,orderID}]
 ### 醫囑通用格式 [POST]
 
 + Parameters
-    + drugCode (string, optional)    ... 藥碼
-    + orderCodes (string, optional)    ... 醫令碼陣列 json string
-    + orderID (string, optional)      ... 醫囑的ID
+    + drugCode (string, optional)    ... 藥碼陣列 json string
+    + orderCode (string, optional)    ... 醫令碼陣列 json string
+    + orderID (string, optional)      ... 醫囑ID陣列 json string
 
 + Response 200 (application/json)
 
         {
-            "postURL":  "url/to/server"
-            "postContent":[
-                {
-                    "title":"階段", // 欄位名稱 [string]
-                    "key":"stage",  // 開立時需要post至server的key [string]
-                    "required":"YES",   // 此欄位是否必要 [string]
-                    "elements": [
+            "content" : {
+                "000L0114" : {  // 以POST至Server的code(id)當作key
+                    "postURL":  "url/to/server" //
+                    "postContent":[
                         {
-                            "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
-                            "options": [    // 選項或是預設文字，如果沒有則不回傳
+                            "title":"階段", // 欄位名稱 [string]
+                            "key":"stage",  // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
+                            "required":"YES",   // 此欄位是否必要, 如果單純顯示用則不需回傳  [string, optional]
+                            "elements": [
                                 {
-                                    "displayName" : "一般",
-                                    "optionCode" : "general",
-                                }, 
-                                {
-                                    "displayName" : "PAT",
-                                    "optionCode" : "pat",
-                                },
-                                {    
-                                    "displayName" : "術前",
-                                    "optionCode" : "preopr",
+                                    "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
+                                    "options": [    // 選項或是預設文字，如果沒有則不回傳
+                                        {
+                                            "displayName" : "一般",
+                                            "optionCode" : "general",
+                                        }, 
+                                        {
+                                            "displayName" : "PAT",
+                                            "optionCode" : "pat",
+                                        },
+                                        {    
+                                            "displayName" : "術前",
+                                            "optionCode" : "preopr",
+                                        }, ...
+                                    ], 
+                                    "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
                                 }, ...
-                            ], 
-                            "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
-                        }, ...
-                    ],
-                    "relativeContent": {
-                        "general": [
-                            {
-                                "title":"預計時間",
-                                "key":  "estimatedTime", 
-                                "required":"YES",
-                            }, ...
-                        ],
-                    }
-                }, {
-                
-                    "title" : "稀釋體積",
-                    "key":  "dilutionVolume",
-                    "required":"YES", 
-                    "elements": [
-                        {
-                            "type": "option",
-                            "options":  [
-                                {
-                                    "displayName" : "NS",
-                                    "optionCode" : "NS",
-                                }, ...
-                            ], 
-                            "default": "NS"
+                            ],
+                            "relativeContent": {
+                                "general": [
+                                    {
+                                        "title":"預計時間",
+                                        "key":  "estimatedTime", 
+                                        "required":"YES",
+                                    }, ...
+                                ],
+                            }
                         }, {
-                            "type": "number",
-                            "options": [
-                            
-                            ], 
-                            "default": 100,
-                        }, ...
-                    ],
-                    "relativeContent":{}
+                        
+                            "title" : "稀釋體積",
+                            "key":  "dilutionVolume",
+                            "required":"YES", 
+                            "elements": [
+                                {
+                                    "type": "option",
+                                    "options":  [
+                                        {
+                                            "displayName" : "NS",
+                                            "optionCode" : "NS",
+                                        }, ...
+                                    ], 
+                                    "default": "NS"
+                                }, {
+                                    "type": "number",
+                                    "options": [
+                                    
+                                    ], 
+                                    "default": 100,
+                                }, ...
+                            ],
+                            "relativeContent":{}
+                        }
+                    ]
                 }
-            ]
+            }
         }
-
 
 
 ## 3/20 - 未確認醫令 [/patients/{charNo}/unconfirmOrder{?empNo}]
