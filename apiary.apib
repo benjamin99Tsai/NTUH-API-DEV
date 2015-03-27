@@ -1803,13 +1803,11 @@ HOST: http://www.wantoto.com
         }
         
         
-## 3/26 - 醫令搜尋 [/orderSearch{?name,empNo,chartNo,packageCode}]
+## 3/26 - 醫令搜尋 [/orderSearch{?name,packageCode}]
 ### 取得藥物清單 [GET]
 
 + Parameters
     + name (string, optional)   ...搜尋字串
-    + empNo (string, optional)  ...員工套餐
-    + chartNo (string, optional)    ...病人套餐
     + packageCode (string, optional)  ...套餐
     
 + Response 200 (application/json)
@@ -1887,13 +1885,11 @@ HOST: http://www.wantoto.com
         }
 
 
-## 3/20 - 藥物搜尋 [/drugSearch{?name,empNo,chartNo,packageCode}]
+## 3/20 - 藥物搜尋 [/drugSearch{?name,packageCode}]
 ### 取得藥物清單 [GET]
 
 + Parameters
     + name (string, optional)   ...搜尋字串
-    + empNo (string, optional)  ...員工套餐
-    + chartNo (string, optional)    ...病人套餐
     + packageCode (string, optional)  ...套餐
     
 + Response 200 (application/json)
@@ -1940,12 +1936,12 @@ HOST: http://www.wantoto.com
             }, 
         }
 
-## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCode,orderID}]
-### 醫囑通用格式 [GET]
+## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCodes,orderID}]
+### 醫囑通用格式 [POST]
 
 + Parameters
     + drugCode (string, optional)    ... 藥碼
-    + orderCode (string, optional)    ... 醫令碼
+    + orderCodes (string, optional)    ... 醫令碼陣列 json string
     + orderID (string, optional)      ... 醫囑的ID
 
 + Response 200 (application/json)
