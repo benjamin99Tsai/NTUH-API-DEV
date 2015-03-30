@@ -1444,11 +1444,13 @@ HOST: http://www.wantoto.com
                 "datetime": 1406938026, // the timestamp for the created time
                 "messages": [
                     {
-                        "empNo":      "111281",      // the id for the one created the message [string]
+                        "_emp_author" : {  
+                            "empNo" : "111111", // the id for the one created the message [string]
+                            "name" : "謝小穎"   // the name of the one created the message [string]
+                        },
                         "datetime":   1406938026,    // the timestamp for the created time 
                         "message":    "hello world", // the message content [string]
                         "id":         "A12-40321",   // the identifier for the message [string]
-                        "authorName": "Anna Sue",    // the name of the one created the message [string]
                         "editable":   false,         // the flag that indeicates weather the user could edit the message [boolean]
                     }, ...
                 ],
@@ -1480,11 +1482,13 @@ HOST: http://www.wantoto.com
 
         {
             "content": {
+                "_emp_author" : {  
+                    "empNo" : "111111", // the id for the one created the message [string]
+                    "name" : "謝小穎"   // the name of the one created the message [string]
+                },
                 "datetime":    1406938026,
                 "message":     "hello world",
-                "empNo":       "111281",
                 "id":          "A13-3321",
-                "authorName":  "Anna Sue",
                 "editable":    false,
             },
         }
