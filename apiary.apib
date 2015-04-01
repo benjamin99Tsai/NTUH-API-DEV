@@ -1429,7 +1429,7 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患布告欄系統 [/bulletin/{chartNo}/board{?startDate,endDate,offset,limit,empNo,content}]
+# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/board{?startDate,endDate,offset,limit,empNo,content}]
 ## 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
@@ -1462,7 +1462,7 @@ HOST: http://www.wantoto.com
             }
         }
         
-## 新增訊息至病患所對應之布告欄[PUT]
+## 新增訊息至病患所對應之留言板[PUT]
 + Parameters
     + empNo (string) ... 使用者帳號
     + content (string) ... 訊息內容
@@ -1473,8 +1473,8 @@ HOST: http://www.wantoto.com
             "success": true, 
         }
 
-# 3/15 - 布告欄系統之訊息 [/bulletin/message/{id}]
-## 取得布告欄某個訊息[GET]
+# 3/15 - 留言板系統之訊息 [/bulletin/message/{id}]
+## 取得留言板某個訊息[GET]
 + Parameters
     + id (string) ... The identifier for the specified message.
 
@@ -1493,7 +1493,7 @@ HOST: http://www.wantoto.com
             },
         }
 
-## 刪除布告欄某個訊息[DELETE]
+## 刪除留言板某個訊息[DELETE]
 + Response 200 (application/json)
 
         {
