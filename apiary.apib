@@ -1441,12 +1441,12 @@ HOST: http://www.wantoto.com
 
         {
             "content": {
-                "datetime": 1406938026, // the timestamp for the created time. [number(timestamp)] 
+                "datetime": 1406938026,              // the timestamp for the created time. [number(timestamp)] 
                 "messages": [
                     {
                         "_emp_author" : {  
-                            "empNo" : "111111", // the id for the one created the message [string]
-                            "name" : "謝小穎"   // the name of the one created the message [string]
+                            "empNo" : "111111",      // the id for the one created the message [string]
+                            "name" : "謝小穎"        // the name of the one created the message [string]
                         },
                         "datetime":   1406938026,    // the timestamp for the created time. [number(datetime)]
                         "message":    "hello world", // the message content [string]
@@ -1512,91 +1512,91 @@ HOST: http://www.wantoto.com
     
         {   
             "content" : {
-                "field" : [    //欄位資訊
+                "field" : [ //欄位資訊
                     {
-                        "fieldCode" : "status",  
-                        "displayName" : "已",
+                        "fieldCode" : "status",             //欄位代碼 [string]
+                        "displayName" : "已",               //欄位顯示名稱 [string]
                     },
                     {
-                        "fieldCode" : "plan",  
-                        "displayName" : "擬",
+                        "fieldCode" : "plan",               //欄位代碼 [string]
+                        "displayName" : "擬",               //欄位顯示名稱 [string]
                     },
                     {
-                        "fieldCode" : "stage",  
-                        "displayName" : "階段",
+                        "fieldCode" : "stage",              //欄位代碼 [string]
+                        "displayName" : "階段",             //欄位顯示名稱 [string]
                     },
                     {
-                        "fieldCode" : "startDate",  //欄位代碼[string]
-                        "displayName" : "開始時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                        "fieldCode" : "startDate",          // 欄位代碼 [string]
+                        "displayName" : "開始時間",         // 欄位顯示名稱 [string]
+                        "dateFormat" : "yyyy-MM-dd HH:mm"   // 若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string, optional]
                     },
                     {
-                        "fieldCode" : "drugName",  
-                        "displayName" : "藥名",
-                        "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                        "fieldCode" : "drugName",           //欄位代碼 [string]  
+                        "displayName" : "藥名",             //欄位顯示名稱[string]
+                        "textAlignment" : "left",           // 欄位內容對齊方式 ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊) [string,optional]
                     },
                     {
-                        "fieldCode" : "dose",  //欄位代碼[string]
-                        "displayName" : "劑量", //欄位顯示名稱[string]
+                        "fieldCode" : "dose",               //欄位代碼 [string]
+                        "displayName" : "劑量",             //欄位顯示名稱 [string]
                     },
                     {
-                        "fieldCode" : "unit",  
-                        "displayName" : "單位",
+                        "fieldCode" : "unit",               //欄位代碼 [string] 
+                        "displayName" : "單位",             //欄位顯示名稱[string]
                     },
                     {
-                        "fieldCode" : "frequency",  
-                        "displayName" : "頻率",
+                        "fieldCode" : "frequency",          //欄位代碼 [string]  
+                        "displayName" : "頻率",             //欄位顯示名稱[string]
                     },
                     {
-                        "fieldCode" : "approach",  
-                        "displayName" : "途徑"
+                        "fieldCode" : "approach",           //欄位代碼 [string]  
+                        "displayName" : "途徑"              //欄位顯示名稱[string]
                     },
                     {
-                        "fieldCode" : "days",
-                        "displayName" : "天數"
+                        "fieldCode" : "days",               //欄位代碼 [string]
+                        "displayName" : "天數"              //欄位顯示名稱[string]
                     },
                     {
-                        "fieldCode" : "specialOrder",  //欄位代碼[string]
-                        "displayName" : "特殊事項", //欄位顯示名稱[string]
+                        "fieldCode" : "specialOrder",       //欄位代碼[string]
+                        "displayName" : "特殊事項",         //欄位顯示名稱[string]
                     },
                     {
-                        "fieldCode" : "account",  
-                        "displayName" : "帳",
+                        "fieldCode" : "account",            //欄位代碼 [string]  
+                        "displayName" : "帳",               //欄位顯示名稱[string]
                     }
                 ],
                 "data" : [
                     {
-                        "id" : "A12321",    // 此醫囑的ID  (非醫令碼)
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "status" : "確認",
-                            "plan"  : "",
-                            "stage" : "一般",
-                            "startDate" : 1406938026,   // [number(timestamp)]
-                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",
-                            "dose" : "1",
-                            "unit" : "xx",
-                            "frequency" : "QD",
-                            "approach" : "D",
-                            "days" : "0",
-                            "specialOrder" : "",
-                            "account" : "健"
+                        "id" : "A12321",                                                                            // 此醫囑的ID  (非醫令碼) [string]
+                        "content" : {                                                                               //依據欄位填入資料，無資料則不回傳 [optional]
+                            "status" : "確認",                                                                      // [string]
+                            "plan"  : "",                                                                           // [string]
+                            "stage" : "一般",                                                                       // [string]
+                            "startDate" : 1406938026,                                                               // [number(timestamp)]
+                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",  // [string]
+                            "dose" : "1",                                                                           // [string]
+                            "unit" : "xx",                                                                          // [string]
+                            "frequency" : "QD",                                                                     // [string]
+                            "approach" : "D",                                                                       // [string]
+                            "days" : "0",                                                                           // [string]
+                            "specialOrder" : "",                                                                    // [string]
+                            "account" : "健"                        
                         },
                     },
                     {
-                        "id" : "B45654",
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "status" : "確認",
-                            "plan"  : "",
-                            "stage" : "一般",
-                            "startDate" : 1406938026,   // [number(timestamp)]
-                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",
-                            "dose" : "1",
-                            "unit" : "xx",
-                            "frequency" : "QD",
-                            "approach" : "D",
-                            "days" : "0",
-                            "specialOrder" : "",
-                            "account" : "健"
+                        "id" : "B45654",                                                                            // [string]
+                        "content" : {                                                                               // 依據欄位填入資料，無資料則不回傳 [optional]
+                            "status" : "確認",                                                                      // [string]
+                            "plan"  : "",                                                                           // [string]
+                            "stage" : "一般",                                                                       // [string]
+                            "startDate" : 1406938026,                                                               // [number(timestamp)]
+                            "drugName" : "Tetracycline HCl ((5g) 眼 Tetracycline Oph Oint 10 mg/1 g 1% 5 g/tube)",  // [string]
+                            "dose" : "1",                                                                           // [string]
+                            "unit" : "xx",                                                                          // [string]
+                            "frequency" : "QD",                                                                     // [string]
+                            "approach" : "D",                                                                       // [string]
+                            "days" : "0",                                                                           // [string]
+                            "specialOrder" : "",                                                                    // [string]
+                            "account" : "健"                                                                        // [string]
                         },
                     }
                     ...
@@ -1617,59 +1617,59 @@ HOST: http://www.wantoto.com
             "content" : {
                 "field" : [    //欄位資訊
                     {
-                        "fieldCode" : "category",  
-                        "displayName" : "類別",
+                        "fieldCode" : "category",               // [string]
+                        "displayName" : "類別",                 // [string]
                     },
                     {
-                        "fieldCode" : "order",  
-                        "displayName" : "醫令名稱",
+                        "fieldCode" : "order",                  // [string]
+                        "displayName" : "醫令名稱",             // [string]
                     },
                     {
-                        "fieldCode" : "stat",  
-                        "displayName" : "Stat",
+                        "fieldCode" : "stat",                   // [string]
+                        "displayName" : "Stat",                 // [string]
                     },
                     {
-                        "fieldCode" : "status",  
-                        "displayName" : "狀態",
+                        "fieldCode" : "status",                 // [string]
+                        "displayName" : "狀態",                 // [string]
                     },
                     {
-                        "fieldCode" : "stage",  
-                        "displayName" : "階段",
+                        "fieldCode" : "stage",                  // [string]
+                        "displayName" : "階段",                 // [string]
                     },
                     {
-                        "fieldCode" : "startDate",  //欄位代碼[string]
-                        "displayName" : "預計時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd HH"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                        "fieldCode" : "startDate",              //欄位代碼 [string]
+                        "displayName" : "預計時間",             //欄位顯示名稱 [string]
+                        "dateFormat" : "yyyy-MM-dd HH"          //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string]
                     },
                     {
-                        "fieldCode" : "endDate",  //欄位代碼[string]
-                        "displayName" : "結束時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                        "fieldCode" : "endDate",                //欄位代碼 [string]
+                        "displayName" : "結束時間",             //欄位顯示名稱 [string]
+                        "dateFormat" : "yyyy-MM-dd"             //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string]
                     }
                 ],
                 "data" : [
                     {
-                        "id" : "A12321",    // 醫囑的ID  (非醫令碼)
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "category" : "醫囑",
-                            "order" : "Condition: guarded",
-                            "stat" : "",
-                            "status" : "開立",
-                            "stage" : "一般",
-                            "startDate" : 1406934039,   // [number(timestamp)]
-                            "endDate" : 1406939039      // [number(timestamp)]
+                        "id" : "A12321",                        // 醫囑的ID  (非醫令碼) [string]
+                        "content" : { //依據欄位填入資料，無資料則不回傳 [optional]
+                            "category" : "醫囑",                // [string]
+                            "order" : "Condition: guarded",     // [string]
+                            "stat" : "",                        // [string]
+                            "status" : "開立",                  // [string]
+                            "stage" : "一般",                   // [string]
+                            "startDate" : 1406934039,           // [number(timestamp)]
+                            "endDate" : 1406939039              // [number(timestamp)]
                         },
                     },
                     {
-                        "id" : "ODD12322",
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
-                            "category" : "醫囑",
-                            "order" : "On ward routine TPR + BP",
-                            "stat" : "",
-                            "status" : "開立",
-                            "stage" : "一般",
-                            "startDate" : 1406934039,   // [number(timestamp)]
-                            "endDate" : 1406939039      // [number(timestamp)]
+                        "id" : "ODD12322",                          // [string]
+                        "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
+                            "category" : "醫囑",                    // [string]
+                            "order" : "On ward routine TPR + BP",   // [string]
+                            "stat" : "",                            // [string]
+                            "status" : "開立",                      // [string]
+                            "stage" : "一般",                       // [string]
+                            "startDate" : 1406934039,               // [number(timestamp)]
+                            "endDate" : 1406939039                  // [number(timestamp)]
                         },
                     },
                     ...
@@ -1685,14 +1685,14 @@ HOST: http://www.wantoto.com
 
         {
             "content" : {
-                "general" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑)
+                "general" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑) 
                     {
                         "content" : {
-                            "packageName" : "科部"
+                            "packageName" : "科部"                              // [string]
                         },
                         "children" : { 
                             "content" : {
-                                "packageName" : "內科部",   // 顯示的title名  [string]
+                                "packageName" : "內科部",                       // 顯示的title名  [string]
                             }, 
                             "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
                                 {
@@ -1702,7 +1702,7 @@ HOST: http://www.wantoto.com
                                     "children" : [
                                         {
                                             "content" : {
-                                                "packageName" : "Admission Orders",
+                                                "packageName" : "Admission Orders", // [string]
                                                 "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
                                             }
                                         },
