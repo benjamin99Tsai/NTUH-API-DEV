@@ -2000,12 +2000,12 @@ HOST: http://www.wantoto.com
         }
 
 ## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCode,orderID}]
-### 醫囑通用格式 [POST]
+### 醫囑通用格式 [GET]
 
 + Parameters
-    + drugCode (string, optional)    ... 藥碼陣列 json string
-    + orderCode (string, optional)    ... 醫令碼陣列 json string
-    + orderID (string, optional)      ... 醫囑ID陣列 json string
+    + drugCode (string, optional)    ... 藥碼
+    + orderCode (string, optional)    ... 醫令碼
+    + orderID (string, optional)      ... 醫囑ID
 
 + Response 200 (application/json)
 
@@ -2013,18 +2013,6 @@ HOST: http://www.wantoto.com
             "content": [
                 {
                     "id": "000L0114" [string]
-                    "postURL": ....,
-                },
-                {
-                    "id": "000123",
-                    "postURL": ...,
-                    ...
-                }
-            ]
-        
-        
-            "content" : {
-                "000L0114" : {                      // 以POST至Server的code(id)當作key
                     "postURL":  "url/to/server"     // [string(url)]
                     "postContent":[
                         {
@@ -2094,7 +2082,13 @@ HOST: http://www.wantoto.com
                         }
                     ]
                 }
-            }
+                },
+                {
+                    "id": "000123",
+                    "postURL": ...,
+                    ...
+                }
+            ]
         }
 
 
