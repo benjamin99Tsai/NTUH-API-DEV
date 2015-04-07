@@ -1961,13 +1961,13 @@ HOST: http://www.wantoto.com
             "content" : {
                 "field" : [    //欄位資訊
                     {
-                        "fieldCode" : "drugName",  //欄位代碼[string]
-                        "displayName" : "學名", //欄位顯示名稱[string]
-                        "textAlignment" : "left", 欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                        "fieldCode" : "drugName",  // 欄位代碼[string]
+                        "displayName" : "學名",    // 欄位顯示名稱[string]
+                        "textAlignment" : "left",  // 欄位內容對齊方式  ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
                     },
                     {
-                        "fieldCode" : "itemName",  //欄位代碼[string]
-                        "displayName" : "商品名", //欄位顯示名稱[string]
+                        "fieldCode" : "itemName",  // 欄位代碼[string]
+                        "displayName" : "商品名",  // 欄位顯示名稱[string]
                     },
                     {
                         "fieldCode" : "dose",  
@@ -1984,8 +1984,8 @@ HOST: http://www.wantoto.com
                 ],
                 "data" : [
                     {
-                        "id" : "v1234567",    // 藥品代碼 [string]
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                        "id" : "v1234567",      // 藥品代碼 [string]
+                        "content" : {           //依據欄位填入資料，無資料則不回傳
                             "drugName" : "Dextrose and Electrolyte Solution",
                             "itemName" : "Taita No. 1 500 ml/btl",
                             "dose: : "1",
@@ -2013,16 +2013,16 @@ HOST: http://www.wantoto.com
             "content": [
                 {
                     "id": "000L0114" [string]
-                    "postURL":  "url/to/server"     // [string(url)]
+                    "postURL":  "url/to/server" // [string(url)]
                     "postContent":[
                         {
-                            "title":"階段", // 欄位名稱 [string]
-                            "key":"stage",  // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
+                            "title":"階段",     // 欄位名稱 [string]
+                            "key":"stage",      // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
                             "required":"YES",   // 此欄位是否必要, 如果單純顯示用則不需回傳  [string, optional]
                             "elements": [
                                 {
                                     "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
-                                    "options": [    // 選項或是預設文字，如果沒有則不回傳
+                                    "options": [        // 選項或是預設文字，如果沒有則不回傳
                                         {
                                             "displayName" : "一般",
                                             "optionCode" : "general",
@@ -2105,13 +2105,13 @@ HOST: http://www.wantoto.com
                 {   // 醫囑部份
                     "field" : [    //欄位資訊
                         {
-                            "fieldCode" : "startDate",  //欄位代碼[string]
-                            "displayName" : "開始時間", //欄位顯示名稱[string]
+                            "fieldCode" : "startDate",    //欄位代碼[string]
+                            "displayName" : "開始時間",   //欄位顯示名稱[string]
                             "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                         },
                         {
                             "fieldCode" : "period",  //欄位代碼[string]
-                            "displayName" : "期間", //欄位顯示名稱[string]
+                            "displayName" : "期間",  //欄位顯示名稱[string]
                         },
                         {
                             "fieldCode" : "category",  
@@ -2120,12 +2120,12 @@ HOST: http://www.wantoto.com
                         {
                             "fieldCode" : "drugName",  
                             "displayName" : "學名",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                            "textAlignment" : "left", //欄位內容對齊方式 ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
                         },
                         {
                             "fieldCode" : "itemName",  
                             "displayName" : "商品名",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                            "textAlignment" : "left", //欄位內容對齊方式 ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
                         },
                         {
                             "fieldCode" : "status",  
@@ -2138,11 +2138,11 @@ HOST: http://www.wantoto.com
                     ],
                     "data" : [
                         {
-                            "id" : "v1234567", // 醫囑ID  (非藥碼)
-                            "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "id" : "v1234567",  // 醫囑ID  (非藥碼)
+                            "content" : {       //依據欄位填入資料，無資料則不回傳
                                 "itemName" : "Depakine Chrono 500 mg/tab",
                                 "category" : "處方",
-                                "startDate" : 1406938026, // [number(timestamp)]
+                                "startDate" : 1406938026,   // [number(timestamp)]
                                 "period" : "長",
                                 "_emp_doctor" : { 
                                     "empNo" : "23454353",
@@ -2159,11 +2159,11 @@ HOST: http://www.wantoto.com
                         {
                             "fieldCode" : "startDate",  //欄位代碼[string]
                             "displayName" : "開始時間", //欄位顯示名稱[string]
-                            "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                            "dateFormat" : "yyyy-MM-dd" //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                         },
                         {
                             "fieldCode" : "period",  //欄位代碼[string]
-                            "displayName" : "期間", //欄位顯示名稱[string]
+                            "displayName" : "期間",  //欄位顯示名稱[string]
                         },
                         {
                             "fieldCode" : "category",  
@@ -2172,7 +2172,7 @@ HOST: http://www.wantoto.com
                         {
                             "fieldCode" : "order",  
                             "displayName" : "醫令名稱",
-                            "textAlignment" : "left", //欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                            "textAlignment" : "left", //欄位內容對齊方式 ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
                         },
                         {
                             "fieldCode" : "status",  
