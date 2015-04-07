@@ -2003,9 +2003,9 @@ HOST: http://www.wantoto.com
 ### 醫囑通用格式 [GET]
 
 + Parameters
-    + drugCode (string, optional)    ... 藥碼
-    + orderCode (string, optional)    ... 醫令碼
-    + orderID (string, optional)      ... 醫囑ID
+    + drugCode (array[string], optional)    ... 藥碼
+    + orderCode (array[string], optional)    ... 醫令碼
+    + orderID (array[string], optional)      ... 醫囑ID
 
 + Response 200 (application/json)
 
@@ -2205,11 +2205,11 @@ HOST: http://www.wantoto.com
         }
         
         
-## 3/20 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderIDs,empNo}]
+## 3/20 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderID,empNo}]
 ### 取得未確認醫令清單 [POST]
 
 + Parameters
-    + orderIDs (string, `["ab12", "ab13", "bd22"]`) ... 要確認的醫令ID (json string)
+    + orderID (array[string]) ... 要確認的醫令ID
     + empNo (string)    ... 確認醫囑員工
 
 + Response 200 (application/json)
@@ -2218,4 +2218,19 @@ HOST: http://www.wantoto.com
             "content": {
                 "success":  true,
             }, 
+        }
+        
+# Group 多媒體相關 Media Relative Service
+## 3/07 - 多媒體上傳 [/media/upload{?image}]
+### 上傳 [POST]
+
++ Parameters
+    + image (array[binary])    ... 上傳之影像byte array(可多張image)
+    
++ Response 200 (application/json)
+
+        {
+            "content": {
+                "success" : true
+            }
         }
