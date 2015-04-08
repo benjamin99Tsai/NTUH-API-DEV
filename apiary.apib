@@ -1164,7 +1164,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 11/26-病程紀錄 [/patients/{chartNo}/progressNote]
+## 04/08-病程紀錄 [/patients/{chartNo}/progressNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1196,6 +1196,35 @@ HOST: http://www.wantoto.com
                             "reportPath" : "/progressNote/{progressNoteID}" //報告路徑 [string]
                             "encoding" : "utf-16"                           //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
                             "baseURL" : "http://baseUrl.ntuh.gov.tw"        //報告基礎連結(報告中如有相對連結時回傳 [string(url)]
+                            "comfirmInfo" : {   //如果此病歷可以確認，則有此資料
+                                "postURL" : "url/to/post"   // 確認時要post的URL [string(url)]
+                                "postContent" : [
+                                    {
+                                        "title" : "備註",   // [string]
+                                        "key" : "note",     // [string]
+                                        "required" : true,  // [boolean]
+                                        "elements": [
+                                            {
+                                                "type" : "textField",
+                                                "options" : [
+                                                    {
+                                                        "displayName" : "Syncope",
+                                                        "optionCode" : "Syncope",
+                                                    },
+                                                    {
+                                                        "displayName" : "Evaluation of pacemaker fuction",
+                                                        "optionCode" : "Evaluation of pacemaker fuction"
+                                                    },
+                                                    {
+                                                        "displayName" : "Other",
+                                                        "optionCode" : "Other"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
                         }
                     },
                     ...
