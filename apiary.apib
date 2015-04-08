@@ -1999,13 +1999,13 @@ HOST: http://www.wantoto.com
             }, 
         }
 
-## 3/19 - 取得開立/修改醫囑需要資料 [/order{?drugCode,orderCode,orderID}]
+## 4/08 - 取得開立/修改醫囑需要資料 [/order{?drugCode%5B%5D,orderCode%5B%5D,orderID%5B%5D}]
 ### 醫囑通用格式 [GET]
 
 + Parameters
-    + drugCode (array[string], optional)    ... 藥碼
-    + orderCode (array[string], optional)    ... 醫令碼
-    + orderID (array[string], optional)      ... 醫囑ID
+    + drugCode%5B%5D (array[string], optional)    ... 藥碼
+    + orderCode%5B%5D (array[string], optional)    ... 醫令碼
+    + orderID%5B%5D (array[string], optional)      ... 醫囑ID
 
 + Response 200 (application/json)
 
@@ -2205,11 +2205,11 @@ HOST: http://www.wantoto.com
         }
         
         
-## 3/20 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderID,empNo}]
+## 4/08 - 確認醫令 [/patients/{charNo}/orderConfirm{?orderID%5B%5D,empNo}]
 ### 取得未確認醫令清單 [POST]
 
 + Parameters
-    + orderID (array[string]) ... 要確認的醫令ID
+    + orderID%5B%5D   (array[string]) ... 要確認的醫令ID
     + empNo (string)    ... 確認醫囑員工
 
 + Response 200 (application/json)
@@ -2221,11 +2221,11 @@ HOST: http://www.wantoto.com
         }
         
 # Group 多媒體相關 Media Relative Service
-## 3/07 - 多媒體上傳 [/media/upload{?image}]
+## 4/08 - 多媒體上傳 [/media/upload{?image%5B%5D}]
 ### 上傳 [POST]
 
 + Parameters
-    + image (array[binary])    ... 上傳之影像byte array(可多張image)
+    + image%5B%5D (array[binary])    ... 上傳之影像byte array(可多張image)
     
 + Response 200 (application/json)
 
