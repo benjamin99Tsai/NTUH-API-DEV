@@ -2102,13 +2102,13 @@ HOST: http://www.wantoto.com
         {
             "content": [
                 {
-                    "id": "000L0114" [string]
-                    "postURL":  "url/to/server"     // [string(url)]
+                    "id": "000L0114",               // [string]
+                    "postURL" :  "url/to/server",   // [string(url)]
                     "postContent":[
                         {
                             "title":"階段", // 欄位名稱 [string]
                             "key":"stage",  // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
-                            "required":"YES",   // 此欄位是否必要, 如果單純顯示用則不需回傳  [string, optional]
+                            "required": true,   // 此欄位是否必要, 如果單純顯示用則不需回傳  [boolean, optional]
                             "elements": [
                                 {
                                     "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
@@ -2134,11 +2134,12 @@ HOST: http://www.wantoto.com
                                     {
                                         "title":"預計時間",
                                         "key":  "estimatedTime", 
-                                        "required":"YES",
+                                        "required" : true,
                                         "element" : [
                                             {
                                                 "type" : "date",
-                                                "default" : 1406938026,
+                                                "default" : 1406938026, 
+                                                "dateformat" : "yyyy-MM-dd HH"  //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
                                             }
                                         ]
                                     }, ...
@@ -2148,9 +2149,10 @@ HOST: http://www.wantoto.com
                         
                             "title" : "稀釋體積",
                             "key":  "dilutionVolume",
-                            "required":"YES", 
+                            "required" : true, 
                             "elements": [
-                                {
+                                {   
+                                    "title" : "稀釋液",
                                     "type": "option",   // [string]
                                     "options":  [
                                         {
@@ -2160,8 +2162,10 @@ HOST: http://www.wantoto.com
                                     ], 
                                     "default": "NS"
                                 }, {
+                                    "title" : "體積",    // 此元件的title [string, optional]
                                     "type": "number",   // [string]
                                     "default": 100,     // [number]
+                                    "unit" : "ml",      // 單位(或是後面的字) [string, optional]
                                 }, ...
                             ],
                             "relativeContent": {}       // [optional]
@@ -2171,18 +2175,54 @@ HOST: http://www.wantoto.com
                             "elements": [
                                 {
                                     "type": "label",
-                                    "default": "NS"
+                                    "default": "Acetaminophen"
                                 },
                                 ...
                             ],
+                        }, {
+                            "title" : "自費",
+                            "key" : "expense",
+                            "required" : true,
+                            "elements": [
+                                {
+                                    "type": "switch",
+                                },
+                                ...
+                            ],
+                        }, {
+                            "title" : "特殊醫囑",
+                            "key" : "specialOrder",
+                            "required" : false,
+                            "elements" : [
+                                {
+                                    "type" : "textField",
+                                    "options" : [
+                                        {
+                                            "displayName" : "Syncope",   // [string]
+                                            "optionCode" : "Syncope",    // [string]
+                                        },
+                                        {
+                                            "displayName" : "Evaluation of pacemaker function",   // [string]
+                                            "optionCode" : "Evaluation of pacemaker function",    // [string]
+                                        },
+                                        {
+                                            "displayName" : "Assessment of total ischemic burden",   // [string]
+                                            "optionCode" : "Assessment of total ischemic burden",    // [string]
+                                        },
+                                    ]
+                                }
+                            ]
                         }
-                    ]
-                }
+                    ],
+                    "notice" : "本藥品可能增加跌倒風險"     // 注意事項 [string, optional]
                 },
                 {
                     "id": "000123",
-                    "postURL": ...,
-                    ...
+                    "postURL": "url/url/url",
+                    "postContent": [
+                        ...
+                    ],
+                    "notice" : "健保給付範圍：breast ca, colorectal ca, head&nect tumor"   // 注意事項 [string, optional]
                 }
             ]
         }
