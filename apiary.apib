@@ -1642,68 +1642,129 @@ HOST: http://www.wantoto.com
     
 + Response 200 (applicaiton/json)
 
-        {   
-            "content" : {
-                "field" : [    //欄位資訊
-                    {
-                        "fieldCode" : "category",               // [string]
-                        "displayName" : "類別",                 // [string]
-                    },
-                    {
-                        "fieldCode" : "order",                  // [string]
-                        "displayName" : "醫令名稱",             // [string]
-                    },
-                    {
-                        "fieldCode" : "stat",                   // [string]
-                        "displayName" : "Stat",                 // [string]
-                    },
-                    {
-                        "fieldCode" : "status",                 // [string]
-                        "displayName" : "狀態",                 // [string]
-                    },
-                    {
-                        "fieldCode" : "stage",                  // [string]
-                        "displayName" : "階段",                 // [string]
-                    },
-                    {
-                        "fieldCode" : "startDate",              //欄位代碼 [string]
-                        "displayName" : "預計時間",             //欄位顯示名稱 [string]
-                        "dateFormat" : "yyyy-MM-dd HH"          //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string]
-                    },
-                    {
-                        "fieldCode" : "endDate",                //欄位代碼 [string]
-                        "displayName" : "結束時間",             //欄位顯示名稱 [string]
-                        "dateFormat" : "yyyy-MM-dd"             //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string]
-                    }
-                ],
-                "data" : [
-                    {
-                        "id" : "A12321",                        // 醫囑的ID  (非醫令碼) [string]
-                        "content" : { //依據欄位填入資料，無資料則不回傳 [optional]
-                            "category" : "醫囑",                // [string]
-                            "order" : "Condition: guarded",     // [string]
-                            "stat" : "",                        // [string]
-                            "status" : "開立",                  // [string]
-                            "stage" : "一般",                   // [string]
-                            "startDate" : 1406934039,           // [number(timestamp)]
-                            "endDate" : 1406939039              // [number(timestamp)]
-                        },
-                    },
-                    {
-                        "id" : "ODD12322",                          // [string]
-                        "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
-                            "category" : "醫囑",                    // [string]
-                            "order" : "On ward routine TPR + BP",   // [string]
-                            "stat" : "",                            // [string]
-                            "status" : "開立",                      // [string]
-                            "stage" : "一般",                       // [string]
-                            "startDate" : 1406934039,               // [number(timestamp)]
-                            "endDate" : 1406939039                  // [number(timestamp)]
-                        },
-                    },
+        {
+            "content": [
+                {
+                    "id": "000L0114",               // [string]
+                    "postURL" :  "url/to/server",   // [string(url)]
+                    "postContent":[
+                        {
+                            "title":"階段", // 欄位名稱 [string]
+                            "key":"stage",  // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
+                            "required": true,   // 此欄位是否必要, 如果單純顯示用則不需回傳  [boolean, optional]
+                            "elements": [
+                                {
+                                    "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
+                                    "options": [    // 選項或是預設文字，如果沒有則不回傳
+                                        {
+                                            "displayName" : "一般",
+                                            "optionCode" : "general",
+                                        }, 
+                                        {
+                                            "displayName" : "PAT",
+                                            "optionCode" : "pat",
+                                        },
+                                        {    
+                                            "displayName" : "術前",
+                                            "optionCode" : "preopr",
+                                        }, ...
+                                    ], 
+                                    "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
+                                }, ...
+                            ],
+                            "relativeContent": {
+                                "general": [
+                                    {
+                                        "title":"預計時間",
+                                        "key":  "estimatedTime", 
+                                        "required" : true,
+                                        "element" : [
+                                            {
+                                                "type" : "date",
+                                                "default" : 1406938026,
+                                                "dateformat" : "yyyy-MM-dd HH"  //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                            }
+                                        ]
+                                    }, ...
+                                ],
+                            }
+                        }, {
+                        
+                            "title" : "稀釋體積",
+                            "key":  "dilutionVolume",
+                            "required" : true, 
+                            "elements": [
+                                {   
+                                    "title" : "稀釋液",
+                                    "type": "option",   // [string]
+                                    "options":  [
+                                        {
+                                            "displayName" : "NS",   // [string]
+                                            "optionCode" : "NS",    // [string]
+                                        }, ...
+                                    ], 
+                                    "default": "NS"
+                                }, {
+                                    "title" : "體積",    // 此元件的title [string, optional]
+                                    "type": "number",   // [string]
+                                    "default": 100,     // [number]
+                                    "unit" : "ml",      // 單位(或是後面的字) [string, optional]
+                                }, ...
+                            ],
+                            "relativeContent": {}       // [optional]
+                        }, {    
+                        
+                            "title" : "藥品名稱",
+                            "elements": [
+                                {
+                                    "type": "label",
+                                    "default": "NS"
+                                },
+                                ...
+                            ],
+                        }, {
+                            "title" : "自費",
+                            "key" : "expense",
+                            "required" : true,
+                            "elements": [
+                                {
+                                    "type": "switch",
+                                },
+                                ...
+                            ],
+                        }, {
+                            "title" : "特殊醫囑",
+                            "key" : "specialOrder",
+                            "required" : false,
+                            "elements" : [
+                                {
+                                    "type" : "textField",
+                                    "options" : [
+                                        {
+                                            "displayName" : "Syncope",   // [string]
+                                            "optionCode" : "Syncope",    // [string]
+                                        },
+                                        {
+                                            "displayName" : "Evaluation of pacemaker function",   // [string]
+                                            "optionCode" : "Evaluation of pacemaker function",    // [string]
+                                        },
+                                        {
+                                            "displayName" : "Assessment of total ischemic burden",   // [string]
+                                            "optionCode" : "Assessment of total ischemic burden",    // [string]
+                                        },
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                },
+                {
+                    "id": "000123",
+                    "postURL": ...,
                     ...
-                ],
-            }
+                }
+            ]
         }
 
 
@@ -2074,6 +2135,12 @@ HOST: http://www.wantoto.com
                                         "title":"預計時間",
                                         "key":  "estimatedTime", 
                                         "required":"YES",
+                                        "element" : [
+                                            {
+                                                "type" : "date",
+                                                "default" : 1406938026,
+                                            }
+                                        ]
                                     }, ...
                                 ],
                             }
