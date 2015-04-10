@@ -1458,7 +1458,7 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,content}]
+# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content}]
 ## 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
@@ -1478,6 +1478,7 @@ HOST: http://www.wantoto.com
                             "name" : "謝小穎"        // the name of the one created the topic [string]
                         },
                         "datetime":   1406938026,    // the timestamp for the created time. [number(datetime)]
+                        "title":      "HELLO",       // the title [string]
                         "message":    "hello world", // the message content [string]
                         "id":         "A12-40321",   // the identifier for the topic [string]
                         "editable":   false,         // the flag that indeicates weather the user could edit the topic. [boolean]
@@ -1506,6 +1507,7 @@ HOST: http://www.wantoto.com
 ## 新增主題至病患所對應之留言板[POST]
 + Parameters
     + empNo (string)    ... 使用者帳號
+    + title (string)    ... 主題標題
     + content (string)  ... 主題訊息內容
 
 + Response 200 (application/json)
@@ -1517,7 +1519,7 @@ HOST: http://www.wantoto.com
             }
         }
 
-# 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,content}]
+# 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,title,content}]
 ## 取得留言板某個主題[GET]
 + Parameters
     + id (string) ... The identifier for the specified topic.
@@ -1531,6 +1533,7 @@ HOST: http://www.wantoto.com
                     "name" : "謝小穎"           // the name of the one created the topic [string]
                 },
                 "datetime":    1406938026,      // [number(timestamp)]
+                "title":       "HELLO",         // [string]
                 "message":     "hello world",   // [string]
                 "id":          "A13-3321",      // [string]
                 "editable":    false,
@@ -1553,6 +1556,7 @@ HOST: http://www.wantoto.com
 + Parameters
     + id (string)       ... The identifier for the specified topic.
     + empNo (string)    ... 請求更新之使用者帳號
+    + title (string)    ... 請求更新之標題
     + content (string)  ... 更新之訊息內容
     
 + Response 200 (application/json)
