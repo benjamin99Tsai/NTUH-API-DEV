@@ -89,7 +89,7 @@ HOST: http://www.wantoto.com
                     "patSexCode" : "M",             //性別[string]（男性："M";女性："F"）
                     "patBirthday" : 1406938026,     //出生日期[number(timestamp)]
                     "chartNo" : "12345678",         //病歷號[string]
-                    "personID" : "A123456789",      //身分證號[number]
+                    "personID" : "A123456789",      //身分證號[string]
                     "bedInfo" : "5W3 01-01",        //病房病床號(住院與急診)，非住院或急診中則不回傳Key[string]
                     "inDate" : 1406938026,  //入院日期(住院或急診檢傷時間)，非住院或在急診則不回傳Key [number(timestamp)]
                     "triageLevels" : "1"    //檢傷分級，非急診則不回傳 Key [string]
@@ -148,7 +148,7 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
 
          {
-            "content"[                      //手術房資訊陣列
+            "content":[                     //手術房資訊陣列
                 {                           //手術房資訊
                     "hospCode" : "T0",      //醫院代碼 [string]
                     "ORCode" : "1",         //開刀房代碼 [string]
@@ -166,7 +166,7 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
 
          {
-            "content"[   //急診科別資訊陣列
+            "content":[   //急診科別資訊陣列
                 {   //急診科別資訊
                     "hospCode" : "T0",          //醫院代碼[string]
                     "ERCode" : "ALL",           //急診科別代碼[string]
@@ -456,7 +456,7 @@ HOST: http://www.wantoto.com
                 "consult" : [    //會診資訊
                     {
                         "date" : 1406938026,   //會診時間 [number(timestamp)]
-                        "item" : "xxx 會診資訊",    //會診資訊 [number(timestamp)]
+                        "item" : "xxx 會診資訊",    //會診資訊 [string]
                         "type" : "葉XX醫師" //會診醫師[string]
                         "report" : {    //會診單
                             "reportType" : "HTML",  //報告型態，HTML或PDF
@@ -1424,7 +1424,8 @@ HOST: http://www.wantoto.com
                         "datetime":   1406938026,                           // The time when the notification was issues [number(timestamp)]
                         "type":       "TEST_TYPE",                          // The type of the notification [string]
                         "confirmed":  false,                                // The flag indicated that the notification had been confirmed [boolean]
-                    }, ... ],
+                    }, ... 
+		],
                 "limit": 50,                // 最大回傳筆數 [number] 
                 "offset": 0,                // 回傳資料偏移數 [number]
                 "total" : 100               // 此次Query總筆數 [number] 
@@ -1477,7 +1478,7 @@ HOST: http://www.wantoto.com
                             "empNo" : "111111",      // the id for the one created the topic [string]
                             "name" : "謝小穎"        // the name of the one created the topic [string]
                         },
-                        "datetime":   1406938026,    // the timestamp for the created time. [number(datetime)]
+                        "datetime":   1406938026,    // the timestamp for the created time. [number(timestamp)]
                         "title":      "HELLO",       // the title [string]
                         "message":    "hello world", // the message content [string]
                         "id":         "A12-40321",   // the identifier for the topic [string]
@@ -1488,7 +1489,7 @@ HOST: http://www.wantoto.com
                                     "empNo": "111381",                  // the id for the one created the reply  [string]
                                     "name":  "震大事"                   // the name of the one created the reply [string]
                                 },
-                                "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                                "datetime": 1406939126,                 // the timestamp for the created time. [number(timestamp)]
                                 "message": "This is the test reply.",   // the message content [string]
                                 "id": "R12-3012",                       // the identifier for the reply [string]
                                 "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1543,7 +1544,7 @@ HOST: http://www.wantoto.com
                             "empNo": "111381",                  // the id for the one created the reply  [string]
                             "name":  "震大事"                   // the name of the one created the reply [string]
                         },
-                        "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                        "datetime": 1406939126,                 // the timestamp for the created time. [number(timestamp)]
                         "message": "This is the test reply.",   // the message content [string]
                         "id": "R12-3012",                       // the identifier for the reply [string]
                         "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1590,7 +1591,7 @@ HOST: http://www.wantoto.com
                         "empNo": "111381",                  // the id for the one created the reply  [string]
                         "name":  "震大事"                   // the name of the one created the reply [string]
                     },
-                    "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                    "datetime": 1406939126,                 // the timestamp for the created time. [number(timestamp)]
                     "message": "This is the test reply.",   // the message content [string]
                     "id": "R12-3012",                       // the identifier for the reply [string]
                     "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1886,12 +1887,7 @@ HOST: http://www.wantoto.com
                         }
                     ]
                 }
-                },
-                {
-                    "id": "000123",
-                    "postURL": ...,
-                    ...
-                }
+                }, ...
             ]
         }
 
@@ -1947,7 +1943,6 @@ HOST: http://www.wantoto.com
                                 }
                             ]
                         }, 
-                        ...
                     },
                     {
                         "content" : {
@@ -2131,10 +2126,9 @@ HOST: http://www.wantoto.com
                                     },
                                     ...
                                 ]
-                            }
+                            }, ...
                         ]
                     }, 
-                    ...
                 },
                 {
                     "content" : {
@@ -2206,7 +2200,7 @@ HOST: http://www.wantoto.com
                         "content" : {   //依據欄位填入資料，無資料則不回傳
                             "drugName" : "Dextrose and Electrolyte Solution",
                             "itemName" : "Taita No. 1 500 ml/btl",
-                            "dose: : "1",
+                            "dose" : "1",
                             "unit" : tab,
                             "frequency" : "TID",
                         },
@@ -2273,8 +2267,8 @@ HOST: http://www.wantoto.com
                                     }, ...
                                 ],
                             }
-                        }, {
-                        
+                        }, 
+			{
                             "title" : "稀釋體積",
                             "key":  "dilutionVolume",
                             "required" : true, 
@@ -2289,7 +2283,8 @@ HOST: http://www.wantoto.com
                                         }, ...
                                     ], 
                                     "default": "NS"
-                                }, {
+                                }, 
+				{
                                     "title" : "體積",    // 此元件的title [string, optional]
                                     "type": "number",   // [string]
                                     "default": 100,     // [number]
@@ -2297,8 +2292,8 @@ HOST: http://www.wantoto.com
                                 }, ...
                             ],
                             "relativeContent": {}       // [optional]
-                        }, {    
-                        
+                        }, 
+			{    
                             "title" : "藥品名稱",
                             "elements": [
                                 {
@@ -2307,7 +2302,8 @@ HOST: http://www.wantoto.com
                                 },
                                 ...
                             ],
-                        }, {
+                        }, 
+			{
                             "title" : "自費",
                             "key" : "expense",
                             "required" : true,
@@ -2317,7 +2313,8 @@ HOST: http://www.wantoto.com
                                 },
                                 ...
                             ],
-                        }, {
+                        }, 
+			{
                             "title" : "特殊醫囑",
                             "key" : "specialOrder",
                             "required" : false,
@@ -2351,7 +2348,7 @@ HOST: http://www.wantoto.com
                         ...
                     ],
                     "notice" : "健保給付範圍：breast ca, colorectal ca, head&nect tumor"   // 注意事項 [string, optional]
-                }
+                }, ...
             ]
         }
 
