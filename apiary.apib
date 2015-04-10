@@ -1458,7 +1458,7 @@ HOST: http://www.wantoto.com
             "success": true,
         }
     
-# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/board{?startDate,endDate,offset,limit,empNo,content}]
+# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,content}]
 ## 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
@@ -1470,17 +1470,29 @@ HOST: http://www.wantoto.com
 
         {
             "content": {
-                "datetime": 1406938026,              // the timestamp for the created time. [number(timestamp)] 
-                "messages": [
+                "datetime": 1406938026,              // the timestamp for the created time of the first topic. [number(timestamp)] 
+                "topics": [
                     {
                         "_emp_author" : {  
-                            "empNo" : "111111",      // the id for the one created the message [string]
-                            "name" : "謝小穎"        // the name of the one created the message [string]
+                            "empNo" : "111111",      // the id for the one created the topic [string]
+                            "name" : "謝小穎"        // the name of the one created the topic [string]
                         },
                         "datetime":   1406938026,    // the timestamp for the created time. [number(datetime)]
                         "message":    "hello world", // the message content [string]
-                        "id":         "A12-40321",   // the identifier for the message [string]
-                        "editable":   false,         // the flag that indeicates weather the user could edit the message. [boolean] 
+                        "id":         "A12-40321",   // the identifier for the topic [string]
+                        "editable":   false,         // the flag that indeicates weather the user could edit the topic. [boolean]
+                        "replies": [
+                            {
+                                "_emp_author": {            
+                                    "empNo": "111381",                  // the id for the one created the reply  [string]
+                                    "name":  "震大事"                   // the name of the one created the reply [string]
+                                },
+                                "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                                "message": "This is the test reply.",   // the message content [string]
+                                "id": "R12-3012",                       // the identifier for the reply [string]
+                                "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                            },...
+                        ]
                     }, ...
                 ],
                 "limit": 50,                // 最大回傳筆數. [number] 
@@ -1491,29 +1503,125 @@ HOST: http://www.wantoto.com
             }
         }
         
-## 新增訊息至病患所對應之留言板[PUT]
+## 新增主題至病患所對應之留言板[POST]
 + Parameters
-    + empNo (string) ... 使用者帳號
-    + content (string) ... 訊息內容
+    + empNo (string)    ... 使用者帳號
+    + content (string)  ... 主題訊息內容
 
 + Response 200 (application/json)
 
         {
-            "success": true, 
+            "success": true,
+            "content": {
+                "id": "A12-40322",      // The identifier for the newly created topic [string].
+            }
         }
 
-# 3/15 - 留言板系統之訊息 [/bulletin/message/{id}]
-## 取得留言板某個訊息[GET]
+# 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,content}]
+## 取得留言板某個主題[GET]
 + Parameters
-    + id (string) ... The identifier for the specified message.
+    + id (string) ... The identifier for the specified topic.
 
 + Response 200 (application/json)
 
         {
             "content": {
                 "_emp_author" : {  
-                    "empNo" : "111111",         // the id for the one created the message [string]
-                    "name" : "謝小穎"           // the name of the one created the message [string]
+                    "empNo" : "111111",         // the id for the one created the topic [string]
+                    "name" : "謝小穎"           // the name of the one created the topic [string]
+                },
+                "datetime":    1406938026,      // [number(timestamp)]
+                "message":     "hello world",   // [string]
+                "id":          "A13-3321",      // [string]
+                "editable":    false,
+                "replies": [
+                    {
+                        "_emp_author": {            
+                            "empNo": "111381",                  // the id for the one created the reply  [string]
+                            "name":  "震大事"                   // the name of the one created the reply [string]
+                        },
+                        "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                        "message": "This is the test reply.",   // the message content [string]
+                        "id": "R12-3012",                       // the identifier for the reply [string]
+                        "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                    },...
+                ],
+            },
+        }
+
+## 編輯留言板某個主題[PUT]
++ Parameters
+    + id (string)       ... The identifier for the specified topic.
+    + empNo (string)    ... 請求更新之使用者帳號
+    + content (string)  ... 更新之訊息內容
+    
++ Response 200 (application/json)
+
+        {
+            "success": true,
+        }
+
+## 刪除留言板某個主題[DELETE]
++ Parameters
+    + id (string) ... The identifier for the specified reply.
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+        }
+        
+# 4/10 - 留言板系統指定主題之回應 [/bullentin/topic/{id}/replies{?empNo,content}]
+
+## 取得指定主題之所有回應 [GET]
++ Parameters
+    + id (string)       ... the identifier for the specified topic.
+
++ Response 200 (application/json)
+    
+        {
+            "content": [
+                {
+                    "_emp_author": {            
+                        "empNo": "111381",                  // the id for the one created the reply  [string]
+                        "name":  "震大事"                   // the name of the one created the reply [string]
+                    },
+                    "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                    "message": "This is the test reply.",   // the message content [string]
+                    "id": "R12-3012",                       // the identifier for the reply [string]
+                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                },...
+            ]
+        }
+        
+## 新增回應至留言板至指定主題[POST]
++ Parameters
+    + id (string)       ... The identifier for the specified topic.
+    + empNo (string)    ... The employment id for the one requesting for posting the reply.
+    + content (string)  ... The message content for the replay.
+
++ Response 200 (application/json)
+        
+        {
+            "success": true,
+            "content": {
+                "id": "R12-3013",   // The identifier for the nwely created reply [string].
+            }
+        }
+
+        
+# 3/15 - 留言板系統之回應 [/bulletin/reply/{id}{?empNo,content}]
+## 取得留言板某個回應[GET]
++ Parameters
+    + id (string) ... The identifier for the specified reply.
+
++ Response 200 (application/json)
+
+        {
+            "content": {
+                "_emp_author" : {  
+                    "empNo" : "111111",         // the id for the one created the reply [string]
+                    "name" : "謝小穎"           // the name of the one created the reply [string]
                 },
                 "datetime":    1406938026,      // [number(timestamp)]
                 "message":     "hello world",   // [string]
@@ -1522,12 +1630,28 @@ HOST: http://www.wantoto.com
             },
         }
 
-## 刪除留言板某個訊息[DELETE]
+## 編輯留言板某個回復[PUT]
++ Parameters
+    + id (string)       ... The identifier for the specified reply.
+    + empNo (string)    ... 請求更新之使用者帳號
+    + content (string)  ... 更新之訊息內容
+    
 + Response 200 (application/json)
 
         {
             "success": true,
         }
+
+## 刪除留言板某個主題[DELETE]
++ Parameters
+    + id (string) ... The identifier for the specified reply.
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+        }
+
 
 # Group 新增/修改醫令 Order
 
