@@ -1477,12 +1477,12 @@ HOST: http://www.wantoto.com
             "content": {
                 "topics": [
                     {
-                        "datetime": 1406938026,         // [number(timestamp)]
+                        "created": 1406938026,          // the created time. [number(timestamp)]
+                        "updated": 1406940112,          // the last updated time. [number(timestamp)]
                         "_emp_author": {            
                             "empNo": "111111",          // [string]
                             "name":  "謝小穎"           // [string]
                         },  
-                        "datetime": 1406938026,         // [number(timestamp)]
                         "title":    "HELLO",            // [string]
                         "id":       "A12-40321",        // the identifier for the topic [string]
                     }, ...
@@ -1503,14 +1503,15 @@ HOST: http://www.wantoto.com
 
         {
             "content": {
-                "datetime": 1406938026,              // the timestamp for the created time of the first topic. [number(timestamp)] 
+                "created": 1406938026,               // the timestamp for the created time of the first topic. [number(timestamp)] 
                 "topics": [
                     {
                         "_emp_author" : {  
                             "empNo" : "111111",      // the id for the one created the topic [string]
                             "name" : "謝小穎"        // the name of the one created the topic [string]
                         },
-                        "datetime":   1406938026,    // the timestamp for the created time. [number(datetime)]
+                        "created":    1406938026,    // the timestamp for the created time. [number(datetime)]
+                        "updated":    1406940112,    // the timestamp for the last updated time [number(datetime)]
                         "title":      "HELLO",       // the title [string]
                         "message":    "hello world", // the message content [string]
                         "id":         "A12-40321",   // the identifier for the topic [string]
@@ -1522,7 +1523,8 @@ HOST: http://www.wantoto.com
                                         "empNo": "111381",                  // the id for the one created the reply  [string]
                                         "name":  "震大事"                   // the name of the one created the reply [string]
                                     },
-                                    "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                                    "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
+                                    "updated": 1407000112,                  // the timestamp for last updated time. [number(timestamp)]
                                     "message": "This is the test reply.",   // the message content [string]
                                     "id": "R12-3012",                       // the identifier for the reply [string]
                                     "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1571,7 +1573,8 @@ HOST: http://www.wantoto.com
                     "empNo" : "111111",         // the id for the one created the topic [string]
                     "name" : "謝小穎"           // the name of the one created the topic [string]
                 },
-                "datetime":    1406938026,      // [number(timestamp)]
+                "created":     1406938026,      // [number(timestamp)]
+                "updated":     1406940012,      // [number(timestamp)]
                 "title":       "HELLO",         // [string]
                 "message":     "hello world",   // [string]
                 "id":          "A13-3321",      // [string]
@@ -1583,7 +1586,8 @@ HOST: http://www.wantoto.com
                                 "empNo": "111381",                  // the id for the one created the reply  [string]
                                 "name":  "震大事"                   // the name of the one created the reply [string]
                             },
-                            "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                            "created":  1406939126,                 // the timestamp for the created time. [number(timestamp)]
+                            "updated":  1407000123,                 // the timestamp for the updated time. [number(timestamp)]
                             "message": "This is the test reply.",   // the message content [string]
                             "id": "R12-3012",                       // the identifier for the reply [string]
                             "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1637,7 +1641,8 @@ HOST: http://www.wantoto.com
                             "empNo": "111381",                  // the id for the one created the reply  [string]
                             "name":  "震大事"                   // the name of the one created the reply [string]
                         },
-                        "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                        "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
+                        "updated": 1407000123,                  // the timestamp for the updated time. [number(timestamp)]
                         "message": "This is the test reply.",   // the message content [string]
                         "id": "R12-3012",                       // the identifier for the reply [string]
                         "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
@@ -1678,7 +1683,8 @@ HOST: http://www.wantoto.com
                     "empNo" : "111111",         // the id for the one created the reply [string]
                     "name" : "謝小穎"           // the name of the one created the reply [string]
                 },
-                "datetime":    1406938026,      // [number(timestamp)]
+                "created":     1406938026,      // created time. [number(timestamp)]
+                "updated":     1407000123,      // the last updated time. [number(timestamp)] 
                 "message":     "hello world",   // [string]
                 "id":          "A13-3321",      // [string]
                 "editable":    false,
