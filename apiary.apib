@@ -493,6 +493,7 @@ HOST: http://www.wantoto.com
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
+
         
         {
             "content" : {
@@ -589,6 +590,7 @@ HOST: http://www.wantoto.com
 
 + Response 200 (application/json)
         
+
         {
             "content" : {
                 "data" : [
@@ -650,10 +652,13 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026, Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
+
 ## 12/1-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
+
         
         {
             "content" : {
@@ -1463,8 +1468,8 @@ HOST: http://www.wantoto.com
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與limit一起傳入 
     + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
-    + startDate (string, optional) ... Query 起始日期，以時間序號表示 (包含此日期)
-    + endDate   (string, optional) ... Query 結束日期，以時間序號表示 (包含此日期)
+    + startDate (string, optional) ... Query 起始日期，以 YYYYMMDD 格式表示 (包含此日期)
+    + endDate   (string, optional) ... Query 結束日期，以 YYYYMMDD 格式表示 (包含此日期)
 
 + Response 200 (application/json)
         
@@ -1491,8 +1496,8 @@ HOST: http://www.wantoto.com
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
     + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
-    + startDate (string, optional, `20150103`) ... Query 起始日期，以時間序號表示 (包含此日期)
-    + endDate   (string, optional, `20150113`) ... Query 結束日期，以時間序號表示 (包含此日期)
+    + startDate (string, optional, `20150103`) ... Query 起始日期，以 YYYYMMDD 格式表示 (包含此日期)
+    + endDate   (string, optional, `20150113`) ... Query 結束日期，以 YYYYMMDD 格式表示 (包含此日期)
 
 + Response 200 (application/json)
 
@@ -1510,18 +1515,23 @@ HOST: http://www.wantoto.com
                         "message":    "hello world", // the message content [string]
                         "id":         "A12-40321",   // the identifier for the topic [string]
                         "editable":   false,         // the flag that indeicates weather the user could edit the topic. [boolean]
-                        "replies": [
-                            {
-                                "_emp_author": {            
-                                    "empNo": "111381",                  // the id for the one created the reply  [string]
-                                    "name":  "震大事"                   // the name of the one created the reply [string]
-                                },
-                                "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
-                                "message": "This is the test reply.",   // the message content [string]
-                                "id": "R12-3012",                       // the identifier for the reply [string]
-                                "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
-                            },...
-                        ]
+                        "replies": {
+                            "list": [
+                                {
+                                    "_emp_author": {            
+                                        "empNo": "111381",                  // the id for the one created the reply  [string]
+                                        "name":  "震大事"                   // the name of the one created the reply [string]
+                                    },
+                                    "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                                    "message": "This is the test reply.",   // the message content [string]
+                                    "id": "R12-3012",                       // the identifier for the reply [string]
+                                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                                },...
+                            ],
+                            "offset": 0,                                    // the offset of the replies [number]
+                            "limit": 5,                                     // the max number of replies in the response [number]
+                            "total": 6,                                     // the total number of the replies [number]
+                        },
                     }, ...
                 ],
                 "limit": 50,                // 最大回傳筆數. [number] 
@@ -1566,18 +1576,23 @@ HOST: http://www.wantoto.com
                 "message":     "hello world",   // [string]
                 "id":          "A13-3321",      // [string]
                 "editable":    false,
-                "replies": [
-                    {
-                        "_emp_author": {            
-                            "empNo": "111381",                  // the id for the one created the reply  [string]
-                            "name":  "震大事"                   // the name of the one created the reply [string]
-                        },
-                        "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
-                        "message": "This is the test reply.",   // the message content [string]
-                        "id": "R12-3012",                       // the identifier for the reply [string]
-                        "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
-                    },...
-                ],
+                "replies": {
+                    "list": [
+                        {
+                            "_emp_author": {            
+                                "empNo": "111381",                  // the id for the one created the reply  [string]
+                                "name":  "震大事"                   // the name of the one created the reply [string]
+                            },
+                            "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                            "message": "This is the test reply.",   // the message content [string]
+                            "id": "R12-3012",                       // the identifier for the reply [string]
+                            "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                        },...
+                    ],
+                    "offset": 0,                                    // the offset of the replies [number]
+                    "limit": 5,                                     // the max number of replies in the response [number]
+                    "total": 6,                                     // the total number of the replies [number]
+                },
             },
         }
 
@@ -1604,27 +1619,34 @@ HOST: http://www.wantoto.com
             "success": true,
         }
         
-# 4/10 - 留言板系統指定主題之回應 [/bullentin/topic/{id}/replies{?empNo,content}]
+# 4/10 - 留言板系統指定主題之回應 [/bullentin/topic/{id}/replies{?empNo,content,offset,limit}]
 
 ## 取得指定主題之所有回應 [GET]
 + Parameters
-    + id (string)       ... the identifier for the specified topic.
+    + id (string)               ... the identifier for the specified topic.
+    + limit (number, optional)  ... the max number of replies in response data.
+    + offset (number, optional) ... the offset index for the reponse reply list
 
 + Response 200 (application/json)
     
         {
-            "content": [
-                {
-                    "_emp_author": {            
-                        "empNo": "111381",                  // the id for the one created the reply  [string]
-                        "name":  "震大事"                   // the name of the one created the reply [string]
-                    },
-                    "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
-                    "message": "This is the test reply.",   // the message content [string]
-                    "id": "R12-3012",                       // the identifier for the reply [string]
-                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
-                },...
-            ]
+            "content": {
+                "list": [
+                    {
+                        "_emp_author": {            
+                            "empNo": "111381",                  // the id for the one created the reply  [string]
+                            "name":  "震大事"                   // the name of the one created the reply [string]
+                        },
+                        "datetime": 1406939126,                 // the timestamp for the created time. [number(datetime)]
+                        "message": "This is the test reply.",   // the message content [string]
+                        "id": "R12-3012",                       // the identifier for the reply [string]
+                        "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                    },...
+                ],
+                "offset": 0,                                    // the offset of the replies [number]
+                "limit": 5,                                     // the max number of replies in the response [number]
+                "total": 6,                                     // the total number of the replies [number]
+            }
         }
         
 ## 新增回應至留言板至指定主題[POST]
