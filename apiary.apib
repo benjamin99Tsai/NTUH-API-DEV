@@ -1892,7 +1892,6 @@ HOST: http://www.wantoto.com
                                     "unit" : "ml",      // 單位(或是後面的字) [string, optional]
                                 }, ...
                             ],
-                            "relativeContent": {}       // [optional]
                         }, 
                         {
                             "title" : "藥品名稱",
@@ -1998,46 +1997,47 @@ HOST: http://www.wantoto.com
                         "content" : {
                             "packageName" : "科部"                              // [string]
                         },
-                        "children" : { 
-                            "content" : {
-                                "packageName" : "內科部",                       // 顯示的title名  [string]
-                            }, 
-                            "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
-                                {
-                                    "content" : {
-                                        "packageName" : "骨髓移植 BMT",
-                                    },
-                                    "children" : [  // [optional]
-                                        {
-                                            "content" : {
-                                                "packageName" : "Admission Orders", // [string]
-                                                "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
-                                            }
+                        "children" : [
+                            { 
+                                "content" : {
+                                    "packageName" : "內科部",                       // 顯示的title名  [string]
+                                }, 
+                                "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
+                                    {
+                                        "content" : {
+                                            "packageName" : "骨髓移植 BMT",
                                         },
-                                        {
-                                            "content" : { 
-                                                "packageName" : "Admission Lab",
-                                                "packageCode" : "admissionlab"
-                                            }
-                                        },
-                                        {
-                                            "content" : {
-                                                "packageName" : "Routine Lab",
-                                                "packageCode" : "routinelab"
-                                            }
-                                        },
-                                        {
-                                            "content" : {
-                                                "packageName" : "CPCR",
-                                                "packageCode" : "cpcr"
-                                            }
-                                        },
-                                        ...
-                                    ]
-                                }
-                            ]
-                        }, 
-                        ...
+                                        "children" : [  // [optional]
+                                            {
+                                                "content" : {
+                                                    "packageName" : "Admission Orders", // [string]
+                                                    "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
+                                                }
+                                            },
+                                            {
+                                                "content" : { 
+                                                    "packageName" : "Admission Lab",
+                                                    "packageCode" : "admissionlab"
+                                                }
+                                            },
+                                            {
+                                                "content" : {
+                                                    "packageName" : "Routine Lab",
+                                                    "packageCode" : "routinelab"
+                                                }
+                                            },
+                                            {
+                                                "content" : {
+                                                    "packageName" : "CPCR",
+                                                    "packageCode" : "cpcr"
+                                                }
+                                            },
+                                            ...
+                                        ],
+                                    }, ...
+                                ],
+                            }, ...
+                        ]
                     },
                     {
                         "content" : {
@@ -2192,71 +2192,74 @@ HOST: http://www.wantoto.com
                     "content" : {
                         "packageName" : "科部"
                     },
-                    "children" : { 
-                        "content" : {
-                            "packageName" : "內科部",   // 顯示的title名  [string]
-                        }, 
-                        "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
-                            {
-                                "content" : {
-                                    "packageName" : "骨髓移植 BMT",
-                                },
-                                "children" : [
-                                    {
-                                        "content" : {
-                                            "packageName" : "Admission Orders",
-                                            "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
-                                        }
+                    "children" : [
+                        { 
+                            "content" : {
+                                "packageName" : "內科部",   // 顯示的title名  [string]
+                            }, 
+                            "children" : [  // 如果有sublist的話, 則顯示此key  [optional, duplicate]
+                                {
+                                    "content" : {
+                                        "packageName" : "骨髓移植 BMT",
                                     },
-                                    {
-                                        "content" : {
-                                            "packageName" : "Admission Lab",
-                                            "packageCode" : "admissionlab"
-                                        }
-                                    },
-                                    {
-                                        "content" : {
-                                            "packageName" : "Routine Lab",
-                                            "packageCode" : "routinelab"
-                                        }
-                                    },
-                                    {
-                                        "content" : {
-                                            "packageName" : "CPCR",
-                                            "packageCode" : "cpcr"
-                                        }
-                                    },
-                                    ...
-                                ]
-                            }
-                        ]
-                    }, 
-                    ...
+                                    "children" : [
+                                        {
+                                            "content" : {
+                                                "packageName" : "Admission Orders",
+                                                "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "Admission Lab",
+                                                "packageCode" : "admissionlab"
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "Routine Lab",
+                                                "packageCode" : "routinelab"
+                                            }
+                                        },
+                                        {
+                                            "content" : {
+                                                "packageName" : "CPCR",
+                                                "packageCode" : "cpcr"
+                                            }
+                                        },
+                                        ...
+                                    ]
+                                }
+                            ]
+                        }, ...
+                    ],
                 },
                 {
                     "content" : {
                         "packageName" : "病房"
                     },
-                    "children" : {
-                        "content" : {
-                            "packageName" : "Major Burn"
-                        },
-                        "children" : [
-                            {
-                                "content" : {
-                                    "packageName" : "照會",
-                                    "packageCode" : "A1234"
-                                }
+                    "children" : [
+                        {
+                            "content" : {
+                                "packageName" : "Major Burn"
                             },
-                            {
-                                "content" : {
-                                    "packageName" : "醫囑",
-                                    "packageCode" : "A1235"
-                                }
-                            }, 
-                            ...
-                        ]
-                    }
+                            "children" : [
+                                {
+                                    "content" : {
+                                        "packageName" : "照會",
+                                        "packageCode" : "A1234"
+                                    }
+                                },
+                                {
+                                    "content" : {
+                                        "packageName" : "醫囑",
+                                        "packageCode" : "A1235"
+                                    }
+                                }, 
+                                ...
+                            ]
+                        }, ...
+                    ]
                 },
                 ...
             ]
@@ -2396,7 +2399,6 @@ HOST: http://www.wantoto.com
                                     "unit" : "ml",          // 單位(或是後面的字) [string, optional]
                                 }, ...
                             ],
-                            "relativeContent": {}       // [optional]
                         }, 
                         {
                             "title" : "藥品名稱",
