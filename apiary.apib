@@ -2359,21 +2359,24 @@ HOST: http://www.wantoto.com
                                     "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
                                 }, ...
                             ],
-                            "relativeContent": {
-                                "general": [
-                                    {
-                                        "title":"預計時間",
-                                        "key":  "estimatedTime", 
-                                        "required" : true,
-                                        "elements" : [
-                                            {
-                                                "type" : "date",
-                                                "default" : 1406938026, 
-                                                "dateformat" : "yyyy-MM-dd HH"  //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
-                                            }
-                                        ]
-                                    }, ...
-                                ],
+                            "relativeContent": [
+                                {
+                                    "optionCode" : "general".
+                                    "postContent": [
+                                        {
+                                            "title":"預計時間",
+                                            "key":  "estimatedTime", 
+                                            "required" : true,
+                                            "elements" : [
+                                                {
+                                                    "type" : "date",
+                                                    "default" : 1406938026, 
+                                                    "dateformat" : "yyyy-MM-dd HH"  //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                                }
+                                            ]
+                                        }, ...
+                                    ],
+                                }, ...
                             }
                         }, 
                         {
