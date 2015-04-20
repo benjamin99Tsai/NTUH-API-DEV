@@ -1819,6 +1819,7 @@ HOST: http://www.wantoto.com
     
 + Response 200 (applicaiton/json)
 
+
         {
             "content": [
                 {
@@ -1826,13 +1827,13 @@ HOST: http://www.wantoto.com
                     "postURL" :  "url/to/server",   // [string(url)]
                     "postContent":[
                         {
-                            "title":"階段", // 欄位名稱 [string]
-                            "key":"stage",  // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
+                            "title":"階段",     // 欄位名稱 [string]
+                            "key":"stage",      // 開立時需要post至server的key, 如果單純顯示用則不需回傳 [string, optional]
                             "required": true,   // 此欄位是否必要, 如果單純顯示用則不需回傳  [boolean, optional]
                             "elements": [
                                 {
                                     "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
-                                    "options": [    // 選項或是預設文字，如果沒有則不回傳
+                                    "options": [    // 選項或是預設文字，如果沒有則不回傳 [optional]
                                         {
                                             "displayName" : "一般",
                                             "optionCode" : "general",
@@ -1849,24 +1850,24 @@ HOST: http://www.wantoto.com
                                     "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
                                 }, ...
                             ],
-                            "relativeContent": {
+                            "relativeContent": {    // [optional]
                                 "general": [
                                     {
                                         "title":"預計時間",
                                         "key":  "estimatedTime", 
                                         "required" : true,
-                                        "element" : [
+                                        "elements" : [
                                             {
                                                 "type" : "date",
                                                 "default" : 1406938026,
                                                 "dateformat" : "yyyy-MM-dd HH"  //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
-                                            }
+                                            }, ...
                                         ]
                                     }, ...
                                 ],
                             }
-                        }, {
-                        
+                        }, 
+                        {
                             "title" : "稀釋體積",
                             "key":  "dilutionVolume",
                             "required" : true, 
@@ -1881,7 +1882,8 @@ HOST: http://www.wantoto.com
                                         }, ...
                                     ], 
                                     "default": "NS"
-                                }, {
+                                }, 
+                                {
                                     "title" : "體積",    // 此元件的title [string, optional]
                                     "type": "number",   // [string]
                                     "default": 100,     // [number]
@@ -1889,8 +1891,8 @@ HOST: http://www.wantoto.com
                                 }, ...
                             ],
                             "relativeContent": {}       // [optional]
-                        }, {    
-                        
+                        }, 
+                        {
                             "title" : "藥品名稱",
                             "elements": [
                                 {
@@ -1899,7 +1901,8 @@ HOST: http://www.wantoto.com
                                 },
                                 ...
                             ],
-                        }, {
+                        }, 
+                        {
                             "title" : "自費",
                             "key" : "expense",
                             "required" : true,
@@ -1909,7 +1912,8 @@ HOST: http://www.wantoto.com
                                 },
                                 ...
                             ],
-                        }, {
+                        }, 
+                        {
                             "title" : "特殊醫囑",
                             "key" : "specialOrder",
                             "required" : false,
@@ -1952,12 +1956,13 @@ HOST: http://www.wantoto.com
     
 + Response 200 (application/json)
 
+
         {
             "content": {
                 "default" : "A0B1C2D3",     // 預設 [string]
                 "list" : [
                     {
-                        "accountNo" : "A0B1C2D3",     // [string]
+                        "accountNo" : "A0B1C2D3",            // [string]
                         "displayName" : "X月XX日 XX:XX住院"  // [string]
                     },
                     {
@@ -1967,7 +1972,7 @@ HOST: http://www.wantoto.com
                     {
                         "accountNo" : "Z0Y1X2W3",
                         "displayName" : "X月XX日 XX:XX門診"
-                    }
+                    }, ...
                 ]
             }
         }
@@ -1982,6 +1987,7 @@ HOST: http://www.wantoto.com
     + accountNo (string,optional)    ...帳號編號(如果沒有傳則回傳accountList裡default accountNo的值)
 
 + Response 200 (application/json)
+
 
         {
             "content" : {
@@ -1999,7 +2005,7 @@ HOST: http://www.wantoto.com
                                     "content" : {
                                         "packageName" : "骨髓移植 BMT",
                                     },
-                                    "children" : [
+                                    "children" : [  // [optional]
                                         {
                                             "content" : {
                                                 "packageName" : "Admission Orders", // [string]
@@ -2007,7 +2013,7 @@ HOST: http://www.wantoto.com
                                             }
                                         },
                                         {
-                                            "content" : {
+                                            "content" : { 
                                                 "packageName" : "Admission Lab",
                                                 "packageCode" : "admissionlab"
                                             }
@@ -2035,26 +2041,27 @@ HOST: http://www.wantoto.com
                         "content" : {
                             "packageName" : "病房"
                         },
-                        "children" : {
-                            "content" : {
-                                "packageName" : "Major Burn"
-                            },
-                            "children" : [
-                                {
-                                    "content" : {
-                                        "packageName" : "照會",
-                                        "packageCode" : "A1234"
-                                    }
+                        "children" : [ // [optional]
+                            {
+                                "content" : {
+                                    "packageName" : "Major Burn"
                                 },
-                                {
-                                    "content" : {
-                                        "packageName" : "醫囑",
-                                        "packageCode" : "A1235"
-                                    }
-                                }, 
-                                ...
-                            ]
-                        }
+                                "children" : [ // [optional]
+                                    {
+                                        "content" : {
+                                            "packageName" : "照會",
+                                            "packageCode" : "A1234"
+                                        }
+                                    },
+                                    {
+                                        "content" : {
+                                            "packageName" : "醫囑",
+                                            "packageCode" : "A1235"
+                                        }
+                                    }, ...
+                                ]
+                            }, ...
+                        ]
                     },
                     ...
                 ], 
