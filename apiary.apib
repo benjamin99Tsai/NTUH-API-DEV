@@ -1420,22 +1420,21 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content": {
-                "notifications": [
-                    {
-                        "id":         "K123321",                            // The identifier for the notification [string]
-                        "title":      "TITLE",                              // The title [string]
-                        "message":    "this is the example notification.",  // The message content of the notification. [string]
-                        "datetime":   1406938026,                           // The time when the notification was issues [number(timestamp)]
-                        "type":       "TEST_TYPE",                          // The type of the notification [string]
-                        "confirmed":  false,                                // The flag indicated that the notification had been confirmed [boolean]
-                    }, ... ],
-                "limit": 50,                // 最大回傳筆數 [number] 
-                "offset": 0,                // 回傳資料偏移數 [number]
-                "total" : 100               // 此次Query總筆數 [number] 
-                "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期) [number(timestamp)]
-                "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
-            }
+            "content": [
+                {
+                    "id":         "K123321",                            // The identifier for the notification [string]
+                    "title":      "TITLE",                              // The title [string]
+                    "message":    "this is the example notification.",  // The message content of the notification. [string]
+                    "datetime":   1406938026,                           // The time when the notification was issues [number(timestamp)]
+                    "type":       "TEST_TYPE",                          // The type of the notification [string]
+                    "confirmed":  false,                                // The flag indicated that the notification had been confirmed [boolean]
+                }, ... 
+            ],
+            "limit": 50,                // 最大回傳筆數 [number] 
+            "offset": 0,                // 回傳資料偏移數 [number]
+            "total" : 100               // 此次Query總筆數 [number] 
+            "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期) [number(timestamp)]
+            "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
 
 # 3/15 - 院內訊息通知系統 [/notification/{id}{?confirmed}]
@@ -1474,20 +1473,18 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "content": {
-                "topics": [
-                    {
-                        "created": 1406938026,          // the created time. [number(timestamp)]
-                        "updated": 1406940112,          // the last updated time. [number(timestamp)]
-                        "_emp_author": {            
-                            "empNo": "111111",          // [string]
-                            "name":  "謝小穎"           // [string]
-                        },  
-                        "title":    "HELLO",            // [string]
-                        "id":       "A12-40321",        // the identifier for the topic [string]
-                    }, ...
-                ]
-            }
+            "content": [
+                {
+                    "created": 1406938026,          // the created time. [number(timestamp)]
+                    "updated": 1406940112,          // the last updated time. [number(timestamp)]
+                    "_emp_author": {            
+                        "empNo": "111111",          // [string]
+                        "name":  "謝小穎"           // [string]
+                    },  
+                    "title":    "HELLO",            // [string]
+                    "id":       "A12-40321",        // the identifier for the topic [string]
+                }, ...
+            ],
         }
     
 
@@ -1502,46 +1499,43 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
 
         {
-            "content": {
-                "created": 1406938026,               // the timestamp for the created time of the first topic. [number(timestamp)] 
-                "topics": [
-                    {
-                        "_emp_author" : {  
-                            "empNo" : "111111",      // the id for the one created the topic [string]
-                            "name" : "謝小穎"        // the name of the one created the topic [string]
-                        },
-                        "created":    1406938026,    // the timestamp for the created time. [number(datetime)]
-                        "updated":    1406940112,    // the timestamp for the last updated time [number(datetime)]
-                        "title":      "HELLO",       // the title [string]
-                        "message":    "hello world", // the message content [string]
-                        "id":         "A12-40321",   // the identifier for the topic [string]
-                        "editable":   false,         // the flag that indeicates weather the user could edit the topic. [boolean]
-                        "replies": {
-                            "list": [
-                                {
-                                    "_emp_author": {            
-                                        "empNo": "111381",                  // the id for the one created the reply  [string]
-                                        "name":  "震大事"                   // the name of the one created the reply [string]
-                                    },
-                                    "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
-                                    "updated": 1407000112,                  // the timestamp for last updated time. [number(timestamp)]
-                                    "message": "This is the test reply.",   // the message content [string]
-                                    "id": "R12-3012",                       // the identifier for the reply [string]
-                                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
-                                },...
-                            ],
-                            "offset": 0,                                    // the offset of the replies [number]
-                            "limit": 5,                                     // the max number of replies in the response [number]
-                            "total": 6,                                     // the total number of the replies [number]
-                        },
-                    }, ...
-                ],
-                "limit": 50,                // 最大回傳筆數. [number] 
-                "offset": 0,                // 回傳資料偏移數. [number]
-                "total" : 100               // 此次Query總筆數. [number] 
-                "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期). [number(timestamp)] 
-                "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期). [number(timestamp)] 
-            }
+            "content": [
+                {
+                    "_emp_author" : {  
+                        "empNo" : "111111",      // the id for the one created the topic [string]
+                        "name" : "謝小穎"        // the name of the one created the topic [string]
+                    },
+                    "created":    1406938026,    // the timestamp for the created time. [number(datetime)]
+                    "updated":    1406940112,    // the timestamp for the last updated time [number(datetime)]
+                    "title":      "HELLO",       // the title [string]
+                    "message":    "hello world", // the message content [string]
+                    "id":         "A12-40321",   // the identifier for the topic [string]
+                    "editable":   false,         // the flag that indeicates weather the user could edit the topic. [boolean]
+                    "replies": {
+                        "list": [
+                            {
+                                "_emp_author": {            
+                                    "empNo": "111381",                  // the id for the one created the reply  [string]
+                                    "name":  "震大事"                   // the name of the one created the reply [string]
+                                },
+                                "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
+                                "updated": 1407000112,                  // the timestamp for last updated time. [number(timestamp)]
+                                "message": "This is the test reply.",   // the message content [string]
+                                "id": "R12-3012",                       // the identifier for the reply [string]
+                                "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                            },...
+                        ],
+                        "offset": 0,                                    // the offset of the replies [number]
+                        "limit": 5,                                     // the max number of replies in the response [number]
+                        "total": 6,                                     // the total number of the replies [number]
+                    },
+                }, ...
+            ],
+            "limit": 50,                // 最大回傳筆數. [number] 
+            "offset": 0,                // 回傳資料偏移數. [number]
+            "total" : 100               // 此次Query總筆數. [number] 
+            "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期). [number(timestamp)] 
+            "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期). [number(timestamp)] 
         }
         
 ## 新增主題至病患所對應之留言板[POST]
@@ -1634,24 +1628,22 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
     
         {
-            "content": {
-                "list": [
-                    {
-                        "_emp_author": {            
-                            "empNo": "111381",                  // the id for the one created the reply  [string]
-                            "name":  "震大事"                   // the name of the one created the reply [string]
-                        },
-                        "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
-                        "updated": 1407000123,                  // the timestamp for the updated time. [number(timestamp)]
-                        "message": "This is the test reply.",   // the message content [string]
-                        "id": "R12-3012",                       // the identifier for the reply [string]
-                        "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
-                    },...
-                ],
-                "offset": 0,                                    // the offset of the replies [number]
-                "limit": 5,                                     // the max number of replies in the response [number]
-                "total": 6,                                     // the total number of the replies [number]
-            }
+            "content": [
+                {
+                    "_emp_author": {            
+                        "empNo": "111381",                  // the id for the one created the reply  [string]
+                        "name":  "震大事"                   // the name of the one created the reply [string]
+                    },
+                    "created": 1406939126,                  // the timestamp for the created time. [number(timestamp)]
+                    "updated": 1407000123,                  // the timestamp for the updated time. [number(timestamp)]
+                    "message": "This is the test reply.",   // the message content [string]
+                    "id": "R12-3012",                       // the identifier for the reply [string]
+                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                },...
+            ],
+            "offset": 0,                                    // the offset of the replies [number]
+            "limit": 5,                                     // the max number of replies in the response [number]
+            "total": 6,                                     // the total number of the replies [number]
         }
         
 ## 新增回應至留言板至指定主題[POST]
