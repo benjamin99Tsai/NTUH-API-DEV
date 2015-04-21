@@ -1995,8 +1995,8 @@ HOST: http://www.wantoto.com
                 "general" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑) 
                     {   
                         "content" : {
-                            "packageName" : "科部",                              // [string]
-                            "default" : true
+                            "packageName" : "科部",    // [string]
+                            "default" : true       // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
                         },
                         "children" : [
                             { 
@@ -2195,13 +2195,13 @@ HOST: http://www.wantoto.com
                 {
                     "content" : {
                         "packageName" : "科部",
-                        "default" : true
+                        "default" : true    // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
                     },
                     "children" : [
                         { 
                             "content" : {
                                 "packageName" : "內科部",   // 顯示的title名  [string]
-                                "default" : true
+                                "default" : true            // [boolean, optional]
                             }, 
                             "children" : [  // 如果有sublist的話, 則顯示此key  [optional, duplicate]
                                 {
