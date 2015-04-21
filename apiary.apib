@@ -1993,25 +1993,29 @@ HOST: http://www.wantoto.com
         {
             "content" : {
                 "general" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑) 
-                    {
+                    {   
                         "content" : {
-                            "packageName" : "科部"                              // [string]
+                            "packageName" : "科部",                              // [string]
+                            "default" : true
                         },
                         "children" : [
                             { 
                                 "content" : {
                                     "packageName" : "內科部",                       // 顯示的title名  [string]
+                                    "default" true
                                 }, 
                                 "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
                                     {
                                         "content" : {
                                             "packageName" : "骨髓移植 BMT",
+                                            "default" : true
                                         },
                                         "children" : [  // [optional]
                                             {
                                                 "content" : {
                                                     "packageName" : "Admission Orders", // [string]
-                                                    "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
+                                                    "packageCode" : "admissionorder",    // 透過此碼查詢醫令 [string, optional]
+                                                    "default" : true
                                                 }
                                             },
                                             {
@@ -2190,23 +2194,27 @@ HOST: http://www.wantoto.com
             "content" : [   // Portal的上半部份 (科部, 病房, 員工, 病人, 路徑)
                 {
                     "content" : {
-                        "packageName" : "科部"
+                        "packageName" : "科部",
+                        "default" : true
                     },
                     "children" : [
                         { 
                             "content" : {
                                 "packageName" : "內科部",   // 顯示的title名  [string]
+                                "default" : true
                             }, 
                             "children" : [  // 如果有sublist的話, 則顯示此key  [optional, duplicate]
                                 {
                                     "content" : {
                                         "packageName" : "骨髓移植 BMT",
+                                        "default" : true
                                     },
                                     "children" : [
                                         {
                                             "content" : {
                                                 "packageName" : "Admission Orders",
-                                                "packageCode" : "admissionorder"    // 透過此碼查詢醫令 [string, optional]
+                                                "packageCode" : "admissionorder",    // 透過此碼查詢醫令 [string, optional]
+                                                "default" : true
                                             }
                                         },
                                         {
@@ -2594,11 +2602,12 @@ HOST: http://www.wantoto.com
         }
         
 # Group 多媒體相關 Media Relative Service
-## 4/08 - 多媒體上傳 [/media/upload{?image%5B%5D}]
+## 4/08 - 多媒體上傳 [/patients/{chartNo}/media/upload{?image%5B%5D,accountNo}]
 ### 上傳 [POST]
 
 + Parameters
     + image%5B%5D (array[binary])    ... 上傳之影像byte array(可多張image)
+    + accountNo (string, optional)   ... 帳號編號
     
 + Response 200 (application/json)
 
