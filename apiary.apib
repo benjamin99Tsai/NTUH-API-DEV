@@ -1611,6 +1611,7 @@ HOST: http://www.wantoto.com
     
 + Response 200 (application/json)
 
+
         {
             "success": true
         }
@@ -1620,6 +1621,7 @@ HOST: http://www.wantoto.com
     + id (string) ... The identifier for the specified reply.
 
 + Response 200 (application/json)
+
 
         {
             "success": true
@@ -1646,12 +1648,12 @@ HOST: http://www.wantoto.com
                     "updated": 1407000123,                  // the timestamp for the updated time. [number(timestamp)]
                     "message": "This is the test reply.",   // the message content [string]
                     "id": "R12-3012",                       // the identifier for the reply [string]
-                    "editable": false,                      // the flag that indicated weather the user could edit reply. [boolean]
+                    "editable": false                       // the flag that indicated weather the user could edit reply. [boolean]
                 },...
             ],
             "offset": 0,                                    // the offset of the replies [number]
             "limit": 5,                                     // the max number of replies in the response [number]
-            "total": 6,                                     // the total number of the replies [number]
+            "total": 6                                      // the total number of the replies [number]
         }
         
 ## 新增回應至留言板至指定主題[POST]
