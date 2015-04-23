@@ -750,7 +750,7 @@ HOST: http://www.wantoto.com
                 ],
                 "data" : [
                     {
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                        "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
                             "examDate" : 1406938026,
                             "date" : 1406938026,
                             "item" : "Chest PA View (Standing)",
@@ -759,11 +759,11 @@ HOST: http://www.wantoto.com
                         "filterCode" : [    //篩選類別
                             "image"
                         ],
-                        "report" : {    //如有報告則回傳
-                            "reportType" : "HTML",  //報告型態，HTML或PDF
-                            "reportPath" : "/imageReport/{imageReportID}"   //報告路徑
-                            "encoding" : "utf-16"   //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw" //報告基礎連結(報告中如有相對連結時回傳)[string]
+                        "report" : {    //如有報告則回傳 [optional]
+                            "reportType" : "HTML",                              //報告型態，HTML或PDF
+                            "reportPath" : "/imageReport/{imageReportID}",      //報告路徑
+                            "encoding" : "utf-16",                              //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"            //報告基礎連結(報告中如有相對連結時回傳)[string]
                         }
                     },
                     ...
@@ -783,8 +783,8 @@ HOST: http://www.wantoto.com
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
             },
-            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
-            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
+            "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 ## 10/28-影像報告 [/patients/{chartNo}/ImageReport]
