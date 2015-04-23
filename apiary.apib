@@ -517,8 +517,8 @@ HOST: http://www.wantoto.com
                         "table" : {
                             "field" : [    //欄位資訊
                                 {
-                                    "fieldCode" : "item",  //欄位代碼[string]
-                                    "displayName" : "檢驗項目" //欄位顯示名稱[string]
+                                    "fieldCode" : "item",       //欄位代碼[string]
+                                    "displayName" : "檢驗項目"  //欄位顯示名稱[string]
                                 },
                                 {
                                     "fieldCode" : "labValue",  
@@ -547,7 +547,7 @@ HOST: http://www.wantoto.com
                             ],
                             "data" : [
                                 {
-                                    "content" : {   //依據欄位填入資料，無資料則不回傳
+                                    "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
                                         "item" : "RBC",
                                         "labValue" : {              //若為檢驗數值則回傳object
                                             "value" :"2.66",        //檢驗值[string]
@@ -561,7 +561,7 @@ HOST: http://www.wantoto.com
                                     }
                                 },
                                 ...
-                            ],
+                            ]
                         }
                     },
                     ...
