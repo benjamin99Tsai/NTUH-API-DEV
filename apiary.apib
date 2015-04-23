@@ -1440,6 +1440,7 @@ HOST: http://www.wantoto.com
 ## 取得通知訊息內容 [GET]
 + Response 200 (application/json)
 
+
         {
             "content": {
                 "id":         "K123321",                            // The identifier for the notification [string]
@@ -1447,8 +1448,8 @@ HOST: http://www.wantoto.com
                 "message":    "this is the example notification.",  // The message content of the notification. [string]
                 "datetime":   1406938026,                           // The time when the notification was issues. [number(timestamp)]
                 "type":       "TEST_TYPE",                          // The type of the notification, [string]
-                "confirmed":  false,                                // The flag indicated that the notification had been confirmed. [boolean]
-            },
+                "confirmed":  false                                 // The flag indicated that the notification had been confirmed. [boolean]
+            }
         }
 
 ## 確認通知訊息 [PUT]
@@ -1458,7 +1459,7 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
         
         {
-            "success": true,
+            "success": true
         }
 
 # 4/13 - 病患留言板系統 [/bulletin/{chartNo}/topicTitles{?startDate,endDate,offset,limit}]
