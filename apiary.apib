@@ -822,31 +822,31 @@ HOST: http://www.wantoto.com
             "content" : {
                 "TPR" : [   //TPR 圖表資料
                     {   //每次TPR紀錄
-                        "date" : 1406938026,    //紀錄時間[nubmer(timestamp)]
-                        "breathing" : 20,   //呼吸[number,optional]
-                        "temperature" : 37.5,   //體溫[number,optional]
-                        "heartRate" : 59,    //心跳[number,optional]
+                        "date" : 1406938026,        //紀錄時間[nubmer(timestamp)]
+                        "breathing" : 20,           //呼吸[number,optional]
+                        "temperature" : 37.5,       //體溫[number,optional]
+                        "heartRate" : 59,           //心跳[number,optional]
                         "bloodPressure" : { //血壓
-                            "systolic" : 116,    //收縮壓[number,optional]
-                            "diastolic" : 69    //舒張壓[number,optional]
+                            "systolic" : 116,       //收縮壓[number,optional]
+                            "diastolic" : 69        //舒張壓[number,optional]
                         }    
                     },
                     ...
                 ],
                 "IO" : [    //IO資料
                     {   //欄位資料
-                        "fieldName" : "血壓", //欄位名稱[string]
+                        "fieldName" : "血壓",           //欄位名稱[string]
                         "data" : [
                             {
                                 "date" : 1406938026,    //資料時間[number(timestamp)]
-                                "data" : "125/75"   //資料內容[string]
+                                "data" : "125/75"       //資料內容[string]
                             },
                             ...
                         ]
                     },
                     {   //欄位資料
-                        "fieldName" : "身高", //欄位名稱[string]
-                        "unit" : "cm",  //單位，有單位時回傳[string,optional]
+                        "fieldName" : "身高",   //欄位名稱[string]
+                        "unit" : "cm",          //單位，有單位時回傳[string,optional]
                         "range" : { //繪圖範圍，可以圖形表示時回傳 [optional]
                             "max" : "210", 
                             "min" : "100"
@@ -854,18 +854,18 @@ HOST: http://www.wantoto.com
                         "data" : [
                             {
                                 "date" : 1406938026,    //資料時間[number(timestamp)]
-                                "data" : "173"   //資料內容[string]
+                                "data" : "173"          //資料內容[string]
                             },
                             {
                                 "date" : 1406948026,    //資料時間[number(timestamp)]
-                                "data" : "173.5"   //資料內容[string]
+                                "data" : "173.5"        //資料內容[string]
                             },
                             ...
                         ]
                     },
                     {   //欄位資料
-                        "fieldName" : "血糖", //欄位名稱[string]
-                        "unit" : "ug/ml",  //單位，有單位時回傳[string,optional]
+                        "fieldName" : "血糖",   //欄位名稱[string]
+                        "unit" : "ug/ml",       //單位，有單位時回傳[string,optional]
                         "range" : { //繪圖範圍，可以圖形表示時回傳 [optional]
                             "max" : "210", 
                             "min" : "100"
@@ -873,19 +873,20 @@ HOST: http://www.wantoto.com
                         "data" : [
                             {
                                 "date" : 1406938026,    //資料時間[number(timestamp)]
-                                "data" : "100",   //資料內容[string]
-                                "note" : "STAT" //測量狀態[string]
+                                "data" : "100",         //資料內容[string]
+                                "note" : "STAT"         //測量狀態[string]
                             },
                             ...
                         ]
                     },
+                    ...
                 ],
             "medication" : {
                 "content" : [
                     {
-                        "drugName" : "Magnesium Oxide", //學名[string]
-                        "itemName" : "MgO", //品名[string]
-                        "combineName" : "Magnesium Oxide 250 mg/tab", //組合名[string]
+                        "drugName" : "Magnesium Oxide",                 //學名[string]
+                        "itemName" : "MgO",                             //品名[string]
+                        "combineName" : "Magnesium Oxide 250 mg/tab",   //組合名[string]
                         "itemUnit" : "250 mg/tab", //劑量單位[string]
                         "filterCode" : [ //篩選代碼[string]
                             "antibiotic"
