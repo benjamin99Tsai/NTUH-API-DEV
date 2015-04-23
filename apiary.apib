@@ -1484,7 +1484,12 @@ HOST: http://www.wantoto.com
                     "title":    "HELLO",            // [string]
                     "id":       "A12-40321"         // the identifier for the topic [string]
                 }, ...
-            ]
+            ],
+            "limit": 50,                // 最大回傳筆數 [number] 
+            "offset": 0,                // 回傳資料偏移數 [number]
+            "total" : 100,              // 此次Query總筆數 [number] 
+            "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期) [number(timestamp)]
+            "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
     
 
