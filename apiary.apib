@@ -1256,6 +1256,7 @@ HOST: http://www.wantoto.com
 
 + Response 200 (application/json)
 
+
         {
             "content" : {
                 "field" : [    //欄位資訊
@@ -1312,7 +1313,7 @@ HOST: http://www.wantoto.com
                                         "content" : {               //依據欄位填入資料，無資料則不回傳 [optional]
                                             "item" : "出院病摘",    // [string]
                                         },
-                                        "report" : {    //如有報告則回傳
+                                        "report" : {    //如有報告則回傳 [optional]
                                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                                             "reportPath" : "/EMRReport/{EMRReportID}",  //報告路徑 [string]
                                             "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
@@ -1345,8 +1346,8 @@ HOST: http://www.wantoto.com
                 "offset" : 0, //回傳資料偏移數[number]
                 "total" : 100 //此次Query總筆數[number]
             },
-            "startDate" : 1406938026, Query 起始日期，以時間序號表示 (包含此日期)
-            "endDate" : 1406938026 Query 結束日期，以時間序號表示 (包含此日期)
+            "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期)
+            "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
 
