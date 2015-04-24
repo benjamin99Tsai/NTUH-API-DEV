@@ -1436,7 +1436,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
 
-# 3/15 - 院內訊息通知系統 [/notification/{id}{?confirmed}]
+# 4/24 - 院內訊息通知系統 [/notification/{id}{?confirmed}]
 ## 取得通知訊息內容 [GET]
 + Response 200 (application/json)
 
@@ -1447,7 +1447,8 @@ HOST: http://www.wantoto.com
                 "title":      "TITLE",                              // The title [string]
                 "message":    "this is the example notification.",  // The message content of the notification. [string]
                 "datetime":   1406938026,                           // The time when the notification was issues. [number(timestamp)]
-                "type":       "TEST_TYPE",                          // The type of the notification, [string]
+                "typeCode":     "consult",                          // The type code of the notification. [string]
+                "displayName":  "會診",                             // The type display name of the notification. [string]
                 "confirmed":  false                                 // The flag indicated that the notification had been confirmed. [boolean]
             }
         }
