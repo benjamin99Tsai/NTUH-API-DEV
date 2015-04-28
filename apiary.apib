@@ -1436,7 +1436,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
 
-# 4/24 - 院內訊息通知系統 [/notification/{id}{?confirmed}]
+# 4/24 - 院內訊息通知系統 [/notification/{id}{?confirmed,sessionKey}]
 ## 取得通知訊息內容 [GET]
 + Response 200 (application/json)
 
@@ -1455,12 +1455,43 @@ HOST: http://www.wantoto.com
 
 ## 確認通知訊息 [PUT]
 + Parameters
-    + confirmed (boolean) ... 設定指定之通知訊息為確認(true)/未確認(false)
+    + confirmed  (boolean)  ... 設定指定之通知訊息為確認(true)/未確認(false)
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
         
         {
             "success": true
+        }
+
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
         }
 
 # 4/13 - 病患留言板系統 [/bulletin/{chartNo}/topicTitles{?startDate,endDate,offset,limit}]
@@ -1492,15 +1523,16 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期) [number(timestamp)]
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
-    
+ 
 
-# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content}]
+# 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content,sessionKey}]
 ## 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
     + limit  (number, optional) ... 最大回傳筆數，需與 offset 一起傳入
     + startDate (string, optional, `20150103`) ... Query 起始日期，以 YYYYMMDD 格式表示 (包含此日期)
     + endDate   (string, optional, `20150113`) ... Query 結束日期，以 YYYYMMDD 格式表示 (包含此日期)
+    + sessionKey (string) ... Session Key
 
 + Response 200 (application/json)
 
@@ -1547,9 +1579,10 @@ HOST: http://www.wantoto.com
         
 ## 新增主題至病患所對應之留言板[POST]
 + Parameters
-    + empNo (string)    ... 使用者帳號
-    + title (string)    ... 主題標題
-    + content (string)  ... 主題訊息內容
+    + empNo (string)        ... 使用者帳號
+    + title (string)        ... 主題標題
+    + content (string)      ... 主題訊息內容
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
 
@@ -1560,12 +1593,16 @@ HOST: http://www.wantoto.com
                 "id": "A12-40322"      // The identifier for the newly created topic [string].
             }
         }
+
++ Response 400 (application/json)
+
         
 
-# 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,title,content}]
+# 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,title,content,sessionKey}]
 ## 取得留言板某個主題[GET]
 + Parameters
-    + id (string) ... The identifier for the specified topic.
+    + id (string)           ... The identifier for the specified topic.
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
 
@@ -1605,10 +1642,11 @@ HOST: http://www.wantoto.com
 
 ## 編輯留言板某個主題[PUT]
 + Parameters
-    + id (string)       ... The identifier for the specified topic.
-    + empNo (string)    ... 請求更新之使用者帳號
-    + title (string)    ... 請求更新之標題
-    + content (string)  ... 更新之訊息內容
+    + id (string)           ... The identifier for the specified topic.
+    + empNo (string)        ... 請求更新之使用者帳號
+    + title (string)        ... 請求更新之標題
+    + content (string)      ... 更新之訊息內容
+    + sessionKey (string)   ... Session Key
     
 + Response 200 (application/json)
 
@@ -1617,9 +1655,41 @@ HOST: http://www.wantoto.com
             "success": true
         }
 
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
+        }
+        
+        
 ## 刪除留言板某個主題[DELETE]
 + Parameters
-    + id (string) ... The identifier for the specified reply.
+    + id (string)           ... The identifier for the specified reply.
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
 
@@ -1627,14 +1697,45 @@ HOST: http://www.wantoto.com
         {
             "success": true
         }
+
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
         
-# 4/10 - 留言板系統指定主題之回應 [/bulletin/topic/{id}/replies{?empNo,content,offset,limit}]
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
+        }
+
+# 4/10 - 留言板系統指定主題之回應 [/bulletin/topic/{id}/replies{?empNo,content,offset,limit,sessionKey}]
 
 ## 取得指定主題之所有回應 [GET]
 + Parameters
     + id (string)               ... the identifier for the specified topic.
     + limit (number, optional)  ... the max number of replies in response data.
     + offset (number, optional) ... the offset index for the reponse reply list
+    + sessionKey (string)       ... Session Key
 
 + Response 200 (application/json)
     
@@ -1659,10 +1760,11 @@ HOST: http://www.wantoto.com
         
 ## 新增回應至留言板至指定主題[POST]
 + Parameters
-    + id (string)       ... The identifier for the specified topic.
-    + empNo (string)    ... The employment id for the one requesting for posting the reply.
-    + content (string)  ... The message content for the replay.
-
+    + id (string)           ... The identifier for the specified topic.
+    + empNo (string)        ... The employment id for the one requesting for posting the reply.
+    + content (string)      ... The message content for the replay.
+    + sessionKey (string)   ... Session Key
+    
 + Response 200 (application/json)
         
         {
@@ -1672,11 +1774,42 @@ HOST: http://www.wantoto.com
             }
         }
 
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
         
-# 3/15 - 留言板系統之回應 [/bulletin/reply/{id}{?empNo,content}]
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
+        }
+
+        
+# 3/15 - 留言板系統之回應 [/bulletin/reply/{id}{?empNo,content,sessionKey}]
 ## 取得留言板某個回應[GET]
 + Parameters
-    + id (string) ... The identifier for the specified reply.
+    + id (string)           ... The identifier for the specified reply.
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
 
@@ -1696,27 +1829,90 @@ HOST: http://www.wantoto.com
         }
 
 ## 編輯留言板某個回復[PUT]
-+ Parameters
-    + id (string)       ... The identifier for the specified reply.
-    + empNo (string)    ... 請求更新之使用者帳號
-    + content (string)  ... 更新之訊息內容
++ Parameter
+    + id (string)           ... The identifier for the specified reply.
+    + empNo (string)        ... 請求更新之使用者帳號
+    + content (string)      ... 更新之訊息內容
+    + sessionKey (string)   ... Session Key
     
 + Response 200 (application/json)
 
+
         {
             "success": true
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
         }
 
 ## 刪除留言板某個主題[DELETE]
 + Parameters
-    + id (string) ... The identifier for the specified reply.
+    + id (string)           ... The identifier for the specified reply.
+    + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
+
 
         {
             "success": true
         }
 
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
+        }
 
 # Group 新增/修改醫令 Order
 
