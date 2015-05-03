@@ -26,7 +26,7 @@ HOST: http://www.wantoto.com
             "error" : 101 //錯誤代碼 [number]
         }
 
-# Group Web Service 通則
+# Group Web Service 通則 {example}
 ## 通則 [/{?sessionKey,offset,limit}]
 ### 驗證 Session Key 與資料分頁參數[GET]
 所有 Web Service 都須帶入 Session Key 檢查是否過期與是否具有存取權限。
@@ -471,7 +471,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026    // [number(timestamp)] Query 結束日期，以時間序號表示 (包含此日期)
         }
 
-## 10/8-病歷資料 Web Service 通則 [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
+## 10/8-病歷資料 Web Service 通則 {example} [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
 ### 取得病歷資料 [GET]
 + Parameters
     + chartNo (string) ... 病歷號
