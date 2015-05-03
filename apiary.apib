@@ -1601,6 +1601,33 @@ HOST: http://www.wantoto.com
 
 + Response 400 (application/json)
 
+
+        {
+            "error": {
+                "code": 1001,
+                "message": "Missing parameter error with parameter: ..."
+            }
+        }
+        
++ Response 400 (application/json)
+
+
+        {
+            "error": {
+                "code": 1002,
+                "message": "Input parameter type error with parameter: ..."
+            }
+        }
+
++ Response 401 (application/json)
+
+
+        {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized access"
+            }
+        }
         
 
 ## 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,title,content,sessionKey}]
