@@ -2234,7 +2234,7 @@ HOST: http://www.wantoto.com
                     {   
                         "content" : {
                             "packageName" : "科部",    // [string]
-                            "default" : true       // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
+                            "default" : true           // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
                         },
                         "children" : [
                             { 
@@ -2246,32 +2246,32 @@ HOST: http://www.wantoto.com
                                     {
                                         "content" : {
                                             "packageName" : "骨髓移植 BMT",
-                                            "default" : true
+                                            "default" : true                            // [boolean, optional]
                                         },
-                                        "children" : [  // [optional]
+                                        "children" : [  // [duplicate, optional]
                                             {
                                                 "content" : {
                                                     "packageName" : "Admission Orders", // [string]
-                                                    "packageCode" : "admissionorder",    // 透過此碼查詢醫令 [string, optional]
-                                                    "default" : true
-                                                }
+                                                    "packageCode" : "admissionorder",   // 透過此碼查詢醫令 [string, optional]
+                                                    "default" : true                    // [boolean, optional]
+                                                }  
                                             },
                                             {
                                                 "content" : { 
                                                     "packageName" : "Admission Lab",
-                                                    "packageCode" : "admissionlab"
+                                                    "packageCode" : "admissionlab"      // [string, optional]
                                                 }
                                             },
                                             {
                                                 "content" : {
                                                     "packageName" : "Routine Lab",
-                                                    "packageCode" : "routinelab"
+                                                    "packageCode" : "routinelab"        // [string, optional]
                                                 }
                                             },
                                             {
                                                 "content" : {
                                                     "packageName" : "CPCR",
-                                                    "packageCode" : "cpcr"
+                                                    "packageCode" : "cpcr"              // [string, optional]
                                                 }
                                             },
                                             ...
@@ -2435,7 +2435,7 @@ HOST: http://www.wantoto.com
                         "packageName" : "科部",
                         "default" : true    // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
                     },
-                    "children" : [
+                    "children" : [  // 如果有sublist的話, 則顯示此key  [optional, duplicate]
                         { 
                             "content" : {
                                 "packageName" : "內科部",   // 顯示的title名  [string]
