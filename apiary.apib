@@ -2444,33 +2444,33 @@ HOST: http://www.wantoto.com
                             "children" : [  // 如果有sublist的話, 則顯示此key  [optional, duplicate]
                                 {
                                     "content" : {
-                                        "packageName" : "骨髓移植 BMT",
-                                        "default" : true
+                                        "packageName" : "骨髓移植 BMT",     // [string]
+                                        "default" : true                    // [boolean, optional]
                                     },
                                     "children" : [  // 如果有sublist的話, 則顯示此key [optional, duplicate]
                                         {
                                             "content" : {
                                                 "packageName" : "Admission Orders",
-                                                "packageCode" : "admissionorder",    // 透過此碼查詢醫令 [string, optional]
-                                                "default" : true
+                                                "packageCode" : "admissionorder",       // 透過此碼查詢醫令 [string, optional]
+                                                "default" : true                        // [boolean, optional]
                                             }
                                         },
                                         {
                                             "content" : {
                                                 "packageName" : "Admission Lab",
-                                                "packageCode" : "admissionlab"
+                                                "packageCode" : "admissionlab"          // [string, optional]
                                             }
                                         },
                                         {
                                             "content" : {
-                                                "packageName" : "Routine Lab",
-                                                "packageCode" : "routinelab"
+                                                "packageName" : "Routine Lab",          
+                                                "packageCode" : "routinelab"            // [string, optional]
                                             }
                                         },
                                         {
                                             "content" : {
                                                 "packageName" : "CPCR",
-                                                "packageCode" : "cpcr"
+                                                "packageCode" : "cpcr"                  // [string, optional]
                                             }
                                         },
                                         ...
