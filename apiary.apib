@@ -2866,7 +2866,7 @@ HOST: http://www.wantoto.com
             "content":
             [
                 {
-                    "action" : [
+                    "actions" : [
                         {
                             "displayName" : "評估意識", // 按鈕上要顯示的名字 [string]
                             "optionName" : "意識評估",  // 記錄的時候要顯示的字 [string]
@@ -2880,33 +2880,35 @@ HOST: http://www.wantoto.com
                         },
                         {
                             "displayName" : "評估呼吸",
-                            "type" : "option",
-                            "options" : [
-                                {
-                                    "displayName" : "無呼吸",
-                                    "optionName"  : "無呼吸",
-                                    "relation" : [
-                                        {
-                                            "button" : "打開呼吸道",
-                                            "action" : "highlight"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "displayName" : "頻死呼吸",
-                                    "optionName" : "頻死呼吸"
-                                },
-                                {
-                                    "displayName" : "自發性呼吸",
-                                    "optionName" : "自發性呼吸"
-                                }
-                            ]
+                            "popup" : {                       // [optional]
+                                "type": "option",
+                                "content": [
+                                    {
+                                        "displayName" : "無呼吸",
+                                        "optionName"  : "無呼吸",
+                                        "relation" : [
+                                            {
+                                                "button" : "打開呼吸道",
+                                                "action" : "highlight"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "displayName" : "頻死呼吸",
+                                        "optionName" : "頻死呼吸"
+                                    },
+                                    {
+                                        "displayName" : "自發性呼吸",
+                                        "optionName" : "自發性呼吸"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 },
                 {
                     "category" : "Airway+Breathing",    // 分類的名字  [string, optional]
-                    "action" : [
+                    "actions" : [
                         {
                             "displayName" : "打開呼吸道",
                             "type" : "option",
