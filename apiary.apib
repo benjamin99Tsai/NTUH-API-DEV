@@ -2854,3 +2854,222 @@ HOST: http://www.wantoto.com
                 "success" : true
             }
         }
+        
+# Group 急診
+## 5/05 - 急診 [/em]
+### 急診 [GET]
+
++ Response 200 (application/json)
+
+
+        {
+            "content":
+            [
+                {
+                    "action" : [
+                        {
+                            "displayName" : "評估意識", // 按鈕上要顯示的名字 [string]
+                            "optionName" : "意識評估",  // 記錄的時候要顯示的字 [string]
+                            "relation" : [              // 做了此動作之後，會影響到其他按鈕狀態的話，則顯示 [optional]
+                                {
+                                    "button" : "評估呼吸",  // 會影響的按鈕的displayName [string]
+                                    "action" : "highlight"  // 按鈕的動作 [string]  ex: highlight, unhighlight, disable, enable
+                                }   
+                            ],
+                            "defaultNote" : "E1M1V1",   // 預設的備註值  [string, optional]
+                        },
+                        {
+                            "displayName" : "評估呼吸",
+                            "type" : "option",
+                            "options" : [
+                                {
+                                    "displayName" : "無呼吸",
+                                    "optionName"  : "無呼吸",
+                                    "relation" : [
+                                        {
+                                            "button" : "打開呼吸道",
+                                            "action" : "highlight"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "displayName" : "頻死呼吸",
+                                    "optionName" : "頻死呼吸"
+                                },
+                                {
+                                    "displayName" : "自發性呼吸",
+                                    "optionName" : "自發性呼吸"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "category" : "Airway+Breathing",    // 分類的名字  [string, optional]
+                    "action" : [
+                        {
+                            "displayName" : "打開呼吸道",
+                            "type" : "option",
+                            "options" : [
+                                {
+                                    "displayName" : "壓額抬下巴",
+                                    "optionName" : "壓額抬下巴",
+                                    "relation" : [
+                                        {
+                                            "button" : "評估呼吸",
+                                            "action" : "unhighlight"
+                                        },
+                                        {
+                                            "button" : "使用Ambu",
+                                            "action" : "highlight"
+                                        },
+                                        {
+                                            "button" : "打開呼吸道",
+                                            "action" : "disable"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "displayName" : "下顎推前",
+                                    "optionName" : "下顎推前"
+                                }
+                            ]
+                        },
+                        {
+                            "displayName" : "輔助呼吸道",
+                            "type" : "checkbox",
+                            "options" : [
+                                {
+                                    "displayName" : "置入口咽呼吸道",
+                                    "optionName" : "置入口咽呼吸道"
+                                },
+                                {
+                                    "displayName" : "置入鼻咽呼吸道",
+                                    "optionName" : "置入鼻咽呼吸道"
+                                },
+                                {
+                                    "displayName" : "置入咬口器",
+                                    "optionName" : "置入咬口器"
+                                }
+                            ]
+                        },
+                        {
+                            "displayName" : "使用Ambu",
+                            "optionName" : "進行Ambu-Bagging"
+                        },
+                        {
+                            "displayName" : "確認插管",
+                            "type" : "checkbox",
+                            "options" : [
+                                {
+                                    "displayName" : "聽診確認插管正確",
+                                    "optionName" : "聽診確認插管正確"
+                                },
+                                {
+                                    "displayName" : "使用EtCO2",
+                                    "optionName" : "使用EtCO2"
+                                }
+                            ],
+                            "defaultNote" : "EtCO2: mmHg"
+                        },
+                    ]
+                },
+                {
+                    "category" : "Circulation+Medication",
+                    "action" : [
+                        {
+                            "displayName" : "檢查脈博",
+                            "type" : "checkbox",
+                            "options" : [
+                                {
+                                    "displayName" : "無脈博",
+                                    "optionName" : "無脈博",
+                                    "relation" : [
+                                        {
+                                            "button" : "壓胸",
+                                            "action" : "highlight"
+                                        },
+                                        {
+                                            "button" : "接上心電圖機",
+                                            "action" : "highlight"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "displayName" : "頸動脈",
+                                    "optionName" : "頸動脈"
+                                },
+                                {
+                                    "displayName" : "股動脈",
+                                    "optionName" : "股動脈"
+                                },
+                                {
+                                    "displayName" : "肱動脈",
+                                    "optionName" : "肱動脈"
+                                },
+                                {
+                                    "displayName" : "橈動脈",
+                                    "optionName" : "橈動脈"
+                                }
+                            ]
+                        },
+                        {
+                            "displayName" : "壓胸",
+                            "type" : "option",
+                            "options" : [
+                                {
+                                    "displayName" : "人工壓胸",
+                                    "optionName" : "人工壓胸"
+                                },
+                                {
+                                    "displayName" : "機械壓胸",
+                                    "optionName" : "機械壓胸"
+                                }
+                            ]
+                        },
+                        {
+                            "displayName" : "Adrenaline 1mg/amp",
+                            "optionName" : "Adrenaline 1mg/amp iv",
+                            "count" : true
+                        }
+                    ]
+                },
+                {
+                    "category" : "Defibrillation",
+                    "action" : [
+                        {
+                            "displayName" : "接上心電圖機",
+                            "optionName" : "接上心電圖監視器"
+                        },
+                        {
+                            "displayName" : "檢查心律",
+                            "type" : "option",
+                            "options" : [
+                                {
+                                    "displayName" : "心室頻脈(VT)",
+                                    "optionName" : "心室頻脈(VT)"
+                                },
+                                {
+                                    "displayName" : "心室顫動(VF)",
+                                    "optionName" : "心室顫動(VF)"
+                                },
+                                {
+                                    "displayName" : "無脈博電器活動(PEA)",
+                                    "optionName" : "無脈博電器活動(PEA)"
+                                },
+                                {
+                                    "displayName" : "無心率(Asystole)",
+                                    "optionName" : "無心率(Asystole)"
+                                },
+                                {
+                                    "displayName" : "有脈博心律",
+                                    "optionName" : "有脈博心律"
+                                }
+                            ],
+                            "defaultNote" : "EtCO2:  mmHg"
+                        }
+                    ]
+                }
+            ],
+        }
+
