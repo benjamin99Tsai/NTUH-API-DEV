@@ -342,7 +342,7 @@ HOST: http://www.wantoto.com
                         ]
                     },
                     {
-                        "title" : "危急值",
+                        /accmulatedReport
                         "content" : [
                             {
                                 "date" : 1406938026,    //報告時間[nubmer(timestamp), optional]
@@ -596,9 +596,9 @@ HOST: http://www.wantoto.com
             "content" : {
                 "data" : [
                     {   
-                        "item" : "CBC+PLT BLOOD", //檢驗項目[string]
-                        "lab" : "血液檢驗組血液室HE",    //檢驗單位[string]
-                        "filterCode" : [    //篩選代碼
+                        "item" : "CBC+PLT BLOOD",           //檢驗項目[string]
+                        "lab" : "血液檢驗組血液室HE",       //檢驗單位[string]
+                        "filterCode" : [                    //篩選代碼
                             "HE"
                         ],
                         "table" : {
@@ -606,13 +606,13 @@ HOST: http://www.wantoto.com
                                 {
                                     "fieldCode" : "inspectionDate",         //欄位代碼[string]
                                     "displayName" : "採檢時間",             //欄位顯示名稱[string]
-                                    "dateFormat" : "yyyy-MM-dd HH:mm"       //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                    "dateFormat" : "yyyy-MM-dd HH:mm"       //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳 [string, optional]
                                 },
                                 {
                                     "fieldCode" : "WBC",  
                                     "displayName" : "WBC(k/uL)",
-                                    "labInfo" : {   //檢驗項目相關資訊 [optional]
-                                        "reference" : "3.54 ~ 9.06" //參考值[string]
+                                    "labInfo" : {                           //檢驗項目相關資訊 [optional]
+                                        "reference" : "3.54 ~ 9.06"         //參考值[string]
                                     }
                                     
                                 },
@@ -620,14 +620,14 @@ HOST: http://www.wantoto.com
                             ],
                             "data" : [
                                 {
-                                    "content" : {   //依據欄位填入資料，無資料則不回傳
-                                        "inspectionDate" : 1406938026,   //採檢時間[number(timestamp)]    
-                                        "date" : 1406938026,    //報告時間(不顯示，但須保留作為篩選用)[number(timestamp)]
-                                        "WBC" : {   //若為檢驗數值則回傳object
-                                            "value" :"4.05",    //檢驗值[string]
-                                            "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123", //檢醫部註記，無資料則不回傳[sitrng]
-                                            "reportDate" : 1406938026  //報告時間[number(timestamp)]
+                                    "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
+                                        "inspectionDate" : 1406938026,          //採檢時間[number(timestamp)]    
+                                        "date" : 1406938026,                    //報告時間(不顯示，但須保留作為篩選用)[number(timestamp)]
+                                        "WBC" : {   //若為檢驗數值則回傳object [optional]
+                                            "value" :"4.05",                    //檢驗值[string]
+                                            "status" : "normal",                //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
+                                            "note" : "123",                     //檢醫部註記，無資料則不回傳[sitrng, optional]
+                                            "reportDate" : 1406938026           //報告時間[number(timestamp)]
                                         }
                                     }
                                 },
