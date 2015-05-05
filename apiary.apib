@@ -322,7 +322,7 @@ HOST: http://www.wantoto.com
             "content" : {
                 "basic" : [
                     {
-                        "title" : "Active Problem List",
+                        "title" : "Active Problem List",                                        // [string, optional]
                         "content" : [
                             {
                                 "item" : "Gastrointestinal stromal tumor, gastrointestinal",    //診斷[string]
@@ -332,22 +332,21 @@ HOST: http://www.wantoto.com
                         ]
                     },
                     {
-                        "title" : "過敏",
+                        "title" : "過敏",                       // [string, optional]
                         "content" : [
                             {
                                 "item" : "Penicillin group",    //過敏[string]
-                                "value" : "R"    //過敏類型[string]
+                                "value" : "R"                   //過敏類型[string]
                             },
                             ...
                         ]
                     },
                     {
-                        /accmulatedReport
                         "content" : [
                             {
                                 "date" : 1406938026,    //報告時間[nubmer(timestamp), optional]
-                                "item" : "RBC",    //危及項目[string]
-                                "value" : "1.0" //危急值[string]
+                                "item" : "RBC",         //危及項目[string]
+                                "value" : "1.0"         //危急值[string]
                             },
                             ...
                         ]
