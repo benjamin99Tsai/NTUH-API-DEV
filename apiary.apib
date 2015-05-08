@@ -2889,54 +2889,58 @@ HOST: http://www.wantoto.com
                     "actions" : [
                         {
                             "displayName" : "打開呼吸道",
-                            "type" : "option",
-                            "popup" : [
-                                {
-                                    "displayName" : "壓額抬下巴",
-                                    "optionName" : "壓額抬下巴",
-                                    "recordKey" : "C01",
-                                    "relation" : [
-                                        {
-                                            "button" : "評估呼吸",
-                                            "action" : "unhighlight"
-                                        },
-                                        {
-                                            "button" : "使用Ambu",
-                                            "action" : "highlight"
-                                        },
-                                        {
-                                            "button" : "打開呼吸道",
-                                            "action" : "disable"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "displayName" : "下顎推前",
-                                    "optionName" : "下顎推前",
-                                    "recordKey" : "C02"
-                                }
-                            ]
+                            "popup" : {
+                                "type" : "option",
+                                "content" : [
+                                    {
+                                        "displayName" : "壓額抬下巴",
+                                        "optionName" : "壓額抬下巴",
+                                        "recordKey" : "C01",
+                                        "relation" : [
+                                            {
+                                                "button" : "評估呼吸",
+                                                "action" : "unhighlight"
+                                            },
+                                            {
+                                                "button" : "使用Ambu",
+                                                "action" : "highlight"
+                                            },
+                                            {
+                                                "button" : "打開呼吸道",
+                                                "action" : "disable"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "displayName" : "下顎推前",
+                                        "optionName" : "下顎推前",
+                                        "recordKey" : "C02"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "displayName" : "輔助呼吸道",
-                            "type" : "checkbox",
-                            "popup" : [
-                                {
-                                    "displayName" : "置入口咽呼吸道",
-                                    "optionName" : "置入口咽呼吸道",
-                                    "recordKey" : "D01"
-                                },
-                                {
-                                    "displayName" : "置入鼻咽呼吸道",
-                                    "optionName" : "置入鼻咽呼吸道",
-                                    "recordKey" : "D02"
-                                },
-                                {
-                                    "displayName" : "置入咬口器",
-                                    "optionName" : "置入咬口器",
-                                    "recordKey" : "D03"
-                                }
-                            ]
+                            "popup" : {
+                                "type" : "checkbox",
+                                "content" : [
+                                    {
+                                        "displayName" : "置入口咽呼吸道",
+                                        "optionName" : "置入口咽呼吸道",
+                                        "recordKey" : "D01"
+                                    },
+                                    {
+                                        "displayName" : "置入鼻咽呼吸道",
+                                        "optionName" : "置入鼻咽呼吸道",
+                                        "recordKey" : "D02"
+                                    },
+                                    {
+                                        "displayName" : "置入咬口器",
+                                        "optionName" : "置入咬口器",
+                                        "recordKey" : "D03"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "displayName" : "使用Ambu",
@@ -2945,20 +2949,22 @@ HOST: http://www.wantoto.com
                         },
                         {
                             "displayName" : "確認插管",
-                            "type" : "checkbox",
-                            "popup" : [
-                                {
-                                    "displayName" : "聽診確認插管正確",
-                                    "optionName" : "聽診確認插管正確",
-                                    "recordKey" : "F01"
-                                },
-                                {
-                                    "displayName" : "使用EtCO2",
-                                    "optionName" : "使用EtCO2",
-                                    "recordKey" : "F02"
-                                }
-                            ],
-                            "defaultNote" : "EtCO2: mmHg"
+                            "popup" : {
+                                "type" : "checkbox",
+                                "content" : [
+                                    {
+                                        "displayName" : "聽診確認插管正確",
+                                        "optionName" : "聽診確認插管正確",
+                                        "recordKey" : "F01"
+                                    },
+                                    {
+                                        "displayName" : "使用EtCO2",
+                                        "optionName" : "使用EtCO2",
+                                        "recordKey" : "F02"
+                                    }
+                                ],
+                                "defaultNote" : "EtCO2: mmHg"
+                            }
                         },
                     ]
                 },
@@ -2967,60 +2973,64 @@ HOST: http://www.wantoto.com
                     "actions" : [
                         {
                             "displayName" : "檢查脈博",
-                            "type" : "checkbox",
-                            "popup" : [
-                                {
-                                    "displayName" : "無脈博",
-                                    "optionName" : "無脈博",
-                                    "recordKey" : "G01",
-                                    "relation" : [
-                                        {
-                                            "button" : "壓胸",
-                                            "action" : "highlight"
-                                        },
-                                        {
-                                            "button" : "接上心電圖機",
-                                            "action" : "highlight"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "displayName" : "頸動脈",
-                                    "optionName" : "頸動脈",
-                                    "recordKey" : "G02"
-                                },
-                                {
-                                    "displayName" : "股動脈",
-                                    "optionName" : "股動脈",
-                                    "recordKey" : "G03"
-                                },
-                                {
-                                    "displayName" : "肱動脈",
-                                    "optionName" : "肱動脈",
-                                    "recordKey" : "G04"
-                                },
-                                {
-                                    "displayName" : "橈動脈",
-                                    "optionName" : "橈動脈",
-                                    "recordKey" : "G05"
-                                }
-                            ]
+                            "popup" : {
+                                "type" : "checkbox",
+                                "content" : [
+                                    {
+                                        "displayName" : "無脈博",
+                                        "optionName" : "無脈博",
+                                        "recordKey" : "G01",
+                                        "relation" : [
+                                            {
+                                                "button" : "壓胸",
+                                                "action" : "highlight"
+                                            },
+                                            {
+                                                "button" : "接上心電圖機",
+                                                "action" : "highlight"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "displayName" : "頸動脈",
+                                        "optionName" : "頸動脈",
+                                        "recordKey" : "G02"
+                                    },
+                                    {
+                                        "displayName" : "股動脈",
+                                        "optionName" : "股動脈",
+                                        "recordKey" : "G03"
+                                    },
+                                    {
+                                        "displayName" : "肱動脈",
+                                        "optionName" : "肱動脈",
+                                        "recordKey" : "G04"
+                                    },
+                                    {
+                                        "displayName" : "橈動脈",
+                                        "optionName" : "橈動脈",
+                                        "recordKey" : "G05"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "displayName" : "壓胸",
-                            "type" : "option",
-                            "popup" : [
-                                {
-                                    "displayName" : "人工壓胸",
-                                    "optionName" : "人工壓胸",
-                                    "recordKey" : "H01"
-                                },
-                                {
-                                    "displayName" : "機械壓胸",
-                                    "optionName" : "機械壓胸",
-                                    "recordKey" : "H02"
-                                }
-                            ]
+                            "popup" : {
+                                "type" : "option",
+                                "content" : [
+                                    {
+                                        "displayName" : "人工壓胸",
+                                        "optionName" : "人工壓胸",
+                                        "recordKey" : "H01"
+                                    },
+                                    {
+                                        "displayName" : "機械壓胸",
+                                        "optionName" : "機械壓胸",
+                                        "recordKey" : "H02"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "displayName" : "Adrenaline 1mg/amp",
@@ -3040,35 +3050,37 @@ HOST: http://www.wantoto.com
                         },
                         {
                             "displayName" : "檢查心律",
-                            "type" : "option",
-                            "popup" : [
-                                {
-                                    "displayName" : "心室頻脈(VT)",
-                                    "optionName" : "心室頻脈(VT)",
-                                    "recordKey" : "J01"
-                                },
-                                {
-                                    "displayName" : "心室顫動(VF)",
-                                    "optionName" : "心室顫動(VF)",
-                                    "recordKey" : "J02"
-                                },
-                                {
-                                    "displayName" : "無脈博電器活動(PEA)",
-                                    "optionName" : "無脈博電器活動(PEA)",
-                                    "recordKey" : "J03"
-                                },
-                                {
-                                    "displayName" : "無心率(Asystole)",
-                                    "optionName" : "無心率(Asystole)",
-                                    "recordKey" : "J04"
-                                },
-                                {
-                                    "displayName" : "有脈博心律",
-                                    "optionName" : "有脈博心律",
-                                    "recordKey" : "J05"
-                                }
-                            ],
-                            "defaultNote" : "EtCO2:  mmHg"
+                            "popup" : {
+                                "type" : "option",
+                                "content" : [
+                                    {
+                                        "displayName" : "心室頻脈(VT)",
+                                        "optionName" : "心室頻脈(VT)",
+                                        "recordKey" : "J01"
+                                    },
+                                    {
+                                        "displayName" : "心室顫動(VF)",
+                                        "optionName" : "心室顫動(VF)",
+                                        "recordKey" : "J02"
+                                    },
+                                    {
+                                        "displayName" : "無脈博電器活動(PEA)",
+                                        "optionName" : "無脈博電器活動(PEA)",
+                                        "recordKey" : "J03"
+                                    },
+                                    {
+                                        "displayName" : "無心率(Asystole)",
+                                        "optionName" : "無心率(Asystole)",
+                                        "recordKey" : "J04"
+                                    },
+                                    {
+                                        "displayName" : "有脈博心律",
+                                        "optionName" : "有脈博心律",
+                                        "recordKey" : "J05"
+                                    }
+                                ],
+                                "defaultNote" : "EtCO2:  mmHg"
+                            }
                         }
                     ]
                 }
