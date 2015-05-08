@@ -2870,6 +2870,7 @@ HOST: http://www.wantoto.com
                         {
                             "displayName" : "評估意識", // 按鈕上要顯示的名字 [string]
                             "optionName" : "意識評估",  // 記錄的時候要顯示的字 [string]
+                            "recordKey" : "A01",
                             "relation" : [              // 做了此動作之後，會影響到其他按鈕狀態的話，則顯示 [optional]
                                 {
                                     "button" : "評估呼吸",  // 會影響的按鈕的displayName [string]
@@ -2895,11 +2896,13 @@ HOST: http://www.wantoto.com
                                     },
                                     {
                                         "displayName" : "頻死呼吸",
-                                        "optionName" : "頻死呼吸"
+                                        "optionName" : "頻死呼吸",
+                                        "recordKey" : "B01"
                                     },
                                     {
                                         "displayName" : "自發性呼吸",
-                                        "optionName" : "自發性呼吸"
+                                        "optionName" : "自發性呼吸",
+                                        "recordKey" : "B02"
                                     }
                                 ]
                             }
@@ -2916,6 +2919,7 @@ HOST: http://www.wantoto.com
                                 {
                                     "displayName" : "壓額抬下巴",
                                     "optionName" : "壓額抬下巴",
+                                    "recordKey" : "C01",
                                     "relation" : [
                                         {
                                             "button" : "評估呼吸",
@@ -2933,7 +2937,8 @@ HOST: http://www.wantoto.com
                                 },
                                 {
                                     "displayName" : "下顎推前",
-                                    "optionName" : "下顎推前"
+                                    "optionName" : "下顎推前",
+                                    "recordKey" : "C02"
                                 }
                             ]
                         },
@@ -2943,21 +2948,25 @@ HOST: http://www.wantoto.com
                             "popup" : [
                                 {
                                     "displayName" : "置入口咽呼吸道",
-                                    "optionName" : "置入口咽呼吸道"
+                                    "optionName" : "置入口咽呼吸道",
+                                    "recordKey" : "D01"
                                 },
                                 {
                                     "displayName" : "置入鼻咽呼吸道",
-                                    "optionName" : "置入鼻咽呼吸道"
+                                    "optionName" : "置入鼻咽呼吸道",
+                                    "recordKey" : "D02"
                                 },
                                 {
                                     "displayName" : "置入咬口器",
-                                    "optionName" : "置入咬口器"
+                                    "optionName" : "置入咬口器",
+                                    "recordKey" : "D03"
                                 }
                             ]
                         },
                         {
                             "displayName" : "使用Ambu",
-                            "optionName" : "進行Ambu-Bagging"
+                            "optionName" : "進行Ambu-Bagging",
+                            "recordKey" : "E01"
                         },
                         {
                             "displayName" : "確認插管",
@@ -2965,11 +2974,13 @@ HOST: http://www.wantoto.com
                             "popup" : [
                                 {
                                     "displayName" : "聽診確認插管正確",
-                                    "optionName" : "聽診確認插管正確"
+                                    "optionName" : "聽診確認插管正確",
+                                    "recordKey" : "F01"
                                 },
                                 {
                                     "displayName" : "使用EtCO2",
-                                    "optionName" : "使用EtCO2"
+                                    "optionName" : "使用EtCO2",
+                                    "recordKey" : "F02"
                                 }
                             ],
                             "defaultNote" : "EtCO2: mmHg"
@@ -2986,6 +2997,7 @@ HOST: http://www.wantoto.com
                                 {
                                     "displayName" : "無脈博",
                                     "optionName" : "無脈博",
+                                    "recordKey" : "G01",
                                     "relation" : [
                                         {
                                             "button" : "壓胸",
@@ -2999,19 +3011,23 @@ HOST: http://www.wantoto.com
                                 },
                                 {
                                     "displayName" : "頸動脈",
-                                    "optionName" : "頸動脈"
+                                    "optionName" : "頸動脈",
+                                    "recordKey" : "G02"
                                 },
                                 {
                                     "displayName" : "股動脈",
-                                    "optionName" : "股動脈"
+                                    "optionName" : "股動脈",
+                                    "recordKey" : "G03"
                                 },
                                 {
                                     "displayName" : "肱動脈",
-                                    "optionName" : "肱動脈"
+                                    "optionName" : "肱動脈",
+                                    "recordKey" : "G04"
                                 },
                                 {
                                     "displayName" : "橈動脈",
-                                    "optionName" : "橈動脈"
+                                    "optionName" : "橈動脈",
+                                    "recordKey" : "G05"
                                 }
                             ]
                         },
@@ -3021,17 +3037,20 @@ HOST: http://www.wantoto.com
                             "popup" : [
                                 {
                                     "displayName" : "人工壓胸",
-                                    "optionName" : "人工壓胸"
+                                    "optionName" : "人工壓胸",
+                                    "recordKey" : "H01"
                                 },
                                 {
                                     "displayName" : "機械壓胸",
-                                    "optionName" : "機械壓胸"
+                                    "optionName" : "機械壓胸",
+                                    "recordKey" : "H02"
                                 }
                             ]
                         },
                         {
                             "displayName" : "Adrenaline 1mg/amp",
                             "optionName" : "Adrenaline 1mg/amp iv",
+                            "recordKey" : "H03",
                             "count" : true
                         }
                     ]
@@ -3041,7 +3060,8 @@ HOST: http://www.wantoto.com
                     "actions" : [
                         {
                             "displayName" : "接上心電圖機",
-                            "optionName" : "接上心電圖監視器"
+                            "optionName" : "接上心電圖監視器",
+                            "recordKey" : "I01"
                         },
                         {
                             "displayName" : "檢查心律",
@@ -3049,23 +3069,28 @@ HOST: http://www.wantoto.com
                             "popup" : [
                                 {
                                     "displayName" : "心室頻脈(VT)",
-                                    "optionName" : "心室頻脈(VT)"
+                                    "optionName" : "心室頻脈(VT)",
+                                    "recordKey" : "J01"
                                 },
                                 {
                                     "displayName" : "心室顫動(VF)",
-                                    "optionName" : "心室顫動(VF)"
+                                    "optionName" : "心室顫動(VF)",
+                                    "recordKey" : "J02"
                                 },
                                 {
                                     "displayName" : "無脈博電器活動(PEA)",
-                                    "optionName" : "無脈博電器活動(PEA)"
+                                    "optionName" : "無脈博電器活動(PEA)",
+                                    "recordKey" : "J03"
                                 },
                                 {
                                     "displayName" : "無心率(Asystole)",
-                                    "optionName" : "無心率(Asystole)"
+                                    "optionName" : "無心率(Asystole)",
+                                    "recordKey" : "J04"
                                 },
                                 {
                                     "displayName" : "有脈博心律",
-                                    "optionName" : "有脈博心律"
+                                    "optionName" : "有脈博心律",
+                                    "recordKey" : "J05"
                                 }
                             ],
                             "defaultNote" : "EtCO2:  mmHg"
