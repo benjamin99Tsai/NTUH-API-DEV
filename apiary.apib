@@ -207,11 +207,7 @@ HOST: http://www.wantoto.com
 ## 門診科別層級 [/OPDs/{OPDCode}]
 ### 查詢今日門診科別 [GET]
 + Parameters 
-   + OPDCode (string, `MED`) ... 門診代碼
-
-+ Request MED (text/plain)
-
-        "OPDCode" : "MED"
+    + OPDCode (string) ... 門診代碼
 
 + Response 200 (application/json)
         
@@ -228,26 +224,6 @@ HOST: http://www.wantoto.com
                     "OPDCode" : "MED_P",   //門診科別代碼[string]
                     "displayName" : "內科部 下午",    //顯示名稱[string]
                     "childPath" : "/OPDs/MED_P"   //下一層內容連結，無下層則不回傳[string]
-                },
-                ...
-            ],
-            "limit" : 50, //最大回傳筆數[number] 
-            "offset" : 0, //回傳資料偏移數[number]
-            "total" : 50 //此次Query總筆數[number] 
-        }
-
-+ Request MED_A (text/plain)
-
-        "OPDCode" : "MED_A"
-
-+ Response 200 (application/json)
-        
-        {
-            "content" : [   //門診科別資訊陣列
-                {   //門診科別資訊
-                    "hospCode" : "T0",  //醫院代碼[string]
-                    "OPDCode" : "MED_A_01",   //門診科別代碼[string]
-                    "displayName" : "01診 王OO 腎臟科",    //顯示名稱[string]
                 },
                 ...
             ],
@@ -277,8 +253,8 @@ HOST: http://www.wantoto.com
 
 ## 檢查科室層級 [/examRooms/{examRoomCode}]
 ### 查詢檢查科室 [GET]
-+ Parameters 
-   + examRoomCode (string, `000CPFT0`) ... 檢查科室代碼
++ Parameters
+    + examRoomCode (string, `000CPFT0`) ... 檢查科室代碼
    
 + Request MED (text/plain)
 
