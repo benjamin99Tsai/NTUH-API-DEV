@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.wantoto.com
 
-# DEV台大醫院行動醫療資訊系統 Web Service 1.15
+# DEV台大醫院行動醫療資訊系統 Web Service 1.16
 採用 RESTful 架構規劃。所有字串編碼皆為UTF-8。
 
 # 9/22-登入與取得 SessionKey
@@ -2831,8 +2831,8 @@ HOST: http://www.wantoto.com
             }
         }
         
-# Group 急診
-## 5/05 - 急診 [/em]
+# Group 急救紀錄 ER
+## 5/12 - 急救紀錄 [/er]
 ### 急診 [GET]
 
 + Response 200 (application/json)
@@ -2843,18 +2843,20 @@ HOST: http://www.wantoto.com
                 {
                     "actions" : [
                         {
+                            "buttonKey" : "A01",
                             "displayName" : "評估意識", // 按鈕上要顯示的名字 [string]
                             "optionName" : "意識評估",  // 記錄的時候要顯示的字 [string]
                             "recordKey" : "A01",
                             "relation" : [              // 做了此動作之後，會影響到其他按鈕狀態的話，則顯示 [optional]
                                 {
-                                    "button" : "評估呼吸",  // 會影響的按鈕的displayName [string]
+                                    "buttonKey" : "A02",  // 會影響的按鈕的displayName [string]
                                     "action" : "highlight"  // 按鈕的動作 [string]  ex: highlight, unhighlight, disable, enable
                                 }   
                             ],
                             "defaultNote" : "E1M1V1",   // 預設的備註值  [string, optional]
                         },
                         {
+                            "buttonKey" : "A02",
                             "displayName" : "評估呼吸",
                             "popup" : {                       // [optional]
                                 "type": "option",
@@ -2864,7 +2866,7 @@ HOST: http://www.wantoto.com
                                         "optionName"  : "無呼吸",
                                         "relation" : [
                                             {
-                                                "button" : "打開呼吸道",
+                                                "buttonKey" : "B01",
                                                 "action" : "highlight"
                                             }
                                         ]
@@ -2888,6 +2890,7 @@ HOST: http://www.wantoto.com
                     "category" : "Airway+Breathing",    // 分類的名字  [string, optional]
                     "actions" : [
                         {
+                            "buttonKey" : "B01",
                             "displayName" : "打開呼吸道",
                             "popup" : {
                                 "type" : "option",
@@ -2898,15 +2901,15 @@ HOST: http://www.wantoto.com
                                         "recordKey" : "C01",
                                         "relation" : [
                                             {
-                                                "button" : "評估呼吸",
+                                                "buttonKey" : "評估呼吸",
                                                 "action" : "unhighlight"
                                             },
                                             {
-                                                "button" : "使用Ambu",
+                                                "buttonKey" : "使用Ambu",
                                                 "action" : "highlight"
                                             },
                                             {
-                                                "button" : "打開呼吸道",
+                                                "buttonKey" : "打開呼吸道",
                                                 "action" : "disable"
                                             }
                                         ]
@@ -2920,6 +2923,7 @@ HOST: http://www.wantoto.com
                             }
                         },
                         {
+                            "buttonKey" : "B02",
                             "displayName" : "輔助呼吸道",
                             "popup" : {
                                 "type" : "checkbox",
@@ -2943,11 +2947,13 @@ HOST: http://www.wantoto.com
                             }
                         },
                         {
+                            "buttonKey" : "B03",
                             "displayName" : "使用Ambu",
                             "optionName" : "進行Ambu-Bagging",
                             "recordKey" : "E01"
                         },
                         {
+                            "buttonKey" : "B04",
                             "displayName" : "確認插管",
                             "popup" : {
                                 "type" : "checkbox",
@@ -2972,6 +2978,7 @@ HOST: http://www.wantoto.com
                     "category" : "Circulation+Medication",
                     "actions" : [
                         {
+                            "buttonKey" : "C01",
                             "displayName" : "檢查脈博",
                             "popup" : {
                                 "type" : "checkbox",
@@ -2982,11 +2989,11 @@ HOST: http://www.wantoto.com
                                         "recordKey" : "G01",
                                         "relation" : [
                                             {
-                                                "button" : "壓胸",
+                                                "buttonKey" : "壓胸",
                                                 "action" : "highlight"
                                             },
                                             {
-                                                "button" : "接上心電圖機",
+                                                "buttonKey" : "接上心電圖機",
                                                 "action" : "highlight"
                                             }
                                         ]
@@ -3015,6 +3022,7 @@ HOST: http://www.wantoto.com
                             }
                         },
                         {
+                            "buttonKey" : "C02",
                             "displayName" : "壓胸",
                             "popup" : {
                                 "type" : "option",
@@ -3033,6 +3041,7 @@ HOST: http://www.wantoto.com
                             }
                         },
                         {
+                            "buttonKey" : "C03",
                             "displayName" : "Adrenaline 1mg/amp",
                             "optionName" : "Adrenaline 1mg/amp iv",
                             "recordKey" : "H03",
