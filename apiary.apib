@@ -1505,7 +1505,7 @@ HOST: http://www.wantoto.com
         }
  
 
-## 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content,sessionKey}]
+## 3/15 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content,sessionKey,authGroup}]
 ### 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
@@ -1557,11 +1557,12 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期). [number(timestamp)] 
         }
         
-## 新增主題至病患所對應之留言板[POST]
+### 新增主題至病患所對應之留言板[POST]
 + Parameters
     + empNo (string)        ... 使用者帳號
     + title (string)        ... 主題標題
     + content (string)      ... 主題訊息內容
+    + authGroup (string)    ... 設定開放權限, 'A'=私人, 'B'=開放所有人瀏覽, 'C'=開放所有人編輯
     + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
@@ -1605,10 +1606,10 @@ HOST: http://www.wantoto.com
         }
         
 
-## 3/15 - 留言板系統之主題 [/bulletin/topic/{id}{?empNo,title,content,sessionKey}]
+## 3/15 - 留言板系統之主題 [/bulletin/topic/{topicId}{?empNo,title,content,sessionKey,chartNo,authGroup}]
 ### 取得留言板某個主題[GET]
 + Parameters
-    + id (string)           ... The identifier for the specified topic.
+    + topicId (string)      ... The identifier for the specified topic.
     + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
@@ -1649,11 +1650,13 @@ HOST: http://www.wantoto.com
 
 ### 編輯留言板某個主題[PUT]
 + Parameters
-    + id (string)           ... The identifier for the specified topic.
+    + topicId (string)      ... The identifier for the specified topic.
     + empNo (string)        ... 請求更新之使用者帳號
     + title (string)        ... 請求更新之標題
     + content (string)      ... 更新之訊息內容
     + sessionKey (string)   ... Session Key
+    + chartNo (string)      ... 病例號碼 
+    + authGroup (string)    ... 設定開放權限, 'A'=私人, 'B'=開放所有人瀏覽, 'C'=開放所有人編輯
     
 + Response 200 (application/json)
 
@@ -1695,8 +1698,9 @@ HOST: http://www.wantoto.com
         
 ### 刪除留言板某個主題[DELETE]
 + Parameters
-    + id (string)           ... The identifier for the specified reply.
+    + topicId (string)      ... The identifier for the specified reply.
     + sessionKey (string)   ... Session Key
+    + chartNo (string)      ... 病例號碼
 
 + Response 200 (application/json)
 
@@ -1735,10 +1739,10 @@ HOST: http://www.wantoto.com
             }
         }
 
-## 4/10 - 留言板系統指定主題之回應 [/bulletin/topic/{id}/replies{?empNo,content,offset,limit,sessionKey}]
+## 4/10 - 留言板系統指定主題之回應 [/bulletin/topic/{topicId}/replies{?empNo,content,offset,limit,sessionKey}]
 ### 取得指定主題之所有回應 [GET]
 + Parameters
-    + id (string)               ... the identifier for the specified topic.
+    + topicId (string)          ... the identifier for the specified topic.
     + limit (number, optional)  ... the max number of replies in response data.
     + offset (number, optional) ... the offset index for the reponse reply list
     + sessionKey (string)       ... Session Key
@@ -1767,7 +1771,7 @@ HOST: http://www.wantoto.com
 
 ### 新增回應至留言板至指定主題[POST]
 + Parameters
-    + id (string)           ... The identifier for the specified topic.
+    + topicId (string)      ... The identifier for the specified topic.
     + empNo (string)        ... The employment id for the one requesting for posting the reply.
     + content (string)      ... The message content for the replay.
     + sessionKey (string)   ... Session Key
@@ -1812,10 +1816,10 @@ HOST: http://www.wantoto.com
         }
 
         
-## 3/15 - 留言板系統之回應 [/bulletin/reply/{id}{?empNo,content,sessionKey}]
+## 3/15 - 留言板系統之回應 [/bulletin/reply/{replyId}{?empNo,content,sessionKey,chartNo}]
 ### 取得留言板某個回應[GET]
 + Parameters
-    + id (string)           ... The identifier for the specified reply.
+    + replyId (string)      ... The identifier for the specified reply.
     + sessionKey (string)   ... Session Key
 
 + Response 200 (application/json)
@@ -1835,9 +1839,9 @@ HOST: http://www.wantoto.com
             }
         }
 
-## 編輯留言板某個回復[PUT]
+### 編輯留言板某個回復[PUT]
 + Parameter
-    + id (string)           ... The identifier for the specified reply.
+    + replyId (string)      ... The identifier for the specified reply.
     + empNo (string)        ... 請求更新之使用者帳號
     + content (string)      ... 更新之訊息內容
     + sessionKey (string)   ... Session Key
@@ -1881,8 +1885,9 @@ HOST: http://www.wantoto.com
 
 ### 刪除留言板某個主題[DELETE]
 + Parameters
-    + id (string)           ... The identifier for the specified reply.
+    + replyId (string)      ... The identifier for the specified reply.
     + sessionKey (string)   ... Session Key
+    + chartNo (string)      ... 病例號碼
 
 + Response 200 (application/json)
 
