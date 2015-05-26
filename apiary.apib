@@ -374,7 +374,7 @@ HOST: http://www.wantoto.com
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/report/{reportID}",        //報告路徑
                             "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -386,8 +386,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //如有報告則回傳 [optional]
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/report/{reportID}",        //報告路徑
-                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -399,8 +399,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //如有報告則回傳 [optional]
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/report/{reportID}",        //報告路徑
-                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -415,8 +415,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //如有報告則回傳 [optional]
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/report/{reportID}",        //報告路徑
-                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -437,8 +437,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //會診單
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/report/{reportID}",        //報告路徑
-                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     }
                 ]
@@ -487,8 +487,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //有額外報告時回傳 [optional]
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/labReport/{labReportID}",  //報告路徑
-                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         },
                         "table" : {
                             "field" : [    //欄位資訊
@@ -532,7 +532,7 @@ HOST: http://www.wantoto.com
                                         "unit" : "M/ul",
                                         "reference" : "4 ~ 5.52",
                                         "critical" : "< 2.0 & > 7.0", 
-                                        "note" : "", 
+                                        "note" : "",                // [optional] 
                                         "specialOrder" : ""                         
                                     }
                                 },
@@ -669,7 +669,7 @@ HOST: http://www.wantoto.com
                                         "WBC" : {   //若為檢驗數值則回傳[optional]
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123", //檢醫部註記，無資料則不回傳[string]
+                                            "note" : "123", //檢醫部註記，無資料則不回傳[string, optional]
                                             "reportDate" : 1406938026  //報告時間[number(timestamp)]
                                         }
                                     }
@@ -738,8 +738,8 @@ HOST: http://www.wantoto.com
                         "report" : {    //如有報告則回傳 [optional]
                             "reportType" : "HTML",                              //報告型態，HTML或PDF
                             "reportPath" : "/imageReport/{imageReportID}",      //報告路徑
-                            "encoding" : "utf-16",                              //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"            //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "encoding" : "utf-16",                              //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"            //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -775,8 +775,8 @@ HOST: http://www.wantoto.com
                     "report" : {    //如有報告則回傳 [optional]
                         "reportType" : "HTML",                              //報告型態，HTML或PDF
                         "reportPath" : "/imageReport/{imageReportID}",      //報告路徑
-                        "encoding" : "utf-16",                              //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string]
-                        "baseURL" : "http://baseUrl.ntuh.gov.tw"            //報告基礎連結(報告中如有相對連結時回傳)[string]
+                        "encoding" : "utf-16",                              //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
+                        "baseURL" : "http://baseUrl.ntuh.gov.tw"            //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                     }
                 },
                 ...
@@ -878,14 +878,14 @@ HOST: http://www.wantoto.com
                             "empNo" : "23454353",
                             "name" : "葉小菜"
                         },
-                        "note" : "自費 特殊醫囑: For scrotal ulcers", //備註[string]
+                        "note" : "自費 特殊醫囑: For scrotal ulcers", //備註[string, optional]
                         "category" : "prolonged", //處方類別。ex:"prolonged"(長期)、"stat"(臨時)、"cancel"(取消)、"own"(自備藥)[string]
                         "drugInfoPath" : "/medication/{medicationID}",  //藥物資訊連結[string]
                         "drugRecord" : [    //Query期間所有給藥記錄
                             {
                                 "date" : 1406938026, //日期[number(timestamp)]
                                 "status" : "taken", //用藥狀態。ex:"taken"(已給藥)、"pending"(未處理)、"failure"(未給藥)[string]
-                                "note" : "", //護理給藥備註[string]
+                                "note" : "", //護理給藥備註[string, optional]
                                 "executor" : "張小珍 護理師" //執行人員[string]
                             },
                         ...
@@ -1017,14 +1017,14 @@ HOST: http://www.wantoto.com
                         "empNo" : "23454353",
                         "name" : "葉小菜"
                     },
-                    "note" : "自費 特殊醫囑: For scrotal ulcers",   //備註[string]
+                    "note" : "自費 特殊醫囑: For scrotal ulcers",   //備註[string, optional]
                     "category" : "prolonged",                       //處方類別。ex:"prolonged"(長期)、"stat"(臨時)、"cancel"(取消)、"own"(自備藥)[string]
                     "drugInfoPath" : "/medication/{medicationID}",  //藥物資訊連結[string]
                     "drugRecord" : [    //Query期間所有給藥記錄
                         {
                             "date" : 1406938026,                    //日期[number(timestamp)]
                             "status" : "taken",                     //用藥狀態。ex:"taken"(已給藥)、"pending"(未處理)、"failure"(未給藥)[string]
-                            "note" : "",                            //護理給藥備註[string]
+                            "note" : "",                            //護理給藥備註[string, optional]
                             "executor" : "張小珍 護理師"            //執行人員[string]
                         },
                         ...
@@ -1130,7 +1130,7 @@ HOST: http://www.wantoto.com
                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                             "reportPath" : "/OPNote/{OPNoteID}",        //報告路徑
                             "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string, optional]
                         }
                     },
                     ...
@@ -1174,7 +1174,7 @@ HOST: http://www.wantoto.com
                             "reportType" : "HTML",                                  //報告型態，HTML或PDF [string]
                             "reportPath" : "/progressNote/{progressNoteID}",        //報告路徑 [string]
                             "encoding" : "utf-16",                                  //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                            "baseURL" : "http://baseUrl.ntuh.gov.tw",               //報告基礎連結(報告中如有相對連結時回傳 [string(url)]
+                            "baseURL" : "http://baseUrl.ntuh.gov.tw",               //報告基礎連結(報告中如有相對連結時回傳 [string(url), optional]
                             "comfirmInfo" : {   //如果此病歷可以確認，則有此資料 [optional]
                                 "postURL" : "url/to/post",  // 確認時要post的URL [string(url)]
                                 "postContent" : [
@@ -1255,7 +1255,7 @@ HOST: http://www.wantoto.com
                                     "reportType" : "HTML",                          //報告型態，HTML或PDF [string]
                                     "reportPath" : "/EMRReport/{EMRReportID}",      //報告路徑 [string]
                                     "encoding" : "utf-16",                          //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                                    "baseURL" : "http://baseUrl.ntuh.gov.tw"        //報告基礎連結(報告中如有相對連結時回傳) [string(url)]
+                                    "baseURL" : "http://baseUrl.ntuh.gov.tw"        //報告基礎連結(報告中如有相對連結時回傳) [string(url), optional]
                                 },
                                 "children" : [ // [optional, duplicate]
                                     {
@@ -1266,7 +1266,7 @@ HOST: http://www.wantoto.com
                                             "reportType" : "PDF",                       //報告型態，HTML或PDF [string]
                                             "reportPath" : "/EMRReport/{EMRReportID}",  //報告路徑 [string]
                                             "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳) [string(url)]
+                                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳) [string(url), optional]
                                         }
                                     },
                                     ...
@@ -1293,7 +1293,7 @@ HOST: http://www.wantoto.com
                                             "reportType" : "HTML",                      //報告型態，HTML或PDF
                                             "reportPath" : "/EMRReport/{EMRReportID}",  //報告路徑 [string]
                                             "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string(url)]
+                                            "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string(url), optional]
                                         },
                                         "children" : [ // [optional, duplicate]
                                             {
@@ -1304,7 +1304,7 @@ HOST: http://www.wantoto.com
                                                     "reportType" : "PDF",                       //報告型態，HTML或PDF [string]
                                                     "reportPath" : "/EMRReport/{EMRReportID}",  //報告路徑 [string]
                                                     "encoding" : "utf-16",                      //編碼 (utf-8 or utf-16，為utf-8時可不回傳) [string, optional]
-                                                    "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string(url)]
+                                                    "baseURL" : "http://baseUrl.ntuh.gov.tw"    //報告基礎連結(報告中如有相對連結時回傳)[string(url), optional]
                                                 }
                                             },
                                             ...
