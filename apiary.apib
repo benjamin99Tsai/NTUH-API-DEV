@@ -93,7 +93,7 @@ HOST: http://www.wantoto.com
                     "personID" : "A123456789",      //身分證號[string]
                     "bedInfo" : "5W3 01-01",        //病房病床號(住院與急診)，非住院或急診中則不回傳Key[string]
                     "inDate" : 1406938026,          //入院日期(住院或急診檢傷時間)，非住院或在急診則不回傳Key [number(timestamp)]
-                    "triageLevels" : "1",           //檢傷分級，非急診則不回傳 Key [string]
+                    "triageLevels" : "1",           //檢傷分級，非急診則不回傳 Key [string, optional]
                     "_emp_VS" : {                   //主治醫師(如遇回傳資料為醫師者，變數皆為_emp_開頭)[string, optional]
                         "empNo" : "111281",         //醫師員編[string]
                         "name" : "葉小菜" 
@@ -117,7 +117,7 @@ HOST: http://www.wantoto.com
                     "latestPacsReportDateTime" : 1406938026, //最新影像時間 [number(timestamp)]
                     "latestLISReportDateTime" : 1406938026,  //最新報告時間 [number(timestamp)]
                     "accountIDSE" : "14T05267794",           //帳號 [string, optional]
-                    "patClassCode" : "I"                     //門住急別 [string]
+                    "patClassCode" : "I"                     //門住急別 [string, optional]
                 },
                 ...
             ],
