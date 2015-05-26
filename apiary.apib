@@ -601,7 +601,7 @@ HOST: http://www.wantoto.com
                                         "WBC" : {   //若為檢驗數值則回傳object [optional]
                                             "value" :"4.05",                    //檢驗值[string]
                                             "status" : "normal",                //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123",                     //檢醫部註記，無資料則不回傳[sitrng, optional]
+                                            "note" : "123",                     //檢醫部註記，無資料則不回傳[string, optional]
                                             "reportDate" : 1406938026           //報告時間[number(timestamp)]
                                         }
                                     }
@@ -649,13 +649,13 @@ HOST: http://www.wantoto.com
                                 {
                                     "fieldCode" : "inspectionDate",     //欄位代碼[string]
                                     "displayName" : "採檢時間",         //欄位顯示名稱[string]
-                                    "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                                    "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string, optional]
                                 },
                                 {
                                     "fieldCode" : "WBC",  
                                     "displayName" : "WBC(k/uL)",
-                                    "labInfo" : {   //檢驗項目相關資訊
-                                        "reference" : "3.54 ~ 9.06" //參考值[string]
+                                    "labInfo" : {   //檢驗項目相關資訊  // [optional]
+                                        "reference" : "3.54 ~ 9.06" 	//參考值[string]
                                     }
                                     
                                 },
@@ -669,7 +669,7 @@ HOST: http://www.wantoto.com
                                         "WBC" : {   //若為檢驗數值則回傳object
                                             "value" :"4.05",    //檢驗值[string]
                                             "status" : "normal",    //檢驗值狀態。ex:"normal"(正常)、"abnormal"(異常)、"low"(過低)、"high"(過高)、"unknow"(無法判斷)[string]
-                                            "note" : "123", //檢醫部註記，無資料則不回傳[sitrng]
+                                            "note" : "123", //檢醫部註記，無資料則不回傳[string]
                                             "reportDate" : 1406938026  //報告時間[number(timestamp)]
                                         }
                                     }
@@ -712,12 +712,12 @@ HOST: http://www.wantoto.com
                     {
                         "fieldCode" : "examDate",  //欄位代碼[string]
                         "displayName" : "檢查時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                        "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string, optional]
                     },
                     {
                         "fieldCode" : "date",  //欄位代碼[string]
                         "displayName" : "報告時間", //欄位顯示名稱[string]
-                        "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                        "dateFormat" : "yyyy-MM-dd HH:mm"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string, optional]
                     },
                     {
                         "fieldCode" : "type",  
@@ -850,7 +850,7 @@ HOST: http://www.wantoto.com
                             {
                                 "date" : 1406938026,    //資料時間[number(timestamp)]
                                 "data" : "100",         //資料內容[string]
-                                "note" : "STAT"         //測量狀態[string]
+                                "note" : "STAT"         //測量狀態[string, optional]
                             },
                             ...
                         ]
@@ -1072,9 +1072,9 @@ HOST: http://www.wantoto.com
                 "Contraindications" : "",                           //禁忌[string]
                 "role" : "補充維他命Ｂ１２",                        //作用[string]
                 "drugSafetyAlert" : "",                             //藥物安全警訊[string]
-                "sideEffects" : "可能引起胃部不適、過敏反應等。",   //副作用[string]
+                "sideEffects" : "可能引起胃部不適, 過敏反應等",     //副作用[string]
                 "precautions" : "",                                 //注意事項[string]
-                "storage" : "≦ 30 ℃ & protect from light.",         //儲存方法[string]
+                "storage" : "< 30 C & protect from light.",         //儲存方法[string]
                 "DrugDealers" : "衛采製藥股份有限公司",             //藥商[string]
                 "appearanceImages" : [ //藥品外觀圖片連結
                     "https://dept.ntuh.gov.tw/phar/DrugImage/New/s/MET4FB18-A.JPG",
@@ -2089,24 +2089,24 @@ HOST: http://www.wantoto.com
                         }, 
                         {
                             "title" : "稀釋體積",
-                            "key":  "dilutionVolume",
-                            "required" : true, 
+                            "key":  "dilutionVolume",   // [optional]
+                            "required" : true, 		// [optional]
                             "elements": [
                                 {   
-                                    "title" : "稀釋液",
+                                    "title" : "稀釋液", // [string, optional]
                                     "type": "option",   // [string]
-                                    "options":  [
+                                    "options":  [ //[optional]
                                         {
                                             "displayName" : "NS",   // [string]
                                             "optionCode" : "NS",    // [string]
                                         }, ...
                                     ], 
-                                    "default": "NS"
+                                    "default": "NS" // [optional]
                                 }, 
                                 {
-                                    "title" : "體積",    // 此元件的title [string, optional]
+                                    "title" : "體積",   // 此元件的title [string, optional]
                                     "type": "number",   // [string]
-                                    "default": 100,     // [number]
+                                    "default": 100,     // [optional]
                                     "unit" : "ml",      // 單位(或是後面的字) [string, optional]
                                 }, ...
                             ],
@@ -2115,16 +2115,16 @@ HOST: http://www.wantoto.com
                             "title" : "藥品名稱",
                             "elements": [
                                 {
-                                    "type": "label",
-                                    "default": "NS"
+                                    "type": "label", 	// [string]
+                                    "default": "NS"	// [optional]
                                 },
                                 ...
                             ],
                         }, 
                         {
                             "title" : "自費",
-                            "key" : "expense",
-                            "required" : true,
+                            "key" : "expense",		// [optional]
+                            "required" : true,		// [optional]
                             "elements": [
                                 {
                                     "type": "switch",
@@ -2134,12 +2134,12 @@ HOST: http://www.wantoto.com
                         }, 
                         {
                             "title" : "特殊醫囑",
-                            "key" : "specialOrder",
-                            "required" : false,
+                            "key" : "specialOrder", 	// [optional]
+                            "required" : false,		// [optional]
                             "elements" : [
                                 {
                                     "type" : "textField",
-                                    "options" : [
+                                    "options" : [	// [optional]
                                         {
                                             "displayName" : "Syncope",   // [string]
                                             "optionCode" : "Syncope",    // [string]
@@ -2158,12 +2158,8 @@ HOST: http://www.wantoto.com
                         }
                     ]
                 }
-                },
-                {
-                    "id": "000123",
-                    "postURL": ...,
-                    ...
-                }
+                , 
+		...
             ]
         }
 
@@ -2216,11 +2212,11 @@ HOST: http://www.wantoto.com
                             "packageName" : "科部",    // [string]
                             "default" : true           // 預設選項，使用者選擇上一層選項之後，要預設選取的項目 [boolean, optional]
                         },
-                        "children" : [
+                        "children" : [ // [optional]
                             { 
                                 "content" : {
                                     "packageName" : "內科部",                       // 顯示的title名  [string]
-                                    "default" true
+                                    "default": true
                                 }, 
                                 "children" : [  // 如果有sublist的話, 則顯示此key  [optional]
                                     {
@@ -2370,7 +2366,7 @@ HOST: http://www.wantoto.com
                         "content" : {   
                             "orderCode" : "000L0114",
                             "orderType" : "治療",
-                            "order"     : "◎複印全口顎Ｘ光照相"
+                            "order"     : "複印全口顎Ｘ光照相"
                         }
                     },
                     {
@@ -2378,7 +2374,7 @@ HOST: http://www.wantoto.com
                         "content" : {
                             "orderCode" : "000L0113",
                             "orderType" : "治療",
-                            "order"     : "◎複印咬合片Ｘ光照相"
+                            "order"     : "複印咬合片Ｘ光照相"
                         }
                     },
                     {
@@ -2386,7 +2382,7 @@ HOST: http://www.wantoto.com
                         "content" : {
                             "orderCode" : "000L0112",
                             "orderType" : "治療",
-                            "order"     : "◎複印根尖周Ｘ光照相"
+                            "order"     : "複印根尖周Ｘ光照相"
                         }
                     } ,
                     ...
@@ -2464,7 +2460,7 @@ HOST: http://www.wantoto.com
                     "content" : {
                         "packageName" : "病房"
                     },
-                    "children" : [
+                    "children" : [ // [optional]
                         {
                             "content" : {
                                 "packageName" : "Major Burn"
@@ -2506,9 +2502,9 @@ HOST: http://www.wantoto.com
             "content" : {
                 "field" : [    //欄位資訊
                     {
-                        "fieldCode" : "drugName",  //欄位代碼[string]
-                        "displayName" : "學名", //欄位顯示名稱[string]
-                        "textAlignment" : "left", 欄位內容對齊方式  //ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
+                        "fieldCode" : "drugName",  	//欄位代碼[string]
+                        "displayName" : "學名", 	//欄位顯示名稱[string]
+                        "textAlignment" : "left", 	//欄位內容對齊方式ex:"left"(向左對齊)、"center"(置中對齊)、"right"(向右對齊)[string,optional]
                     },
                     {
                         "fieldCode" : "itemName",  //欄位代碼[string]
@@ -2530,11 +2526,11 @@ HOST: http://www.wantoto.com
                 "data" : [
                     {
                         "id" : "v1234567",    // 藥品代碼 [string]
-                        "content" : {   //依據欄位填入資料，無資料則不回傳
+                        "content" : {   //依據欄位填入資料，無資料則不回傳 [optional]
                             "drugName" : "Dextrose and Electrolyte Solution",
                             "itemName" : "Taita No. 1 500 ml/btl",
-                            "dose: : "1",
-                            "unit" : tab,
+                            "dose" : "1",
+                            "unit" : "tab",
                             "frequency" : "TID",
                         },
                         
@@ -2568,7 +2564,7 @@ HOST: http://www.wantoto.com
                             "elements": [
                                 {
                                     "type":"option",    // element的格式  ex: label, textField, checkbox, switch, option, date, number [string]
-                                    "options": [    // 選項或是預設文字，如果沒有則不回傳
+                                    "options": [    // 選項或是預設文字，如果沒有則不回傳 [optional]
                                         {
                                             "displayName" : "一般",
                                             "optionCode" : "general",
@@ -2585,9 +2581,9 @@ HOST: http://www.wantoto.com
                                     "default": "general",   // 預設值(如果是傳醫囑ID，則回傳醫囑裡設定的值)   [string, optional]
                                 }, ...
                             ],
-                            "relativeContent": [
+                            "relativeContent": [ 	// [optional]
                                 {
-                                    "optionCode" : "general".
+                                    "optionCode" : "general",
                                     "postContent": [
                                         {
                                             "title":"預計時間",
@@ -2603,28 +2599,28 @@ HOST: http://www.wantoto.com
                                         }, ...
                                     ],
                                 }, ...
-                            }
+                            ]
                         }, 
                         {
                             "title" : "稀釋體積",
-                            "key":  "dilutionVolume",
-                            "required" : true, 
+                            "key":  "dilutionVolume",	// [optional]
+                            "required" : true,		// [optional] 
                             "elements": [
                                 {   
-                                    "title" : "稀釋液",
+                                    "title" : "稀釋液", // [string, optional]
                                     "type": "option",   // [string]
-                                    "options":  [
+                                    "options":  [ // [optional]
                                         {
                                             "displayName" : "NS",   // [string]
                                             "optionCode" : "NS",    // [string]
                                         }, ...
                                     ], 
-                                    "default": "NS"
+                                    "default": "NS"	// [string, optional]
                                 }, 
                                 {
                                     "title" : "體積",       // 此元件的title [string, optional]
                                     "type": "number",       // [string]
-                                    "default": 100,         // [number]
+                                    "default": 100,         // [number, optional]
                                     "unit" : "ml",          // 單位(或是後面的字) [string, optional]
                                 }, ...
                             ],
@@ -2634,15 +2630,15 @@ HOST: http://www.wantoto.com
                             "elements": [
                                 {
                                     "type": "label",
-                                    "default": "Acetaminophen"
+                                    "default": "Acetaminophen" // [optional]
                                 },
                                 ...
                             ],
                         }, 
                         {
                             "title" : "自費",
-                            "key" : "expense",
-                            "required" : true,
+                            "key" : "expense",	// [optional]
+                            "required" : true,	// [optional]
                             "elements": [
                                 {
                                     "type": "switch",
@@ -2652,12 +2648,12 @@ HOST: http://www.wantoto.com
                         }, 
                         {
                             "title" : "特殊醫囑",
-                            "key" : "specialOrder",
-                            "required" : false,
+                            "key" : "specialOrder",	// [optional]
+                            "required" : false,		// [optional]
                             "elements" : [
                                 {
                                     "type" : "textField",
-                                    "options" : [
+                                    "options" : [ // [optional]
                                         {
                                             "displayName" : "Syncope",   // [string]
                                             "optionCode" : "Syncope",    // [string]
@@ -2677,14 +2673,7 @@ HOST: http://www.wantoto.com
                     ],
                     "notice" : "本藥品可能增加跌倒風險"     // 注意事項 [string, optional]
                 },
-                {
-                    "id": "000123",
-                    "postURL": "url/url/url",
-                    "postContent": [
-                        ...
-                    ],
-                    "notice" : "健保給付範圍：breast ca, colorectal ca, head&nect tumor"   // 注意事項 [string, optional]
-                }
+		...
             ]
         }
 
@@ -2705,7 +2694,7 @@ HOST: http://www.wantoto.com
                         {
                             "fieldCode" : "startDate",  //欄位代碼[string]
                             "displayName" : "開始時間", //欄位顯示名稱[string]
-                            "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string]
+                            "dateFormat" : "yyyy-MM-dd"   //若此欄位資訊為時間，則回傳顯示格式，非時間則不回傳[string, optional]
                         },
                         {
                             "fieldCode" : "period",  //欄位代碼[string]
@@ -2737,7 +2726,7 @@ HOST: http://www.wantoto.com
                     "data" : [
                         {
                             "id" : "v1234567", // 醫囑ID  (非藥碼)
-                            "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "content" : {   //依據欄位填入資料，無資料則不回傳[optional]
                                 "itemName" : "Depakine Chrono 500 mg/tab",
                                 "category" : "處方",
                                 "startDate" : 1406938026, // [number(timestamp)]
@@ -2785,7 +2774,7 @@ HOST: http://www.wantoto.com
                     "data" : [
                         {
                             "id" : "v7654321",  // 醫囑ID (非醫令碼)
-                            "content" : {   //依據欄位填入資料，無資料則不回傳
+                            "content" : {   //依據欄位填入資料，無資料則不回傳[optional]
                                 "category" : "檢查",
                                 "startDate" : 1406938026,
                                 "period" : "",
@@ -2836,286 +2825,3 @@ HOST: http://www.wantoto.com
             }
         }
         
-# Group 急救紀錄 ER
-## 5/12 - 急救紀錄 [/er]
-### 急診 [GET]
-
-+ Response 200 (application/json)
-
-
-        {
-            "content": [
-                {
-                    "actions" : [
-                        {
-                            "buttonKey" : "A01",
-                            "displayName" : "評估意識", // 按鈕上要顯示的名字 [string]
-                            "optionName" : "意識評估",  // 記錄的時候要顯示的字 [string]
-                            "orderCode" : "A01",
-                            "orderType" : "abcd",
-                            "relation" : [              // 做了此動作之後，會影響到其他按鈕狀態的話，則顯示 [optional]
-                                {
-                                    "buttonKey" : "A02",  // 會影響的按鈕的displayName [string]
-                                    "action" : "highlight"  // 按鈕的動作 [string]  ex: highlight, unhighlight, disable, enable
-                                }   
-                            ],
-                            "defaultNote" : "E1M1V1",   // 預設的備註值  [string, optional]
-                        },
-                        {
-                            "buttonKey" : "A02",
-                            "displayName" : "評估呼吸",
-                            "popup" : {                       // [optional]
-                                "type": "option",
-                                "content": [
-                                    {
-                                        "displayName" : "無呼吸",
-                                        "optionName"  : "無呼吸",
-                                        "relation" : [
-                                            {
-                                                "buttonKey" : "B01",
-                                                "action" : "highlight"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "displayName" : "頻死呼吸",
-                                        "optionName" : "頻死呼吸",
-                                        "orderCode" : "B01",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "自發性呼吸",
-                                        "optionName" : "自發性呼吸",
-                                        "orderCode" : "B02",
-                                        "orderType" : "abcd"
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "category" : "Airway+Breathing",    // 分類的名字  [string, optional]
-                    "actions" : [
-                        {
-                            "buttonKey" : "B01",
-                            "displayName" : "打開呼吸道",
-                            "popup" : {
-                                "type" : "option",
-                                "content" : [
-                                    {
-                                        "displayName" : "壓額抬下巴",
-                                        "optionName" : "壓額抬下巴",
-                                        "orderCode" : "C01",
-                                        "orderType" : "abcd",
-                                        "relation" : [
-                                            {
-                                                "buttonKey" : "評估呼吸",
-                                                "action" : "unhighlight"
-                                            },
-                                            {
-                                                "buttonKey" : "使用Ambu",
-                                                "action" : "highlight"
-                                            },
-                                            {
-                                                "buttonKey" : "打開呼吸道",
-                                                "action" : "disable"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "displayName" : "下顎推前",
-                                        "optionName" : "下顎推前",
-                                        "orderCode" : "C02",
-                                        "orderType" : "abcd"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "buttonKey" : "B02",
-                            "displayName" : "輔助呼吸道",
-                            "popup" : {
-                                "type" : "checkbox",
-                                "content" : [
-                                    {
-                                        "displayName" : "置入口咽呼吸道",
-                                        "optionName" : "置入口咽呼吸道",
-                                        "orderCode" : "D01",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "置入鼻咽呼吸道",
-                                        "optionName" : "置入鼻咽呼吸道",
-                                        "orderCode" : "D02",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "置入咬口器",
-                                        "optionName" : "置入咬口器",
-                                        "orderCode" : "D03",
-                                        "orderType" : "abcd"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "buttonKey" : "B03",
-                            "displayName" : "使用Ambu",
-                            "optionName" : "進行Ambu-Bagging",
-                            "orderCode" : "E01",
-                            "orderType" : "abcd"
-                        },
-                        {
-                            "buttonKey" : "B04",
-                            "displayName" : "確認插管",
-                            "popup" : {
-                                "type" : "checkbox",
-                                "content" : [
-                                    {
-                                        "displayName" : "聽診確認插管正確",
-                                        "optionName" : "聽診確認插管正確",
-                                        "orderCode" : "F01",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "使用EtCO2",
-                                        "optionName" : "使用EtCO2",
-                                        "orderCode" : "F02",
-                                        "orderType" : "abcd"
-                                    }
-                                ],
-                                "defaultNote" : "EtCO2: mmHg"
-                            }
-                        },
-                    ]
-                },
-                {
-                    "category" : "Circulation+Medication",
-                    "actions" : [
-                        {
-                            "buttonKey" : "C01",
-                            "displayName" : "檢查脈博",
-                            "popup" : {
-                                "type" : "checkbox",
-                                "content" : [
-                                    {
-                                        "displayName" : "無脈博",
-                                        "optionName" : "無脈博",
-                                        "orderCode" : "G01",
-                                        "orderType" : "abcd",
-                                        "relation" : [
-                                            {
-                                                "buttonKey" : "壓胸",
-                                                "action" : "highlight"
-                                            },
-                                            {
-                                                "buttonKey" : "接上心電圖機",
-                                                "action" : "highlight"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "displayName" : "頸動脈",
-                                        "optionName" : "頸動脈",
-                                        "orderCode" : "G02",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "股動脈",
-                                        "optionName" : "股動脈",
-                                        "orderCode" : "G03",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "肱動脈",
-                                        "optionName" : "肱動脈",
-                                        "orderCode" : "G04",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "橈動脈",
-                                        "optionName" : "橈動脈",
-                                        "orderCode" : "D03",
-                                        "orderType" : "abcd"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "buttonKey" : "C02",
-                            "displayName" : "壓胸",
-                            "popup" : {
-                                "type" : "option",
-                                "content" : [
-                                    {
-                                        "displayName" : "人工壓胸",
-                                        "optionName" : "人工壓胸",
-                                        "orderCode" : "H01",
-                                        "orderType" : "abcd"
-                                    },
-                                    {
-                                        "displayName" : "機械壓胸",
-                                        "optionName" : "機械壓胸",
-                                        "orderCode" : "H02",
-                                        "orderType" : "abcd"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "buttonKey" : "C03",
-                            "displayName" : "Adrenaline 1mg/amp",
-                            "optionName" : "Adrenaline 1mg/amp iv",
-                            "recordKey" : "H03",
-                            "count" : true
-                        }
-                    ]
-                },
-                {
-                    "category" : "Defibrillation",
-                    "actions" : [
-                        {
-                            "displayName" : "接上心電圖機",
-                            "optionName" : "接上心電圖監視器",
-                            "recordKey" : "I01"
-                        },
-                        {
-                            "displayName" : "檢查心律",
-                            "popup" : {
-                                "type" : "option",
-                                "content" : [
-                                    {
-                                        "displayName" : "心室頻脈(VT)",
-                                        "optionName" : "心室頻脈(VT)",
-                                        "recordKey" : "J01"
-                                    },
-                                    {
-                                        "displayName" : "心室顫動(VF)",
-                                        "optionName" : "心室顫動(VF)",
-                                        "recordKey" : "J02"
-                                    },
-                                    {
-                                        "displayName" : "無脈博電器活動(PEA)",
-                                        "optionName" : "無脈博電器活動(PEA)",
-                                        "recordKey" : "J03"
-                                    },
-                                    {
-                                        "displayName" : "無心率(Asystole)",
-                                        "optionName" : "無心率(Asystole)",
-                                        "recordKey" : "J04"
-                                    },
-                                    {
-                                        "displayName" : "有脈博心律",
-                                        "optionName" : "有脈博心律",
-                                        "recordKey" : "J05"
-                                    }
-                                ],
-                                "defaultNote" : "EtCO2:  mmHg"
-                            }
-                        }
-                    ]
-                }
-            ],
-        }
-
