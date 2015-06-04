@@ -301,7 +301,7 @@ HOST: http://www.wantoto.com
         }
 
 # Group 病歷資料 Medical Record
-## 12/1 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
+## 6/4 病患醫療基本資料 [/patients/{chartNo}{?startDate,endDate}]
 ### 取得病患醫療基本資料 [GET]
 + Parameters 
     + chartNo (string) ... 病歷號
@@ -477,7 +477,7 @@ HOST: http://www.wantoto.com
             "message": "不可瀏覽指定之病患"
         } 
 
-## 10/8-病歷資料 Web Service 通則 {example} [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
+## 6/4 -病歷資料 Web Service 通則 {example} [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
 ### 取得病歷資料 [GET]
 + Parameters
     + chartNo (string) ... 病歷號
@@ -495,7 +495,7 @@ HOST: http://www.wantoto.com
             "total" : 100 //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
 
-## 9/22-檢驗報告-清單報告 [/patients/{chartNo}/labReport/report]
+## 6/4 -檢驗報告-清單報告 [/patients/{chartNo}/labReport/report]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -607,7 +607,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 12/1-檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
+## 6/4 -檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -689,7 +689,7 @@ HOST: http://www.wantoto.com
             "message": "不可瀏覽指定之病患"
         } 
 
-## 12/1-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
+## 6/4 -檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -770,7 +770,7 @@ HOST: http://www.wantoto.com
             "message": "不可瀏覽指定之病患"
         } 
 
-## 12/1-報告系統 [/patients/{chartNo}/otherReport]
+## 6/4 -報告系統 [/patients/{chartNo}/otherReport]
 檢驗報告之外的其他報告
 ### 取得病歷資料 [GET]
 
@@ -853,7 +853,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 10/28-影像報告 [/patients/{chartNo}/ImageReport]
+## 6/4 -影像報告 [/patients/{chartNo}/ImageReport]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -894,7 +894,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 12/27 -生命徵象 [/patients/{chartNo}/TPR]
+## 6/4 -生命徵象 [/patients/{chartNo}/TPR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1030,7 +1030,7 @@ HOST: http://www.wantoto.com
             "message": "不可瀏覽指定之病患"
         } 
 
-## 9/22-非處方醫囑 [/patients/{chartNo}/order]
+## 6/4 -非處方醫囑 [/patients/{chartNo}/order]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1127,7 +1127,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 12/1-處方醫囑 [/patients/{chartNo}/medication]
+## 6/4 -處方醫囑 [/patients/{chartNo}/medication]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1236,7 +1236,7 @@ HOST: http://www.wantoto.com
         }
 
 
-## 9/22-手術紀錄 [/patients/{chartNo}/OPNote]
+## 6/4 -手術紀錄 [/patients/{chartNo}/OPNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1311,7 +1311,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 04/08-病程紀錄 [/patients/{chartNo}/progressNote]
+## 6/4 -病程紀錄 [/patients/{chartNo}/progressNote]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1410,7 +1410,7 @@ HOST: http://www.wantoto.com
         } 
 
 
-## 9/15-電子病歷 [/patients/{chartNo}/EMR]
+## 6/4 -電子病歷 [/patients/{chartNo}/EMR]
 ### 取得病歷資料 [GET]
 
 + Response 200 (application/json)
@@ -1612,7 +1612,7 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
 
-## 4/24 - 院內訊息通知系統 [/notification/{id}{?confirmed,sessionKey}]
+## 6/4 - 院內訊息通知系統 [/notification/{id}{?confirmed,sessionKey}]
 ### 取得通知訊息內容 [GET]
 + Response 200 (application/json)
 
@@ -1663,7 +1663,7 @@ HOST: http://www.wantoto.com
         }
 
 # Group 病患留言板系統 
-## 4/13 - 病患對應之布告欄主題標題 [/bulletin/{chartNo}/topicTitles{?startDate,endDate,offset,limit}]
+## 4/5 - 病患對應之布告欄主題標題 [/bulletin/{chartNo}/topicTitles{?startDate,endDate,offset,limit}]
 ### 取得病患對應之布告欄主題標題[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與limit一起傳入 
@@ -1694,7 +1694,7 @@ HOST: http://www.wantoto.com
         }
  
 
-## 5/12 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content,sessionKey,authGroup}]
+## 6/4 - 病患留言板系統 [/bulletin/{chartNo}/topics{?startDate,endDate,offset,limit,empNo,title,content,sessionKey,authGroup}]
 ### 取得病患所對應之布告欄內容[GET]
 + Parameters
     + offset (number, optional) ... 資料偏移數，需與 limit 一起傳入
@@ -1788,7 +1788,7 @@ HOST: http://www.wantoto.com
         }
         
 
-## 5/12 - 留言板系統之主題 [/bulletin/topic/{topicId}{?empNo,title,content,sessionKey,chartNo,authGroup}]
+## 6/4 - 留言板系統之主題 [/bulletin/topic/{topicId}{?empNo,title,content,sessionKey,chartNo,authGroup}]
 ### 取得留言板某個主題[GET]
 + Parameters
     + topicId (string)      ... The identifier for the specified topic.
@@ -1886,7 +1886,7 @@ HOST: http://www.wantoto.com
             "message": "無存取權限"
         }
 
-## 5/12 - 留言板系統指定主題之回應 [/bulletin/topic/{topicId}/replies{?empNo,content,offset,limit,sessionKey}]
+## 6/4 - 留言板系統指定主題之回應 [/bulletin/topic/{topicId}/replies{?empNo,content,offset,limit,sessionKey}]
 ### 取得指定主題之所有回應 [GET]
 + Parameters
     + topicId (string)          ... the identifier for the specified topic.
@@ -1954,7 +1954,7 @@ HOST: http://www.wantoto.com
         }
         
 
-## 5/12 - 留言板系統之回應 [/bulletin/reply/{replyId}{?empNo,content,sessionKey,chartNo}]
+## 6/4 - 留言板系統之回應 [/bulletin/reply/{replyId}{?empNo,content,sessionKey,chartNo}]
 ### 取得留言板某個回應[GET]
 + Parameters
     + replyId (string)      ... The identifier for the specified reply.
