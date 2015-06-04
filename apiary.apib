@@ -66,7 +66,7 @@ HOST: http://www.wantoto.com
 
 # Group 病患清單 Patient List
 病患清單相關 Web Service
-## 12/27-病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
+## 6/4 -病患清單 [/patients{?chartNo,personID,wardCode,empNo,empNoConsult,empNoStarred,ORCode,ERCode,OPDCode,examRoomCode}]
 ### 查詢病患清單 [GET]
 可傳入病歷號、身分證號、病房、醫師員編、開刀房號、急診科別、門診科別、檢查科室等參數，回傳符合參數條件之病患
 + Parameters
@@ -125,7 +125,21 @@ HOST: http://www.wantoto.com
             "offset" : 0,   //回傳資料偏移數 [number]
             "total" : 50    //此次Query總筆數 [number] 
         }
-        
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+ 
 ## 病房號 [/wards]
 ### 查詢所有病房 [GET]
 + Response 200 (application/json)
@@ -447,6 +461,21 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026    // [number(timestamp)] Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
 ## 10/8-病歷資料 Web Service 通則 {example} [/patients/{chartNo}/{dataPath}{?startDate,endDate}]
 ### 取得病歷資料 [GET]
 + Parameters
@@ -561,6 +590,22 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026              // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
+
 ## 12/1-檢驗報告-累積報告 [/patients/{chartNo}/labReport/accmulatedReport]
 ### 取得病歷資料 [GET]
 
@@ -629,6 +674,19 @@ HOST: http://www.wantoto.com
         }
 
 
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
 
 ## 12/1-檢驗報告-綠單報告 [/patients/{chartNo}/labReport/greenReport]
 ### 取得病歷資料 [GET]
@@ -695,6 +753,21 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
+
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
 
 ## 12/1-報告系統 [/patients/{chartNo}/otherReport]
 檢驗報告之外的其他報告
@@ -763,6 +836,22 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
+
 ## 10/28-影像報告 [/patients/{chartNo}/ImageReport]
 ### 取得病歷資料 [GET]
 
@@ -787,6 +876,21 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期)
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
+
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
 
 
 ## 12/27 -生命徵象 [/patients/{chartNo}/TPR]
@@ -910,6 +1014,21 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      //Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
 ## 9/22-非處方醫囑 [/patients/{chartNo}/order]
 ### 取得病歷資料 [GET]
 
@@ -991,6 +1110,22 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
+
 ## 12/1-處方醫囑 [/patients/{chartNo}/medication]
 ### 取得病歷資料 [GET]
 
@@ -1050,6 +1185,22 @@ HOST: http://www.wantoto.com
             "offset" : 0,                       //回傳資料偏移數，當client傳入時需回傳[number]
             "total" : 100                       //此次Query總筆數，當content為陣列或collection時需回傳[number] 
         }
+
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
 
 ## 9/15-藥物資訊 [/medication/{medicationID}]
 ### 取得藥物資訊 [GET]
@@ -1143,6 +1294,22 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
+
 ## 04/08-病程紀錄 [/patients/{chartNo}/progressNote]
 ### 取得病歷資料 [GET]
 
@@ -1226,6 +1393,21 @@ HOST: http://www.wantoto.com
             "startDate" : 1406938026,   // Query 起始日期，以時間序號表示 (包含此日期) [number(timestamp)]
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期) [number(timestamp)]
         }
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
+
 
 ## 9/15-電子病歷 [/patients/{chartNo}/EMR]
 ### 取得病歷資料 [GET]
@@ -1326,6 +1508,20 @@ HOST: http://www.wantoto.com
             "endDate" : 1406938026      // Query 結束日期，以時間序號表示 (包含此日期)
         }
 
+
++ Response 404 (application/json)
+
+        {
+            "error": 301,
+            "message": "不存在指定之病患"
+        }   
+
++ Response 403 (application/json)
+
+        {
+            "error": 302,
+            "message": "不可瀏覽指定之病患"
+        } 
 
 # Group 其他 Other Web Service
 ## 9/24-通訊錄 [/contacts{?offset,limit}]
@@ -1445,32 +1641,24 @@ HOST: http://www.wantoto.com
 
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
+            "error": 701,
+            "message": "缺少參數 xxx"
         }
         
 + Response 400 (application/json)
 
 
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
+            "error": 702,
+            "message": "參數 xxx 型態錯誤"
         }
 
-+ Response 401 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
 
 # Group 病患留言板系統 
@@ -1577,32 +1765,25 @@ HOST: http://www.wantoto.com
 
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
+            "error": 701,
+            "message": "缺少參數xxx"
         }
         
 + Response 400 (application/json)
 
 
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
+            "error": 702,
+            "message": "參數xxx 型態錯誤"
         }
 
-+ Response 401 (application/json)
++ Response 403 (application/json)
 
 
         {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
         
 
@@ -1660,41 +1841,30 @@ HOST: http://www.wantoto.com
     
 + Response 200 (application/json)
 
-
         {
             "success": true
         }
 
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
+            "error": 701,
+            "message": "缺少參數xxx"
         }
         
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
+            "error": 702,
+            "message": "參數xxx 型態錯誤"
         }
 
-+ Response 401 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
-        
         
 ### 刪除留言板某個主題[DELETE]
 + Parameters
@@ -1704,39 +1874,15 @@ HOST: http://www.wantoto.com
 
 + Response 200 (application/json)
 
-
         {
             "success": true
         }
 
-+ Response 400 (application/json)
-
-
-        {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
-        }
-        
-+ Response 400 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
-        }
-
-+ Response 401 (application/json)
-
-
-        {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
 
 ## 5/12 - 留言板系統指定主題之回應 [/bulletin/topic/{topicId}/replies{?empNo,content,offset,limit,sessionKey}]
@@ -1787,35 +1933,26 @@ HOST: http://www.wantoto.com
 
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
+            "error": 701,
+            "message": "缺少參數 xxx"
         }
         
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
+            "error": 702,
+            "message": "參數 xxx 型態錯誤"
         }
 
-+ Response 401 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
-
         
+
 ## 5/12 - 留言板系統之回應 [/bulletin/reply/{replyId}{?empNo,content,sessionKey,chartNo}]
 ### 取得留言板某個回應[GET]
 + Parameters
@@ -1855,32 +1992,23 @@ HOST: http://www.wantoto.com
         
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
+            "error": 701,
+            "message": "缺少參數xxx"
         }
         
 + Response 400 (application/json)
 
-
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
+            "error": 702,
+            "message": "參數xxx 型態錯誤"
         }
 
-+ Response 401 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
 
 ### 刪除留言板某個主題[DELETE]
@@ -1896,34 +2024,11 @@ HOST: http://www.wantoto.com
             "success": true
         }
 
-+ Response 400 (application/json)
-
-
-        {
-            "error": {
-                "code": 1001,
-                "message": "Missing parameter error with parameter: ..."
-            }
-        }
-        
-+ Response 400 (application/json)
-
++ Response 403 (application/json)
 
         {
-            "error": {
-                "code": 1002,
-                "message": "Input parameter type error with parameter: ..."
-            }
-        }
-
-+ Response 401 (application/json)
-
-
-        {
-            "error": {
-                "code": 401,
-                "message": "Unauthorized access"
-            }
+            "error": 103,
+            "message": "無存取權限"
         }
 
 # Group 新增/修改醫令 Order
