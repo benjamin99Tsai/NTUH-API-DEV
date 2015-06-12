@@ -2965,4 +2965,53 @@ HOST: http://www.wantoto.com
                 "success" : true
             }
         }
-        
+
+# Group 候床、配床 waitBed
+## 6/12 - 候床 [/patients/{charNo}/waitBed{?wards,piority,wardClass}]
+### 取得候床資訊[GET]
+
++ Response 200 (application/json)
+
+        {
+            "content": {
+                "wards": [
+                    {
+                        "title" : "加護病房",
+                        "division" : [
+                            {
+                                "displayName" : "內科ICU",
+                                "divisionCode" ： "MED_ICU"
+                                "isChecked" ： ture //是否已排候床，為ture時回傳[optional]
+                            },
+                            ...
+                        ]
+                    },
+                    ...        
+                ],
+                "piority" : {
+                    "default" : "piorityA", //預設選項
+                    "option" ： [
+                        {
+                            "displayName"："A",
+                            "piorityCode"："piorityA"
+                        },
+                        ...
+                    ]
+                },
+                "wardClass" ： {
+                    "default"：[
+                        "single",
+                        ...
+                    ],
+                    "option" : [
+                        {
+                            "displayName" : "1人房",
+                            "wardClassCode" : "single"
+                        },
+                        ...
+                    ]
+                }
+                
+            }
+        }
+
