@@ -2916,8 +2916,296 @@ HOST: http://www.wantoto.com
             }
         }
         
+# Group 開發中 Phase2 APIs
+## 6/16 - 醫令碼所對應的醫令 [/order/{orderCode}{?sessionKey}]
++ Parameters
+    + sessionKey        (string) ... SessionKey
+
+### 取得醫令資訊 [GET]
++ Response 200 (application/json)
+        
+
+        {
+            "hospitalCode":     "HQ",               // [string] 院區碼     
+            "orderCode":        "T123123",          // [string] 醫令碼
+            "orderType":        "T",                // [string] 醫令主類別，如治療為 T
+            "orderName":        "Testing Order",    // [string] 醫令名稱
+            "orderZhName":      "測試醫令",           // [string] 醫令中文名稱
+            "notification":     "重要提示",           // [string] 重要提示 顯示於介面中
+            "hasAppendOrders":  True,               // [boolean] 是否有附帶醫令
+            "isVirtualOrder":   False,              // [boolean] 是否為虛擬醫令
+            "isAvailable":      True,               // [boolean] 是否可以使用
+            "authCode":         7,                  // [number] 如 110 轉成 6
+            "subType":          "N",                // [string] 如 手術為 N 
+            "selectable":       True,               // [boolean] 是否可以選取
+            "questionary":      [                   // [optional] 附帶問題內容
+                {
+                    "displayTitle": "SINGLE_SELECTION",     // [string] 問題顯示題目
+                    "returnKey": "s_selection_example",     // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "S",                            // [string] 問題種類，如日期為 D，單選為 S
+                    "required": True,                       // [boolean] 問題是否為必填項目
+                    "defaultPriority": 0,                   // [optional, number] 預設選取項目之順序代號，當類型為 S 或 M 時使用
+                    "options": {                            // [optional] 選擇項目列表，當類型為 S, M 時使用
+                        {
+                            "displayValue": "OPTIONA: A",   // [string] 選項顯示內容
+                            "returnValue": "optional_a",    // [string] 回傳時該選項所對應的值
+                            "priority": 0                   // [number] 選項顯示順序
+                        },
+                        {
+                            "displayValue": "OPTIONAL: B",  // [string] 項目顯示內容
+                            "returnValue": "optiona_b",     // [string] 回傳時該選項所對應的值
+                            "priority": 1                   // [number] 項目顯示順序
+                        }, 
+                        ...
+                    },
+                    "additionalOptions": False              // [optional, boolean] 是否允許增添選項，當類型為 S, M 時使用
+                },
+                {
+                    "displayTitle": "DATE_SELECTION",       // [string] 問題顯示題目
+                    "returnKey": "d_selection_example",     // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "D",                            // [string] 問題種類，如日期為 D，單選為 S
+                    "required": True,                       // [boolean] 問題是否為必填項目
+                    "dateFormat": "DD",                     // [optional, string] 當類型為 D 時使用
+                    "defaultDate": 1406938026               // [optional, number(timestamp)] 預設顯示日期，當類型為 D 時使用
+                },
+                {
+                    "displayTitle": "INPUT_BOX",            // [string] 問題顯示題目
+                    "returnKey": "input_box_example",       // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "T",                            // [string] 問題種類，如單行文字框為 T 多行文字框為 P
+                    "required": False,                      // [boolean] 問題是否為必填項目
+                    "dictionary": [                         // [optional] 常用字彙，當類型為 T 或 P 時可使用
+                        "ped_1",
+                        "ped_2",
+                        "operation_AS1",
+                        "operation_AS2",
+                        ...
+                    ]
+                },
+                {
+                    "displayTitle": "MULTI_LINE_BOX",       // [string] 問題顯示題目
+                    "returnKey": "multi_line_example",      // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "P",                            // [string] 問題種類，如單行文字框為 T 多行文字框為 P
+                    "required": False,                      // [boolean] 問題是否為必填項目
+                    "dictionary_id": "DIC_3201"             // [optional, string] 大型常用字彙對應之編號，當類型為 T 或 P 時可使用
+                },
+                ...
+            ]
+        }
+
+## 6/16 - 醫令碼所對應的醫令之附帶醫令 [/order/{orderCode}/appendOrders{?offset,limit,sessionKey}]
+### 取得醫令資訊 [GET]
++ Parameters
+    + offset        (number) ... 設定回傳資料偏移數
+    + limit         (number) ... 設定最大回傳筆數
+    + sessionKey    (string) ... SessionKey
+
++ Response 200 (application/json)
+        
+        {
+            "content": [
+                {
+                    "orderType":    "T",                    // [string] 醫令主類別，如治療為 T 
+                    "orderCode":    "TSA123",               // [string] 醫令碼
+                    "orderName":    "Testing Order2",       // [string] 醫令名稱
+                    "quantity":     1,                      // [number] 數量
+                    "billType":     "Z",                    // [string] 記帳類別，自費為 Z 健保為 E 內含為 U
+                    "required":     False                   // [boolean] 是否為必帶醫令
+                },
+                {
+                    "orderType":    "P",
+                    "orderCode":    "PZZ123",
+                    "orderName":    "Testing Order3", 
+                    "quantity":     4,
+                    "billType":     "Z",
+                    "required":     True
+                },
+                ...
+            ],
+            "total": 5,         // [number] 此次Query總筆數
+            "offset": 0,        // [number] 回傳資料偏移數
+            "limit": 100        // [number] 最大回傳筆數
+        }
+
+## 6/16 - 大型常用字彙集 [/questionDictionary/{dictionaryId}{?offset,limit}]
+### 取得 dictionaryId 所對應之大型常用字彙集內容 [GET]
++ Parameters
+    + offset        (number) ... 設定回傳資料偏移數
+    + limit         (number) ... 設定最大回傳筆數
+
++ Response 200 (application/json) 
+
+        {
+            "content": [
+                "台灣大學醫學院",         // [string] 字彙選項
+                "台灣大學醫學院竹東分院",
+                "榮民總醫院",             
+                ...
+            ],
+            "total": 10,                // [number] 此次Query總筆數
+            "offset": 0,                // [number] 回傳資料偏移數
+            "limit": 100                // [number] 最大回傳筆數
+        }
+
+## 6/16 病患醫令記錄 [/account/{accountNo}/orderRecords{?orderCode,orderName,quantity,billType,expectedExTime,hospitalCode,sessionKey}]
+
+## 開立醫令 [POST]:
++ Parameters
+    + orderCode         (string) ... 醫令碼
+    + orderName         (string) ... 醫令名稱
+    + quantity          (number) ... 數量
+    + billType          (string) ... 記帳別
+    + expectedExTime    (number) ... 預計執行時間
+    + hospitalCode      (string) ... 院區碼
+    + sessionKey        (string) ... SessionKey
+
+
++ Response 200 (application/json)
+
+        {
+            "success" : True,
+            "contacts": {
+                "orderRecordId": "T12300321" // [string] 醫令交易檔 ID
+            } 
+        }
+
+## 6/16 醫令交易檔 ID 所對應之病患醫令記錄 [/account/{accountNo}/orderRecord/{orderRecordId}{?quantity,billType,expectedExTime,confirmedTime,stage,status,sessionKey,orderRecordIds}]
+
+### 取得醫令記錄內容 [GET]
++ Parameters
+    + sessionKey    (string) .. SessionKey
+
++ Response 200 (application/json)
+
+        {
+            "orderType": "P",                   // [string] 醫令主類別
+            "hospitalCode": "HQ",               // [string] 院區碼
+            "accountNo": "8ccoun7n0",           // [string] 記帳帳號
+            "bedId": "b3dID",                   // [string] 床號
+            "orderName": "Testing Order",       // [string] 醫令名稱
+            "patientClass": "E",                // [string] 病患門住急別
+            "quantity": 10,                     // [number] 數量
+            "billType": "Z",                    // [string] 記帳類別，自費為 Z 健保為 E 內含為 U
+            "expectedExTime": 1406938026,       // [number(timestamp)] 預計執行時間 
+            "confirmedTime": 1407038026,        // [number(timestamp)] 確認時間
+            "creator": "111281",                // [string] 開立醫囑者員工編號
+            "verifier": "111281",               // [string] 確認醫師員工編號
+            "isEmergency": False,               // [boolean] 是否急做
+            "stage": "一般",                     // [string] 階段
+            "status": "開立"                     // [string] 狀態
+        }
+
+### 更改醫令記錄內容 [PATCH]
++ Parameters
+    + orderRecordIds    (string) ... 要更改記錄之 orderRecordId
+    + quantity          (number) ... 數量
+    + billType          (number) ... 記帳類別
+    + expectedExTime    (number) ... 預計執行時間
+    + confirmedTime     (number) ... 確認時間
+    + verifier          (string) ... 確認醫師員工編號
+    + isEmergency       (boolean) ... 是否急做
+    + statuc            (string) ... 階段
+    + stage             (string) ... 狀態
+
++ Response 200 (application/json) 
+        
+        {
+            "success": True
+        }
+
++ Response 400 (application/json) 
+        
+        {
+            "error": True,
+            "content": {
+                "message": "123123" #TODO: setup the proper error response message
+            }
+        }
+
+
+## 6/17 醫令交易檔 ID 所對應之病患醫令記錄之問題清單 [/account/{accountNo}/orderRecord/{orderRecordId}/questionary{?limit,offset,sessionKey}]
+
+### 取得問題輸入內容　[GET]
++ Parameters
+    + limit         (number) ... 設定最大回傳筆數
+    + offset        (number) ... 設定回傳資料偏移數
+    + sessionKey    (string) ... SessionKey
+
++ Response 200 (application/json)
+
+        {
+            "content": [
+                {
+                    "displayTitle": "SINGLE_SELECTION",     // [string] 問題顯示題目
+                    "returnKey": "s_selection_example",     // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "S",                            // [string] 問題種類，如日期為 D，單選為 S
+                    "required": True,                       // [boolean] 問題是否為必填項目
+                    "defaultPriority": 0,                   // [optional, number] 預設選取項目之順序代號，當類型為 S 或 M 時使用
+                    "options": {                            // [optional] 選擇項目列表，當類型為 S, M 時使用
+                        {
+                            "displayValue": "OPTIONA: A",   // [string] 選項顯示內容
+                            "returnValue": "optional_a",    // [string] 回傳時該選項所對應的值
+                            "priority": 0                   // [number] 選項顯示順序
+                        },
+                        {
+                            "displayValue": "OPTIONAL: B",  // [string] 項目顯示內容
+                            "returnValue": "optiona_b",     // [string] 回傳時該選項所對應的值
+                            "priority": 1                   // [number] 項目顯示順序
+                        }, 
+                        ...
+                    },
+                    "additionalOptions": False,             // [optional, boolean] 是否允許增添選項，當類型為 S, M 時使用
+                    "selectedOptions": [                    // [optional] 已經填入之答案，若無則不用回傳，當類行為 S, M 時使用
+                        "optional_a"
+                    ]
+                },
+                {
+                    "displayTitle": "DATE_SELECTION",       // [string] 問題顯示題目
+                    "returnKey": "d_selection_example",     // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "D",                            // [string] 問題種類，如日期為 D，單選為 S
+                    "required": True,                       // [boolean] 問題是否為必填項目
+                    "dateFormat": "DD",                     // [optional, string] 當類型為 D 時使用
+                    "selectedDate": 1406938026              // [optional, number(datetime)] 已經填入之答案，當類型為 D 時使用
+                },
+                {
+                    "displayTitle": "INPUT_BOX",            // [string] 問題顯示題目
+                    "returnKey": "input_box_example",       // [string] 回傳結果時該問題所對應的鍵值
+                    "type": "T",                            // [string] 問題種類，如單行文字框為 T 多行文字框為 P
+                    "required": False,                      // [boolean] 問題是否為必填項目
+                    "dictionary": [                         // [optional] 常用字彙，當類型為 T 或 P 時可使用
+                        "ped_1",
+                        "ped_2",
+                        "operation_AS1",
+                        "operation_AS2",
+                        ...
+                    ],
+                    "inputText": "ped_1, ped_2"             // [optional, string] 已經輸入之內容，當類型為 T, P 時使用
+                },
+                ...
+            ],
+            "limit": 100,           // [number] 最大回傳筆數
+            "offset": 0,            // [number] 回傳資料偏移數
+            "total": 5              // [number] 此次請求回傳資料筆數
+        }
+
+### 更改問題答案 [PATCH]
+
++ Response 200 (application/json)
+        
+        {
+            "success": True
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": True,
+            "content": {
+                "message": "123123" # TODO: return the proper error message ...
+            } 
+        }
+
 # Group 多媒體相關 Media Relative Service
-# 6/5 - ProgressNote 上傳 [/patients/{chartNo}/progressNote{?image%5B%5D,accountNo,uploader,description,reviewer}]
+## 6/5 - ProgressNote 上傳 [/patients/{chartNo}/progressNote{?image%5B%5D,accountNo,uploader,description,reviewer}]
 ### 新增 ProgressNote [POST]
 + Parameters
     + image%5B%5D (array[binary])   ... 上傳之影像byte array(可多張image)
@@ -2930,8 +3218,9 @@ HOST: http://www.wantoto.com
 
 
         {
+            "success": true,
             "content": {
-                "success": true
+
             }
         }
     
@@ -2944,8 +3233,9 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
 
         {
+            "success": true,
             "content": {
-                "success": true
+
             }
         }
 
@@ -2961,8 +3251,8 @@ HOST: http://www.wantoto.com
 
 
         {
+            "success" : true,
             "content": {
-                "success" : true
             }
         }
 
@@ -3027,8 +3317,9 @@ HOST: http://www.wantoto.com
 + Response 200 (application/json)
     
         {
-            "content": {
-                "success" : true
+            "success" : true,
+            "content" : {
+
             }
         }
 
