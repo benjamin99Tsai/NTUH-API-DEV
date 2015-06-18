@@ -23,5 +23,9 @@
 
 - **HTTP400** 702: 參數 xxx 型態錯誤。
 
-- 
+###4. Order/Medication Related
+
+- **HTTP400** 701: 缺少參數 xxx
+
+- **HTTP400** 702: 參數 xxx 型態錯誤
  ---
